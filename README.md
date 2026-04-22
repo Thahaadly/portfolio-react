@@ -5,10 +5,10 @@ Selamat datang di repositori portofolio utama saya. Proyek ini bukan sekadar pam
 ---
 
 ### 🔗 Repository Links
-- **Frontend UI:** https://github.com/Thahaadly/portfolio-react.git
-- **Backend API:** https://github.com/Thahaadly/portfolio-backend.git
+- **Frontend UI:** [Thahaadly/portfolio-react](https://github.com/Thahaadly/portfolio-react)
+- **Backend API:** [Thahaadly/portfolio-backend](https://github.com/Thahaadly/portfolio-backend)
 
-
+---
 
 ## 🧠 Filosofi Pengembangan
 Bagi saya, setiap baris kode harus memiliki tujuan. Pengalaman saya dalam mengolah dataset kompleks (seperti analisis statistik atlet dan pengolahan bahasa alami) memberikan perspektif unik dalam membangun arsitektur web. Saya percaya bahwa aplikasi terbaik lahir dari perpaduan desain yang intuitif dan manajemen data yang presisi.
@@ -17,7 +17,7 @@ Bagi saya, setiap baris kode harus memiliki tujuan. Pengalaman saya dalam mengol
 Sistem ini dibangun dengan integrasi teknologi tingkat tinggi:
 - **Frontend:** React JS, Tailwind CSS, Vite (Menghasilkan UI yang *smooth*, responsif, dan performan).
 - **Backend & API:** Laravel (PHP), CodeIgniter 4, MySQL (Menjamin keamanan dan efisiensi pengolahan data).
-- **Analytical Logic:** Implementasi algoritma Clustering dan NLP untuk pengolahan data cerdas.
+- **Analytical Logic:** Implementasi algoritma K-Means Clustering dan model NLP untuk pengolahan data cerdas.
 
 ## 🌟 Proyek Unggulan dalam Portofolio
 Dalam web ini, Anda dapat melihat eksplorasi saya pada beberapa bidang utama:
@@ -36,4 +36,4 @@ Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) di perangkat Anda.
 
 1. **Clone repositori:**
    ```bash
-   git clone [https://github.com/thahawafiq/portfolio-web.git](https://github.com/thahawafiq/portfolio-web.git)
+   git clone [https://github.com/Thahaadly/portfolio-react.git](https://github.com/Thahaadly/portfolio-react.git)
