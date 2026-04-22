@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620">
+  <rect width="1200" height="620" fill="#eef2f6"/>
+  <rect x="0" y="0" width="1200" height="92" fill="#f0be12"/>
+  <text x="70" y="60" fill="#0f172a" font-size="44" font-family="Arial" font-weight="700">News</text>
+  <rect x="900" y="22" width="250" height="50" rx="12" fill="#d8e4f4"/>
+
+  <text x="70" y="150" fill="#0f172a" font-size="64" font-family="Arial" font-weight="700">Covid News</text>
+
+  <rect x="110" y="190" width="300" height="370" rx="14" fill="#1e293b"/>
+  <rect x="450" y="190" width="300" height="370" rx="14" fill="#0b1220"/>
+  <rect x="790" y="190" width="300" height="370" rx="14" fill="#1e293b"/>
+
+  <text x="600" y="330" text-anchor="middle" fill="#ffffff" font-size="64" font-family="Arial" font-weight="700">BBC NEWS</text>
+  <text x="600" y="585" text-anchor="middle" fill="#334155" font-size="28" font-family="Arial">Covid News React + API - Ganti file ini dengan foto asli</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">NLP Model Comparison</title>
+  <desc id="desc">Comparison chart between XLM and XLM-RoBERTa metrics.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e5e7eb" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="620" fill="url(#panel)" />
+
+  <g stroke="#d1d5db" stroke-width="2">
+    <line x1="70" y1="540" x2="1130" y2="540" />
+    <line x1="70" y1="486" x2="1130" y2="486" />
+    <line x1="70" y1="432" x2="1130" y2="432" />
+    <line x1="70" y1="378" x2="1130" y2="378" />
+    <line x1="70" y1="324" x2="1130" y2="324" />
+    <line x1="70" y1="270" x2="1130" y2="270" />
+    <line x1="70" y1="216" x2="1130" y2="216" />
+    <line x1="70" y1="162" x2="1130" y2="162" />
+    <line x1="70" y1="108" x2="1130" y2="108" />
+    <line x1="70" y1="54" x2="1130" y2="54" />
+  </g>
+
+  <g fill="#4b5563" font-size="28" font-family="Arial, Helvetica, sans-serif">
+    <text x="14" y="548">0%</text>
+    <text x="14" y="494">10%</text>
+    <text x="14" y="440">20%</text>
+    <text x="14" y="386">30%</text>
+    <text x="14" y="332">40%</text>
+    <text x="14" y="278">50%</text>
+    <text x="14" y="224">60%</text>
+    <text x="14" y="170">70%</text>
+    <text x="14" y="116">80%</text>
+    <text x="14" y="62">90%</text>
+  </g>
+
+  <g>
+    <rect x="140" y="71" width="62" height="469" fill="#3b82f6" />
+    <rect x="220" y="34" width="62" height="506" fill="#ef4444" />
+
+    <rect x="420" y="54" width="62" height="486" fill="#3b82f6" />
+    <rect x="500" y="31" width="62" height="509" fill="#ef4444" />
+
+    <rect x="700" y="71" width="62" height="469" fill="#3b82f6" />
+    <rect x="780" y="34" width="62" height="506" fill="#ef4444" />
+
+    <rect x="980" y="70" width="62" height="470" fill="#3b82f6" />
+    <rect x="1060" y="33" width="62" height="507" fill="#ef4444" />
+  </g>
+
+  <g fill="#374151" font-size="34" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="171" y="56">78,11%</text>
+    <text x="251" y="23">84,33%</text>
+
+    <text x="451" y="38">80,99%</text>
+    <text x="531" y="20">84,72%</text>
+
+    <text x="731" y="56">78,11%</text>
+    <text x="811" y="23">84,33%</text>
+
+    <text x="1011" y="55">78,21%</text>
+    <text x="1091" y="22">84,37%</text>
+  </g>
+
+  <g fill="#4b5563" font-size="36" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="210" y="590">Akurasi</text>
+    <text x="490" y="590">Presisi</text>
+    <text x="770" y="590">Recall</text>
+    <text x="1050" y="590">F1-Score</text>
+  </g>
+
+  <g transform="translate(455 608)" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#4b5563">
+    <rect x="0" y="-16" width="18" height="18" fill="#3b82f6" />
+    <text x="26" y="0">XLM</text>
+    <rect x="122" y="-16" width="18" height="18" fill="#ef4444" />
+    <text x="148" y="0">XLM-RoBERTa</text>
+  </g>
+</svg>
