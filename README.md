@@ -5,7 +5,7 @@ Selamat datang di repositori portofolio utama saya. Proyek ini bukan sekadar pam
 ---
 
 ### 🔗 Repository Links
-- **Frontend UI:** [thahawafiq/portfolio-web](https://github.com/thahawafiq/portfolio-web)
+- **Frontend UI:** https://github.com/Thahaadly/portfolio-react.git
 - **Backend API:** [thahawafiq/portfolio-backend](https://github.com/thahawafiq/portfolio-backend)
 
 
