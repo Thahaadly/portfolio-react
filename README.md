@@ -1,16 +1,23 @@
-# React + Vite
+# Thaha Wafiq Adly | Personal Portfolio 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sebuah ruang pameran digital yang memadukan pemikiran analitis dari dunia Data Analytics dengan keahlian teknis membangun antarmuka web interaktif. 
 
-Currently, two official plugins are available:
+Bagi saya, *coding* bukan sekadar merangkai sintaks. Pengalaman saya mengolah dan membedah data (seperti penerapan algoritma K-Means Clustering dan model NLP) membentuk cara berpikir saya dalam membangun arsitektur Fullstack yang solid, terstruktur, dan berbasis logika.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Ekosistem Teknologi
+Portofolio ini dibangun menggunakan teknologi modern:
+- **Frontend:** React JS, Tailwind CSS, Vite (Menghasilkan UI *Glassmorphism* yang *smooth* dan responsif).
+- **Backend & API:** Laravel, CodeIgniter 4, MySQL (Manajemen *database* relasional yang aman).
+- **Data & Logic:** Python (Digunakan di luar repositori ini untuk pemrosesan Machine Learning dan Data Analytics).
 
-## React Compiler
+## ✨ Fitur Unggulan
+- **Interactive Tech Orbit/Tree:** Visualisasi keahlian teknis dengan animasi dinamis.
+- **Bento Box Grid Layout:** Penyajian informasi ringkas ala gaya desain modern.
+- **Glassmorphism UI:** Estetika antarmuka transparan dan elegan.
+- **Headless CMS Integration:** Terhubung dengan backend Laravel untuk manajemen data proyek yang dinamis.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💻 Cara Menjalankan di Localhost
+1. *Clone* repositori ini: `git clone https://github.com/[USERNAME-KAMU]/portfolio-web.git`
+2. Masuk ke direktori: `cd portfolio-web`
+3. Install *dependencies*: `npm install`
+4. Jalankan *development server*: `npm run dev`
