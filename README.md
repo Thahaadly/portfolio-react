@@ -17,7 +17,7 @@ Portofolio ini dibangun menggunakan teknologi modern:
 - **Headless CMS Integration:** Terhubung dengan backend Laravel untuk manajemen data proyek yang dinamis.
 
 ## 💻 Cara Menjalankan di Localhost
-1. *Clone* repositori ini: `git clone https://github.com/[USERNAME-KAMU]/portfolio-web.git`
+1. *Clone* repositori ini: `git clone https://github.com/[USERNAME]/portfolio-web.git`
 2. Masuk ke direktori: `cd portfolio-web`
 3. Install *dependencies*: `npm install`
 4. Jalankan *development server*: `npm run dev`
