@@ -6,6 +6,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import heroPhoto from '../assets/fix.jpeg';
 import { resolveProjectImage } from '../utils/projectImageResolver';
+import { mockProjects } from '../data';
+import { FaLock } from 'react-icons/fa';
 import {
     FaBrain,
     FaChartPie,
@@ -691,38 +693,64 @@ function Home() {
 
     {/* Grid Proyek */}
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {loading && <span className="col-span-full text-center text-sm font-medium text-slate-500">Memuat data proyek secara estetik...</span>}
-        {error && <div className="col-span-full rounded-xl bg-red-50/80 p-4 text-center text-sm text-red-600 backdrop-blur-md">{error}</div>}
+    {mockProjects.map((project, index) => {
+        // Kita pecah string "technologies" dari mock data menjadi array
+        const techList = project.technologies ? project.technologies.split(', ') : [];
         
-        {!loading && !error && projects.map((project, index) => {
-            const meta = getProjectMeta(project.title);
-            const badges = meta.badges?.length ? meta.badges : getProjectBadges(project).map((name) => ({ name, icon: FaCode }));
-            const WatermarkIcon = meta.watermarkIcon || FaCode;
-            
-            return (
-                <article key={project.id} data-aos="fade-up" data-aos-delay={(index % 6) * 70} className={`group relative flex flex-col overflow-hidden rounded-[2rem] ${theme.glassCard}`}>
-                    <WatermarkIcon className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10" />
-                    <ProjectVisual src={resolveProjectImage(project)} alt={project.title} className="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
-                    <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
-                        <h3 className="text-xl font-bold text-slate-800 transition group-hover:text-indigo-600">{project.title}</h3>
-                        <p className="mt-3 line-clamp-3 text-sm text-slate-600">{project.description}</p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                            {badges.map((badge) => (
-                                <span key={`${project.id}-${badge.name}`} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>
-                                    <badge.icon /> {badge.name}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="mt-6 flex gap-2 justify-end">
-                            <button onClick={() => navigate(`/projects/${project.id}`)} className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}>
-                                <FaExternalLinkAlt /> Detail
-                            </button>
-                        </div>
+        return (
+            <article key={project.id} data-aos="fade-up" data-aos-delay={(index % 6) * 70} className={`group relative flex flex-col overflow-hidden rounded-[2rem] ${theme.glassCard}`}>
+                
+                {/* Watermark Icon Latar Belakang */}
+                <FaCode className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10" />
+                
+                {/* Gambar Proyek (Diambil dari folder public) */}
+                {/* Tambahkan fallback onError jika gambar belum kamu masukkan ke folder public */}
+                <img 
+                    src={`/${project.image}`} 
+                    alt={project.title} 
+                    className="h-56 w-full object-cover transition duration-500 group-hover:scale-105 bg-slate-100" 
+                    onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }}
+                />
+                
+                <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
+                    <h3 className="text-xl font-bold text-slate-800 transition group-hover:text-indigo-600">
+                        {project.title}
+                    </h3>
+                    <p className="mt-3 line-clamp-3 text-sm text-slate-600">
+                        {project.description}
+                    </p>
+                    
+                    {/* Badges Teknologi */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {techList.map((tech, idx) => (
+                            <span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>
+                                {tech}
+                            </span>
+                        ))}
                     </div>
-                </article>
-            );
-        })}
-    </div>
+                    
+                    {/* Tombol Aksi */}
+                    <div className="mt-6 flex gap-2 justify-end mt-auto pt-4">
+                        {project.link !== '#' ? (
+                            <a 
+                                href={project.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}
+                            >
+                                <FaExternalLinkAlt /> GitHub
+                            </a>
+                        ) : (
+                            <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed">
+                                <FaLock className="text-[10px]" /> Internal
+                            </span>
+                        )}
+                    </div>
+                </div>
+            </article>
+        );
+    })}
+</div>
 </section>
                 {/* ── Contact Section ── */}
                 <section id="contact" data-aos="fade-up" className="scroll-mt-32 pb-8">
