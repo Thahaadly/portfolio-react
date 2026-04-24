@@ -111,6 +111,7 @@ export default function Home() {
                                 <ul className="text-sm text-slate-600 space-y-3 font-medium">
                                     <li className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-indigo-400 shadow-sm"></span>Ilmu Komputer, ULM</li>
                                     <li className="flex items-start gap-3"><span className="h-2 w-2 rounded-full bg-indigo-400 shadow-sm mt-1.5"></span><span className="leading-snug">Sertifikasi BNSP Junior Office Operator (2028)</span></li>
+                                    <li className="flex items-start gap-3"><span className="h-2 w-2 rounded-full bg-indigo-400 shadow-sm mt-1.5"></span><span className="leading-snug">Sertifikasi React and React Native Basics Hacktiv8 (8 Desember)</span></li>
                                 </ul>
                             </div>
                             <div data-aos="fade-up" data-aos-delay="200" className={`col-span-1 md:col-span-2 rounded-[2.5rem] p-8 flex flex-col justify-center relative overflow-hidden group ${theme.glassCard}`}>
