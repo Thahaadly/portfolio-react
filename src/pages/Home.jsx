@@ -128,7 +128,7 @@ export default function Home() {
                 <section id="skills" data-aos="fade-up" className="scroll-mt-32 space-y-6">
                     <div className={`rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden ${theme.glassSurface} flex flex-col items-center justify-center`}>
                         <p className={`mb-3 text-sm font-bold tracking-[0.2em] uppercase ${theme.primary} text-center`}>Tech Stack</p>
-                        <h2 className="text-3xl font-black text-slate-800 md:text-4xl drop-shadow-sm text-center mb-10">Ekosistem Teknologi</h2>
+                        <h2 className="text-3xl font-black text-slate-800 md:text-4xl drop-shadow-sm text-center mb-10">Skills</h2>
                         <style>{`
                             @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
                             .animate-marquee { animation: marquee 25s linear infinite; }
@@ -186,13 +186,29 @@ export default function Home() {
                                         <div className="mt-4 flex flex-wrap gap-2">
                                             {techList.map((tech, idx) => (<span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>{tech}</span>))}
                                         </div>
-                                        <div className="mt-6 flex gap-2 justify-end mt-auto pt-4">
+                                        
+                                        {/* ── Tombol Aksi ── */}
+                                        <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
+                                            
+                                            {/* Tombol GitHub */}
                                             {project.link !== '#' ? (
-                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}><FaExternalLinkAlt /> GitHub</a>
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}>
+                                                    <FaGithub className="text-sm" /> GitHub
+                                                </a>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed"><FaLock className="text-[10px]" /> Internal</span>
+                                                <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed">
+                                                    <FaLock className="text-[10px]" /> Internal
+                                                </span>
+                                            )}
+
+                                            {/* Tombol Live Web (Akan muncul hanya jika data 'demo' ada di data.js) */}
+                                            {project.demo && (
+                                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.buttonSolid}`}>
+                                                    <FaExternalLinkAlt className="text-[10px]" /> Live Web
+                                                </a>
                                             )}
                                         </div>
+                                        
                                     </div>
                                 </article>
                             );
@@ -200,7 +216,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* ── Interactive Demo & Contact Section ── */}
+                {/* ── Interactive Demo & Contact Section ── 
                 <section id="demo" data-aos="fade-up" className="scroll-mt-32 pb-8">
                     <div className={`relative overflow-hidden rounded-[2.5rem] p-8 md:p-12 ${theme.glassSurface}`}>
                         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl"></div>
@@ -210,11 +226,11 @@ export default function Home() {
                             <button onClick={() => navigate('/login')} className={`mt-8 inline-flex items-center rounded-2xl px-8 py-4 text-sm font-bold ${theme.buttonSolid}`}>Masuk ke Dashboard Admin</button>
                         </div>
                     </div>
-                </section>
-
+               </section>
+*/}
                 <section id="contact" data-aos="fade-up" className="scroll-mt-32 space-y-8 pb-10">
                     <div className="flex flex-col gap-2 text-center md:text-left">
-                        <h2 className="text-3xl font-black text-slate-800 md:text-4xl drop-shadow-sm">Mari Berkolaborasi</h2>
+                        <h2 className="text-3xl font-black text-slate-800 md:text-4xl drop-shadow-sm">Kontak</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <a href="mailto:thahaadly6@gmail.com" className={`flex flex-col items-center justify-center p-8 rounded-[2rem] text-center group hover:-translate-y-2 transition-all duration-300 ${theme.glassCard}`}>

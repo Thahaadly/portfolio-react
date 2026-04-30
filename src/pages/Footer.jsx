@@ -9,9 +9,6 @@ export default function Footer({ scrollToSection }) {
             <div className="mx-auto w-full max-w-6xl px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="flex flex-col items-center md:items-start gap-2">
                     <h3 className="text-2xl font-black tracking-tight text-slate-800">THAHA<span className="text-indigo-600">.</span></h3>
-                    <p className="text-sm font-medium text-slate-500 text-center md:text-left max-w-xs">
-                        Mengubah Data & Logika Menjadi Pengalaman Web Interaktif.
-                    </p>
                 </div>
 
                 <div className="flex flex-col items-center md:items-end gap-6">

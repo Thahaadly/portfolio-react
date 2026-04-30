@@ -23,7 +23,8 @@ export const mockProjects = [
         description: "Proyek freelance Fullstack membangun website company profile interaktif menggunakan ekosistem React JS di sisi klien dan Laravel API di sisi server.",
         image: "project-photos/web-compro.jpeg", // Sesuai dengan web compro.jpeg
         technologies: "React JS, Laravel, Tailwind CSS",
-        link: "#"
+        link: "#",
+        demo: "https://spektatechnusantara.com/"
     },
     {
         id: 5,
