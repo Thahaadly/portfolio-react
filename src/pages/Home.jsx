@@ -72,9 +72,7 @@ export default function Home() {
                         <div data-aos="fade-up" data-aos-delay="120" className="max-w-xl text-base leading-relaxed text-slate-600 lg:text-lg">
                             <TypeAnimation sequence={['Merangkai antarmuka pengguna yang memukau dengan backend, database, dan API yang andal secara end-to-end.']} speed={65} repeat={0} wrapper="span" />
                         </div>
-                        <div className="mt-2 flex flex-wrap justify-center gap-2 lg:justify-start">
-                            {['React', 'Laravel', 'Tailwind', 'MySQL'].map((tag) => (<span key={tag} className={`rounded-full border px-4 py-1.5 text-xs font-semibold tracking-wide ${theme.chip}`}>{tag}</span>))}
-                        </div>
+                        
                         <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                             <button onClick={() => scrollToSection('portfolio')} className={`inline-flex items-center rounded-2xl px-8 py-3.5 text-sm font-semibold ${theme.buttonSolid}`}>Lihat Proyek</button>
                             <a href="/CV-Thaha-Wafiq-Adly-FullStack.pdf" download className={`inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 text-sm font-bold ${theme.button}`}><FaRocket className="text-xs" /> Download CV</a>
