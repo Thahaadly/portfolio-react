@@ -67,7 +67,6 @@ export default function Home() {
                 {/* ── Hero Section ── */}
                 <section id="home" data-aos="fade-up" className={`scroll-mt-32 flex flex-col items-center gap-10 rounded-[2.5rem] p-8 md:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-16 lg:py-24 ${theme.glassSurface}`}>
                     <div className="flex w-full flex-col items-center gap-6 text-center lg:w-1/2 lg:items-start lg:text-left">
-                        <p className={`inline-flex rounded-full px-4 py-1.5 text-xs font-bold tracking-[0.15em] uppercase border border-white/50 bg-white/30 backdrop-blur-sm ${theme.primary}`}>Creative Studio</p>
                         <h1 className="text-4xl font-black tracking-tight text-slate-800 sm:text-5xl md:text-6xl drop-shadow-sm">Fullstack Web Developer</h1>
                         <div data-aos="fade-up" data-aos-delay="120" className="max-w-xl text-base leading-relaxed text-slate-600 lg:text-lg">
                             <TypeAnimation sequence={['Merangkai antarmuka pengguna yang memukau dengan backend, database, dan API yang andal secara end-to-end.']} speed={65} repeat={0} wrapper="span" />
