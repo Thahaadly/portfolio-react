@@ -164,7 +164,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* ── Portfolio Section ── */}
+               {/* ── Portfolio Section ── */}
                 <section id="portfolio" data-aos="fade-up" className="scroll-mt-32 space-y-8">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-3xl font-black text-slate-800 md:text-4xl drop-shadow-sm">Karya & Eksplorasi</h2>
@@ -174,48 +174,64 @@ export default function Home() {
                         {mockProjects.map((project, index) => {
                             const techList = project.technologies ? project.technologies.split(', ') : [];
                             return (
-                                <article key={project.id} data-aos="fade-up" data-aos-delay={(index % 6) * 70} className={`group relative flex flex-col overflow-hidden rounded-[2rem] ${theme.glassCard}`}>
-                                    <FaCode className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10" />
-                                    <img 
-    src={`/${project.image}`} 
-    alt={project.title} 
-    className={`w-full transition duration-500 group-hover:scale-105 ${
-        project.isMobile 
-        ? 'h-56 object-contain py-4 bg-slate-200/50' // Jika mobile: gambar tidak dipotong, diberi jarak
-        : 'h-56 object-cover bg-slate-100'           // Jika web: gambar memenuhi kotak
-    }`} 
-    onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
-/>
-                                    <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
-                                        <h3 className="text-xl font-bold text-slate-800 transition group-hover:text-indigo-600">{project.title}</h3>
-                                        <p className="mt-3 line-clamp-3 text-sm text-slate-600">{project.description}</p>
-                                        <div className="mt-4 flex flex-wrap gap-2">
-                                            {techList.map((tech, idx) => (<span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>{tech}</span>))}
-                                        </div>
+                                /* PENTING: Hilangkan overflow-hidden di <article> ini agar pop-up bisa keluar batas */
+                                <article key={project.id} data-aos="fade-up" data-aos-delay={(index % 6) * 70} className={`group relative flex flex-col rounded-[2rem] ${theme.glassCard}`}>
+                                    
+                                    {/* ── Wrapper Utama Card ── 
+                                        Kita pindahkan overflow-hidden ke div dalam ini 
+                                    */}
+                                    <div className="flex flex-col h-full overflow-hidden rounded-[2rem]">
+                                        <FaCode className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10 pointer-events-none" />
                                         
-                                        {/* ── Tombol Aksi ── */}
-                                        <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
+                                        {/* Gambar Card Normal (Kembali ke object-cover agar tidak ada ruang kosong) */}
+                                        <img 
+                                            src={`/${project.image}`} 
+                                            alt={project.title} 
+                                            className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-slate-100" 
+                                            onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
+                                        />
+                                        
+                                        <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
+                                            <h3 className="text-xl font-bold text-slate-800 transition group-hover:text-indigo-600">{project.title}</h3>
+                                            <p className="mt-3 line-clamp-3 text-sm text-slate-600">{project.description}</p>
+                                            <div className="mt-4 flex flex-wrap gap-2">
+                                                {techList.map((tech, idx) => (<span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>{tech}</span>))}
+                                            </div>
                                             
-                                            {/* Tombol GitHub */}
-                                            {project.link !== '#' ? (
-                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}>
-                                                    <FaGithub className="text-sm" /> GitHub
-                                                </a>
-                                            ) : (
-                                                <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed">
-                                                    <FaLock className="text-[10px]" /> Internal
-                                                </span>
-                                            )}
-
-                                            {/* Tombol Live Web (Akan muncul hanya jika data 'demo' ada di data.js) */}
-                                            {project.demo && (
-                                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.buttonSolid}`}>
-                                                    <FaExternalLinkAlt className="text-[10px]" /> Live Web
-                                                </a>
-                                            )}
+                                            {/* Tombol Aksi */}
+                                            <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
+                                                {project.link !== '#' ? (
+                                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}>
+                                                        <FaGithub className="text-sm" /> GitHub
+                                                    </a>
+                                                ) : (
+                                                    <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed">
+                                                        <FaLock className="text-[10px]" /> Internal
+                                                    </span>
+                                                )}
+                                                {project.demo && (
+                                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.buttonSolid}`}>
+                                                        <FaExternalLinkAlt className="text-[10px]" /> Live Web
+                                                    </a>
+                                                )}
+                                            </div>
                                         </div>
-                                        
                                     </div>
+
+                                    {/* 🔥 FITUR POP-UP GAMBAR ESTETIK 🔥 */}
+                                    {/* Muncul melayang keluar dari card dengan animasi membesar saat di-hover */}
+                                    {project.isMobile && (
+                                        <div className="absolute z-50 left-1/2 -translate-x-1/2 -top-24 w-[240px] opacity-0 invisible scale-90 group-hover:opacity-100 group-hover:visible group-hover:scale-100 group-hover:-translate-y-4 transition-all duration-500 ease-out pointer-events-none">
+                                            <div className="bg-white/70 backdrop-blur-xl p-3 rounded-[2rem] border border-white/80 shadow-[0_20px_50px_-12px_rgba(31,38,135,0.35)]">
+                                                <img 
+                                                    src={`/${project.image}`} 
+                                                    alt={`${project.title} Full View`} 
+                                                    className="w-full h-auto rounded-2xl drop-shadow-md"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+
                                 </article>
                             );
                         })}
