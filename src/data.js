@@ -4,9 +4,16 @@ export const mockProjects = [
     {
         id: 2,
         title: "Web Berita React API",
-        description: "Membangun model Natural Language Processing (NLP) membandingkan XLM dan XLM-RoBERTa untuk mengklasifikasi teks berita dan laporan bencana dari media sosial dengan akurasi 84.33%.",
+        description: "",
+        image: "project-photos/mobile.jpeg", // Sesuai dengan berita.jpg
+        technologies: "React Native, API Integration, Laravel",
+    },
+    {
+        id: 2,
+        title: "Web Berita React API",
+        description: "Web Berita dengan React JS yang mengintegrasikan API eksternal untuk menampilkan berita terkini. Proyek ini menonjolkan kemampuan dalam mengelola data dinamis dan membangun antarmuka pengguna yang responsif.",
         image: "project-photos/berita.jpg", // Sesuai dengan berita.jpg
-        technologies: "React JS, API Integration, Frontend Logic",
+        technologies: "React JS, API Integration",
         link: "https://github.com/Hacktiv-1/React-News-Api.git"
     },
     {
