@@ -176,7 +176,16 @@ export default function Home() {
                             return (
                                 <article key={project.id} data-aos="fade-up" data-aos-delay={(index % 6) * 70} className={`group relative flex flex-col overflow-hidden rounded-[2rem] ${theme.glassCard}`}>
                                     <FaCode className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10" />
-                                    <img src={`/${project.image}`} alt={project.title} className="h-56 w-full object-cover transition duration-500 group-hover:scale-105 bg-slate-100" onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} />
+                                    <img 
+    src={`/${project.image}`} 
+    alt={project.title} 
+    className={`w-full transition duration-500 group-hover:scale-105 ${
+        project.isMobile 
+        ? 'h-56 object-contain py-4 bg-slate-200/50' // Jika mobile: gambar tidak dipotong, diberi jarak
+        : 'h-56 object-cover bg-slate-100'           // Jika web: gambar memenuhi kotak
+    }`} 
+    onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
+/>
                                     <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
                                         <h3 className="text-xl font-bold text-slate-800 transition group-hover:text-indigo-600">{project.title}</h3>
                                         <p className="mt-3 line-clamp-3 text-sm text-slate-600">{project.description}</p>

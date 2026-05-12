@@ -3,10 +3,11 @@
 export const mockProjects = [
     {
         id: 2,
-        title: "Web Berita React API",
+        title: "Aplikasi Mobile Booking Servis Online React Native API",
         description: "",
         image: "project-photos/mobile.jpeg", // Sesuai dengan berita.jpg
         technologies: "React Native, API Integration, Laravel",
+        isMobile: true
     },
     {
         id: 2,
