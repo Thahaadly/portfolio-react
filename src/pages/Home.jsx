@@ -74,7 +74,7 @@ export default function Home() {
                         
                         <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                             <button onClick={() => scrollToSection('portfolio')} className={`inline-flex items-center rounded-2xl px-8 py-3.5 text-sm font-semibold ${theme.buttonSolid}`}>Lihat Proyek</button>
-                            <a href="/CV-Thaha-Wafiq-Adly.pdf" download className={`inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 text-sm font-bold ${theme.button}`}><FaRocket className="text-xs" /> Download CV</a>
+                            <a href="/CV-Thaha- Wafiq- Adly.pdf" download className={`inline-flex items-center gap-2 rounded-2xl px-8 py-3.5 text-sm font-bold ${theme.button}`}><FaRocket className="text-xs" /> Download CV</a>
                             <div className="flex gap-3">
                                 <a href="https://www.instagram.com/thaha.aa?igsh=MTNndTV4Z20zcGh2eA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer" className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${theme.button}`}><FaInstagram className="text-xl" /></a>
                                 <a href="https://github.com/Thahaadly" target="_blank" rel="noreferrer" className={`inline-flex h-11 w-11 items-center justify-center rounded-full ${theme.button}`}><FaGithub className="text-xl" /></a>
