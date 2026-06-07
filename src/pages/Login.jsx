@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaEnvelope, FaLock, FaArrowLeft, FaSignInAlt } from 'react-icons/fa';
+import { glassTheme as theme } from '../utils/theme';
 
 export default function Login() {
   // Tempat menyimpan inputan ketikanmu
@@ -17,8 +19,9 @@ export default function Login() {
     setErrorMsg(''); // Kosongkan pesan error (kalau ada)
 
     try {
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
       // 1. Suruh Axios nembak ke satpam Laravel
-      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+      const response = await axios.post(`${apiUrl}/login`, {
         email: email,
         password: password
       });
@@ -37,57 +40,80 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <div className="mb-4 flex justify-end">
+    <div className="relative min-h-screen font-sans text-slate-800 flex items-center justify-center p-4 bg-slate-50 overflow-hidden">
+      {/* Background Blur */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-300/40 blur-[100px] mix-blend-multiply"></div>
+        <div className="absolute top-[20%] right-[-5%] h-[400px] w-[400px] rounded-full bg-cyan-200/50 blur-[100px] mix-blend-multiply"></div>
+        <div className="absolute bottom-[-10%] left-[20%] h-[600px] w-[600px] rounded-full bg-purple-200/40 blur-[120px] mix-blend-multiply"></div>
+      </div>
+
+      <div className={`w-full max-w-md p-8 sm:p-10 rounded-[2.5rem] relative ${theme.glassSurface} shadow-xl`}>
+        <div className="mb-6 flex justify-between items-center">
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-semibold text-gray-700 transition hover:bg-gray-100"
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}
           >
-            Kembali ke Home
+            <FaArrowLeft /> Kembali
           </button>
         </div>
 
-        <h2 className="mb-6 text-2xl font-bold text-center text-gray-800">Login Admin</h2>
+        <div className="text-center mb-8">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 border border-white shadow-inner mb-4">
+            <FaSignInAlt className={`text-3xl ${theme.primary}`} />
+          </div>
+          <h2 className="text-3xl font-black text-slate-800 drop-shadow-sm">Admin Access</h2>
+          <p className="text-sm text-slate-500 mt-2 font-medium">Silakan masuk ke area manajemen portofolio.</p>
+        </div>
         
         {/* Tampilkan pesan error kalau ada */}
         {errorMsg && (
-          <div className="p-3 mb-4 text-sm text-red-700 bg-red-100 rounded">
+          <div className="p-3 mb-6 text-sm font-semibold text-rose-700 bg-rose-100/80 border border-rose-200 rounded-xl backdrop-blur-sm">
             {errorMsg}
           </div>
         )}
 
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block mb-2 text-sm font-bold text-gray-700">Email</label>
-            <input 
-              type="email" 
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="admin@thaha.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required 
-            />
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div>
+            <label className="block mb-2 text-xs font-bold text-slate-600 uppercase tracking-wide">Email</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <FaEnvelope className="text-slate-400" />
+              </div>
+              <input 
+                type="email" 
+                className="w-full pl-10 pr-4 py-3 bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white/80 transition-all text-sm font-medium placeholder:text-slate-400"
+                placeholder="admin@thaha.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required 
+              />
+            </div>
           </div>
 
-          <div className="mb-6">
-            <label className="block mb-2 text-sm font-bold text-gray-700">Password</label>
-            <input 
-              type="password" 
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
-            />
+          <div>
+            <label className="block mb-2 text-xs font-bold text-slate-600 uppercase tracking-wide">Password</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <FaLock className="text-slate-400" />
+              </div>
+              <input 
+                type="password" 
+                className="w-full pl-10 pr-4 py-3 bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:bg-white/80 transition-all text-sm font-medium placeholder:text-slate-400"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required 
+              />
+            </div>
           </div>
 
           <button 
             type="submit" 
-            className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none"
+            className={`w-full py-3.5 mt-4 rounded-2xl text-sm font-bold flex justify-center items-center gap-2 ${theme.buttonSolid}`}
           >
-            Masuk
+            Masuk <FaSignInAlt />
           </button>
         </form>
       </div>

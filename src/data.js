@@ -2,7 +2,7 @@
 
 export const mockProjects = [
     {
-        id: 2,
+        id: 1,
         title: "Aplikasi Mobile Booking Servis Online React Native API",
         description: "",
         image: "project-photos/mobile.jpeg", // Sesuai dengan berita.jpg

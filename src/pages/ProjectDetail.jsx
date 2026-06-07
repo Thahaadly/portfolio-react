@@ -69,13 +69,15 @@ export default function ProjectDetail() {
   const [allProjects, setAllProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchDetail = async () => {
       try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
         const [detailResponse, allResponse] = await Promise.all([
-          axios.get(`http://127.0.0.1:8000/api/projects/${id}`),
-          axios.get('http://127.0.0.1:8000/api/projects'),
+          axios.get(`${apiUrl}/projects/${id}`),
+          axios.get(`${apiUrl}/projects`),
         ]);
 
         const allPayload = Array.isArray(allResponse.data) ? allResponse.data : allResponse.data?.data;
@@ -100,6 +102,21 @@ export default function ProjectDetail() {
       .filter((item) => item.id !== project.id)
       .slice(0, 3);
   }, [allProjects, project]);
+
+  const galleryImages = useMemo(() => {
+    if (!project) return [];
+    // Fallback if the API provides multiple images
+    if (project.gallery && Array.isArray(project.gallery)) return project.gallery;
+    return [
+      resolveProjectImage(project),
+      'https://placehold.co/800x500/1e293b/38bdf8?text=Feature+Screenshot+1',
+      'https://placehold.co/800x500/1e293b/a78bfa?text=Feature+Screenshot+2'
+    ];
+  }, [project]);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [project]);
 
   if (loading) {
     return (
@@ -218,10 +235,25 @@ export default function ProjectDetail() {
           <div className="space-y-5">
             <article className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 shadow-xl shadow-black/30">
               <ProjectVisual
-                src={resolveProjectImage(project)}
+                src={galleryImages[activeImageIndex]}
                 alt={project.title}
-                className="h-56 w-full object-cover md:h-64"
+                className="h-56 w-full object-cover md:h-72 transition-opacity duration-300"
               />
+              {/* Thumbnail Gallery */}
+              <div className="flex gap-3 p-4 bg-slate-950/50 overflow-x-auto snap-x">
+                {galleryImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`shrink-0 h-16 w-24 rounded-lg overflow-hidden border-2 transition-all snap-center focus:outline-none focus:ring-2 focus:ring-sky-400 ${
+                      activeImageIndex === idx ? 'border-sky-400 opacity-100 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
+                    }`}
+                    aria-label={`Lihat gambar ${idx + 1}`}
+                  >
+                    <ProjectVisual src={img} alt={`Thumbnail ${idx + 1}`} className="h-full w-full object-cover" compact />
+                  </button>
+                ))}
+              </div>
             </article>
 
             <article className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-xl shadow-black/30">

@@ -98,6 +98,7 @@ function ProjectVisual({ src, alt, className, compact = false }) {
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
   const userEmail = localStorage.getItem('user_email') || '';
   const homeButtonLabel = userEmail === 'demo@thaha.com' ? 'Kembali ke Portfolio (Demo)' : 'Kembali ke Portfolio';
 
@@ -138,7 +139,7 @@ export default function Dashboard() {
 
   const fetchProjects = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/projects');
+      const response = await axios.get(`${apiUrl}/projects`);
       const payload = Array.isArray(response.data) ? response.data : response.data?.data;
       setProjects(Array.isArray(payload) ? payload : []);
     } catch (error) {
@@ -232,7 +233,7 @@ export default function Dashboard() {
 
     try {
       // Kurir Axios berangkat bawa data DAN token
-      await axios.post('http://127.0.0.1:8000/api/projects', {
+      await axios.post(`${apiUrl}/projects`, {
         title: title,
         description: description,
         image,
@@ -270,7 +271,7 @@ export default function Dashboard() {
     const token = localStorage.getItem('token');
 
     try {
-      await axios.put(`http://127.0.0.1:8000/api/projects/${selectedProjectId}`, {
+      await axios.put(`${apiUrl}/projects/${selectedProjectId}`, {
         title,
         description,
         image,
@@ -303,7 +304,7 @@ export default function Dashboard() {
 
       try {
         // Axios nembak jalur DELETE bawa ID proyek dan Token
-        await axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {
+        await axios.delete(`${apiUrl}/projects/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
