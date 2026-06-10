@@ -14,9 +14,11 @@ export default function PageTransition({ children }) {
 
   return (
     <div
-      className={`transition-all duration-500 ease-out ${
-        isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-      }`}
+      className={
+        isAnimating 
+          ? 'opacity-0 translate-y-4 transition-none' 
+          : 'opacity-100 transition-all duration-500 ease-out'
+      }
     >
       {children}
     </div>

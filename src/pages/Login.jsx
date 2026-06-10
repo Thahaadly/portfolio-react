@@ -33,9 +33,16 @@ export default function Login() {
       // 3. Tendang (arahkan) user ke halaman rahasia (Dashboard)
       navigate('/dashboard');
 
-    } catch {
-      // Kalau gagal (error 401), tampilkan pesan
-      setErrorMsg('Email atau Password salah! Coba lagi.');
+    } catch (error) {
+      // MODE FRONTEND (VERCEL): Kalau backend mati (Network Error) atau pakai demo email, izinkan masuk sbg Demo
+      if (email === 'demo@thaha.com' || !error.response) {
+        localStorage.setItem('token', 'frontend-demo-token-123');
+        localStorage.setItem('user_email', 'demo@thaha.com');
+        navigate('/dashboard');
+      } else {
+        // Kalau gagal (error 401), tampilkan pesan
+        setErrorMsg('Email atau Password salah! Coba lagi.');
+      }
     }
   };
 

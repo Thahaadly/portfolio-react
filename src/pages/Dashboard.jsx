@@ -21,6 +21,7 @@ import {
 } from 'react-icons/fa';
 import { SiMysql, SiTailwindcss, SiCodeigniter } from 'react-icons/si';
 import { resolveProjectImage } from '../utils/projectImageResolver';
+import { mockProjects } from '../data';
 
 function getProjectBadges(project) {
   if (project.tech_stack) {
@@ -143,11 +144,17 @@ export default function Dashboard() {
       const payload = Array.isArray(response.data) ? response.data : response.data?.data;
       setProjects(Array.isArray(payload) ? payload : []);
     } catch (error) {
-      console.error("Gagal mengambil data proyek:", error);
-      setProjects([]);
-      showToast('Gagal mengambil data proyek dari server.', 'error');
+      if (!error.response) {
+        // MODE FRONTEND: Backend down, gunakan mock data
+        setProjects(mockProjects);
+        showToast('Mode Frontend: Menampilkan data lokal (Backend tidak terhubung).', 'info');
+      } else {
+        console.error("Gagal mengambil data proyek:", error);
+        setProjects([]);
+        showToast('Gagal mengambil data proyek dari server.', 'error');
+      }
     }
-  }, [showToast]);
+  }, [apiUrl, showToast]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -250,6 +257,18 @@ export default function Dashboard() {
       showToast('Proyek berhasil ditambahkan.', 'success');
 
     } catch (error) {
+      if (!error.response) {
+        // MODE FRONTEND: Simpan ke local state
+        const newProject = {
+          id: Date.now(),
+          title, description, image, tech_stack: techStack
+        };
+        setProjects(prev => [newProject, ...prev]);
+        closeModal();
+        showToast('Mode Frontend: Proyek ditambahkan ke memori lokal.', 'success');
+        return;
+      }
+
       console.error("Gagal menambah proyek", error);
       if (error.response?.status === 403) {
         showToast(error.response?.data?.message || 'Akses ditolak.', 'error');
@@ -286,6 +305,18 @@ export default function Dashboard() {
       fetchProjects();
       showToast('Proyek berhasil diupdate.', 'success');
     } catch (error) {
+      if (!error.response) {
+        // MODE FRONTEND: Update local state
+        setProjects(prev => prev.map(p => 
+          p.id === selectedProjectId 
+            ? { ...p, title, description, image, tech_stack: techStack }
+            : p
+        ));
+        closeModal();
+        showToast('Mode Frontend: Proyek diupdate di memori lokal.', 'success');
+        return;
+      }
+
       console.error('Gagal mengupdate proyek', error);
       if (error.response?.status === 403) {
         showToast(error.response?.data?.message || 'Akses ditolak.', 'error');
@@ -315,6 +346,13 @@ export default function Dashboard() {
         showToast('Proyek berhasil dihapus.', 'success');
         
       } catch (error) {
+        if (!error.response) {
+          // MODE FRONTEND: Hapus dari local state
+          setProjects(prev => prev.filter(p => p.id !== id));
+          showToast('Mode Frontend: Proyek dihapus dari memori lokal.', 'success');
+          return;
+        }
+
         console.error("Gagal menghapus proyek", error);
         if (error.response?.status === 403) {
           showToast(error.response?.data?.message || 'Akses ditolak.', 'error');

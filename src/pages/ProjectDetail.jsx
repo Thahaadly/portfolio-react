@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaArrowLeft, FaExternalLinkAlt, FaGithub, FaImage, FaLayerGroup, FaStar } from 'react-icons/fa';
 import { resolveProjectImage } from '../utils/projectImageResolver';
+import { mockProjects } from '../data';
 
 function getTechTags(project) {
   if (project.tech_stack) {
@@ -83,8 +84,20 @@ export default function ProjectDetail() {
         const allPayload = Array.isArray(allResponse.data) ? allResponse.data : allResponse.data?.data;
         setAllProjects(Array.isArray(allPayload) ? allPayload : []);
         setProject(detailResponse.data?.data || null);
-      } catch {
-        setError('Detail proyek tidak ditemukan atau server belum aktif.');
+      } catch (error) {
+        if (!error.response) {
+          // MODE FRONTEND: Gunakan mock data jika backend mati
+          setAllProjects(mockProjects);
+          const found = mockProjects.find((p) => p.id === parseInt(id, 10));
+          if (found) {
+            setProject(found);
+            setError('');
+          } else {
+            setError('Proyek tidak ditemukan (Mode Frontend).');
+          }
+        } else {
+          setError('Detail proyek tidak ditemukan atau server belum aktif.');
+        }
       } finally {
         setLoading(false);
       }
