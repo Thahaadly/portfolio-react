@@ -100,7 +100,7 @@ export default function Home() {
     };
 
     return (
-        <div className="relative min-h-screen scroll-smooth overflow-x-hidden font-sans text-slate-800 dark:text-slate-100 dark:text-slate-100 transition-colors duration-300">
+        <div className="relative flex flex-col min-h-screen scroll-smooth overflow-x-hidden font-sans text-slate-800 dark:text-slate-100 transition-colors duration-300">
             {/* Background Blur */}
             <div className="fixed inset-0 -z-10 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
                 <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-300/40 dark:bg-indigo-900/40 blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
@@ -129,7 +129,7 @@ export default function Home() {
                 </nav>
             </div>
 
-            <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-24 px-6 pt-36 pb-16 md:px-10">
+            <main className="relative mx-auto flex flex-1 w-full max-w-6xl flex-col gap-24 px-6 pt-36 pb-16 md:px-10">
                 
                 {/* ── Hero Section ── */}
                 <section id="home" data-aos="fade-up" className={`scroll-mt-32 flex flex-col items-center gap-10 rounded-[2.5rem] p-8 md:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-16 lg:py-24 ${theme.glassSurface}`}>
