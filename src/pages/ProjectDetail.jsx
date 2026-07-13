@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+
 import { FaArrowLeft, FaExternalLinkAlt, FaGithub, FaImage, FaLayerGroup, FaStar } from 'react-icons/fa';
 import { resolveProjectImage } from '../utils/projectImageResolver';
 import { mockProjects } from '../data';
@@ -67,43 +67,20 @@ export default function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
-  const [allProjects, setAllProjects] = useState([]);
+  const [allProjects, setAllProjects] = useState(mockProjects);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
-    const fetchDetail = async () => {
-      try {
-        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
-        const [detailResponse, allResponse] = await Promise.all([
-          axios.get(`${apiUrl}/projects/${id}`),
-          axios.get(`${apiUrl}/projects`),
-        ]);
-
-        const allPayload = Array.isArray(allResponse.data) ? allResponse.data : allResponse.data?.data;
-        setAllProjects(Array.isArray(allPayload) ? allPayload : []);
-        setProject(detailResponse.data?.data || null);
-      } catch (error) {
-        if (!error.response) {
-          // MODE FRONTEND: Gunakan mock data jika backend mati
-          setAllProjects(mockProjects);
-          const found = mockProjects.find((p) => p.id === parseInt(id, 10));
-          if (found) {
-            setProject(found);
-            setError('');
-          } else {
-            setError('Proyek tidak ditemukan (Mode Frontend).');
-          }
-        } else {
-          setError('Detail proyek tidak ditemukan atau server belum aktif.');
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDetail();
+    const found = mockProjects.find((p) => p.id === parseInt(id, 10));
+    if (found) {
+      setProject(found);
+      setError('');
+    } else {
+      setError('Proyek tidak ditemukan.');
+    }
+    setLoading(false);
   }, [id]);
 
   const techTags = useMemo(() => (project ? getTechTags(project) : []), [project]);

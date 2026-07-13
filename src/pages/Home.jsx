@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import axios from 'axios';
+
 
 // Komponen Eksternal yang sudah dipisah
 import HangingIDCard from '../components/Hangingidcard';
@@ -20,8 +20,8 @@ import { SiCodeigniter, SiMysql, SiTailwindcss } from 'react-icons/si';
 export default function Home() {
     const navigate = useNavigate();
     const [showScrollTop, setShowScrollTop] = useState(false);
-    const [projects, setProjects] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [projects, setProjects] = useState(mockProjects);
+    const [isLoading, setIsLoading] = useState(false);
     const [activeFilter, setActiveFilter] = useState('All');
     const [isDarkMode, setIsDarkMode] = useState(false);
     
@@ -62,26 +62,7 @@ export default function Home() {
         }
     });
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
-                const response = await axios.get(`${apiUrl}/projects`);
-                const data = Array.isArray(response.data) ? response.data : response.data?.data;
-                if (data && data.length > 0) {
-                    setProjects(data);
-                } else {
-                    setProjects(mockProjects);
-                }
-            } catch (error) {
-                console.error("Gagal mengambil data dari API, fallback ke mock", error);
-                setProjects(mockProjects);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchProjects();
-    }, []);
+
 
     useEffect(() => {
         AOS.init({ duration: 800, once: false, easing: 'ease-out-cubic', offset: 50 });
@@ -337,17 +318,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* ── Interactive Demo & Contact Section ── */}
-                <section id="demo" data-aos="fade-up" className="scroll-mt-32 pb-8">
-                    <div className={`relative overflow-hidden rounded-[2.5rem] p-8 md:p-12 ${theme.glassSurface}`}>
-                        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl"></div>
-                        <div className="relative z-10 text-center md:text-left">
-                            <p className={`text-xs font-bold tracking-[0.2em] uppercase ${theme.primary}`}>Interactive Demo</p>
-                            <h2 className="mt-3 text-3xl font-black text-slate-800 dark:text-slate-100 md:text-4xl">Coba Sistem CMS Saya</h2>
-                            <button onClick={() => navigate('/login')} className={`mt-8 inline-flex items-center rounded-2xl px-8 py-4 text-sm font-bold ${theme.buttonSolid}`}>Masuk ke Dashboard Admin</button>
-                        </div>
-                    </div>
-               </section>
+
                 <section id="contact" data-aos="fade-up" className="scroll-mt-32 space-y-8 pb-10">
                     <div className="flex flex-col gap-2 text-center md:text-left">
                         <h2 className="text-3xl font-black text-slate-800 dark:text-slate-100 md:text-4xl drop-shadow-sm">Terkoneksi Bersama</h2>

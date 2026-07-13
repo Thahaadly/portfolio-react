@@ -6,10 +6,14 @@ export default function PageTransition({ children }) {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    setIsAnimating(true);
-    // Reset animation trigger
-    const timer = setTimeout(() => setIsAnimating(false), 50);
-    return () => clearTimeout(timer);
+    // Gunakan timeout kecil agar tidak set-state sinkron di dalam effect
+    const timer1 = setTimeout(() => setIsAnimating(true), 0);
+    const timer2 = setTimeout(() => setIsAnimating(false), 50);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [location.pathname]);
 
   return (
