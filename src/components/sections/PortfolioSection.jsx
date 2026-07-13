@@ -65,7 +65,7 @@ export default function PortfolioSection() {
                                 
                                 {/* Mini Phone Pop-up for Mobile Apps */}
                                 {project.isMobile && (
-                                    <div className="absolute -top-16 right-4 w-32 h-[16rem] bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500 pointer-events-none z-50 border-[6px] border-slate-800 rotate-12 group-hover:rotate-0">
+                                    <div className="absolute -top-16 right-4 w-32 h-[16rem] bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500 pointer-events-none z-50 border-[6px] border-slate-800 rotate-12 group-hover:rotate-0 hidden md:block">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-4 bg-slate-800 rounded-b-xl z-10"></div>
                                         <img src={imagePath} alt="App Preview" className="w-full h-full object-cover object-top" />
                                     </div>
@@ -122,7 +122,7 @@ export default function PortfolioSection() {
                             <img 
                                 src={selectedProject.image ? (selectedProject.image.startsWith('http') ? selectedProject.image : `/${selectedProject.image}`) : 'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'} 
                                 alt={selectedProject.title} 
-                                className="w-full h-auto max-h-64 md:max-h-full object-cover object-top rounded-2xl shadow-sm bg-slate-100 dark:bg-slate-800 border-2 border-white/50" 
+                                className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl shadow-sm bg-slate-100 dark:bg-slate-800 border-2 border-white/50" 
                             />
                         </div>
                         

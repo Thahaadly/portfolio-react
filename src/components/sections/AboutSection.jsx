@@ -127,7 +127,7 @@ export default function AboutSection({ isDarkMode }) {
                                 .animate-marquee { animation: marquee 25s linear infinite; }
                                 .pause-on-hover:hover .animate-marquee { animation-play-state: paused; }
                             `}</style>
-                            <div className="w-full relative flex overflow-hidden pause-on-hover [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                            <div className="w-full relative flex overflow-hidden pause-on-hover [mask-image:_linear-gradient(to_right,transparent_0,_black_32px,_black_calc(100%-32px),transparent_100%)] md:[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
                                 {[1, 2].map((i) => (
                                     <div key={i} className="flex w-max animate-marquee items-center gap-12 pr-12" aria-hidden={i === 2}>
                                         {[ { icon: FaReact, name: 'React JS', color: 'text-emerald-500' }, { icon: FaLaravel, name: 'Laravel', color: 'text-rose-500' }, { icon: SiTailwindcss, name: 'Tailwind', color: 'text-teal-500' }, { icon: SiCodeigniter, name: 'CodeIgniter', color: 'text-sky-500' }, { icon: SiMysql, name: 'MySQL', color: 'text-cyan-600' }, { icon: FaPython, name: 'Python', color: 'text-yellow-500' }, { icon: FaDatabase, name: 'Data Logic', color: 'text-indigo-500' }, { icon: FaBrain, name: 'Machine Learning', color: 'text-purple-500' } ].map((item, index) => (
@@ -232,29 +232,29 @@ export default function AboutSection({ isDarkMode }) {
 
     return (
         <section id="about" className="w-full h-full flex flex-col justify-center animate-fade-in min-h-[calc(100vh-8rem)] pt-4 md:pt-0">
-            <div className="w-full max-w-6xl mx-auto h-auto md:h-full md:max-h-[750px] px-4 pb-8 md:pb-0 flex flex-col">
-                <div className="flex flex-col lg:flex-row w-full h-full items-center justify-center">
+            <div className="w-full max-w-6xl mx-auto h-[85vh] md:h-full md:max-h-[750px] px-2 sm:px-4 pb-8 md:pb-0 flex flex-col">
+                <div className="flex flex-row w-full h-full items-center justify-center">
                     
-                    {/* Sidebar / Top Navigation (Half-Pill Ear) */}
-                    <div className={`flex lg:flex-col items-center justify-center gap-3 lg:gap-6 
+                    {/* Sidebar / Left Navigation (Hanging) */}
+                    <div className={`flex flex-col items-center justify-center gap-6 lg:gap-8 
                                   ${theme.glassSurface}
-                                  lg:border-r-0 lg:-mr-[1px]
-                                  shadow-[-10px_0_30px_rgba(0,0,0,0.05)] z-20 w-full lg:w-24 
-                                  rounded-full lg:rounded-r-none lg:rounded-l-[3rem]
-                                  py-4 px-6 lg:py-12 lg:px-4
-                                  mb-4 lg:mb-0 shrink-0`}>
+                                  border-r-0 -mr-[1px]
+                                  shadow-[-10px_0_30px_rgba(0,0,0,0.05)] z-20 w-16 md:w-20 lg:w-24 
+                                  rounded-l-[2rem] lg:rounded-l-[3rem] rounded-r-none
+                                  py-8 px-2 lg:py-12 lg:px-4
+                                  shrink-0`}>
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`group relative flex items-center justify-center p-3 lg:p-4 rounded-2xl transition-all duration-300
+                                className={`group relative flex items-center justify-center p-3 lg:p-4 rounded-xl lg:rounded-2xl transition-all duration-300
                                     ${activeTab === tab.id 
                                         ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/40 scale-110' 
                                         : 'text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105'
                                     }
                                 `}
                             >
-                                <span className="text-xl lg:text-2xl">{tab.icon}</span>
+                                <span className="text-lg md:text-xl lg:text-2xl">{tab.icon}</span>
                                 
                                 {/* Tooltip (Desktop Only) */}
                                 <div className="absolute left-full ml-4 px-4 py-2 bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-900 text-sm font-bold rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap z-50 pointer-events-none shadow-xl hidden lg:block">
@@ -267,7 +267,7 @@ export default function AboutSection({ isDarkMode }) {
                     </div>
 
                     {/* Main Content Pane */}
-                    <div className={`flex-1 w-full h-full rounded-[2.5rem] p-6 md:p-8 lg:p-12 ${theme.glassSurface} shadow-2xl overflow-y-auto custom-scrollbar relative z-10`}>
+                    <div className={`flex-1 w-full h-full rounded-[2rem] lg:rounded-[2.5rem] p-4 sm:p-6 md:p-8 lg:p-12 ${theme.glassSurface} shadow-2xl overflow-y-auto custom-scrollbar relative z-10`}>
                         {renderContent()}
                     </div>
 
