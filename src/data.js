@@ -3,66 +3,74 @@
 export const mockProjects = [
     {
         id: 1,
-        title: "Aplikasi Mobile Booking Servis Online React Native API",
-        description: "",
-        image: "project-photos/mobile.jpeg", // Sesuai dengan berita.jpg
-        technologies: "React Native, API Integration, Laravel",
+        title: "GarageFlow - Smart Workshop Management App",
+        short_description: "Aplikasi manajemen bengkel dengan integrasi AI, pembayaran Midtrans, dan visualisasi 3D.",
+        full_description: "Merancang arsitektur decoupled React Native + Laravel REST API dengan Role-Based Access Control. Membangun fitur 'Montir AI' menggunakan Google Gemini AI untuk konsultasi otomotif otomatis. Mengimplementasikan visualisasi 3D kendaraan interaktif dengan React Three Fiber (teroptimasi 31MB → 19MB), serta mengintegrasikan Midtrans Payment Gateway untuk mengamankan transaksi bengkel.",
+        image: "project-photos/mobile.jpeg", 
+        technologies: "React Native, Laravel, MySQL, Midtrans API, Three.js",
         isMobile: true
     },
     {
         id: 2,
         title: "Web Berita React API",
-        description: "Web Berita dengan React JS yang mengintegrasikan API eksternal untuk menampilkan berita terkini. Proyek ini menonjolkan kemampuan dalam mengelola data dinamis dan membangun antarmuka pengguna yang responsif.",
-        image: "project-photos/berita.jpg", // Sesuai dengan berita.jpg
+        short_description: "Portal berita interaktif dengan integrasi API eksternal.",
+        full_description: "Web Berita dengan React JS yang mengintegrasikan API eksternal untuk menampilkan berita terkini. Proyek ini menonjolkan kemampuan dalam mengelola data dinamis dan membangun antarmuka pengguna yang responsif.",
+        image: "project-photos/berita.jpg", 
         technologies: "React JS, API Integration",
         link: "https://github.com/Hacktiv-1/React-News-Api.git"
     },
     {
         id: 3,
-        title: "Sistem Arsip BPPKS",
-        description: "Pengembangan sistem arsip internal berbasis web menggunakan CodeIgniter 4 dan MySQL selama program magang (IT Internship) di BPPKS.",
-        image: "project-photos/web-arsip.jpeg", // Sesuai dengan web arsip.jpeg
+        title: "Sistem Arsip Digital BBPPKS",
+        short_description: "Sistem Informasi Arsip Digital instansi kementerian menggunakan CodeIgniter 4.",
+        full_description: "Merancang Sistem Informasi Arsip Digital berbasis web secara end-to-end dengan CodeIgniter 4 dan MySQL. Mengimplementasikan fitur manajemen data (CRUD) dan pencarian spesifik yang secara langsung mempercepat proses penemuan kembali (retrieval) arsip penting oleh staf kementerian.",
+        image: "project-photos/web-arsip.jpeg", 
         technologies: "CodeIgniter 4, MySQL, Bootstrap",
         link: "#"
     },
     {
         id: 4,
         title: "Corporate Company Profile",
-        description: "Proyek freelance Fullstack membangun website company profile interaktif menggunakan ekosistem React JS di sisi klien dan Laravel API di sisi server.",
-        image: "project-photos/web-compro.jpeg", // Sesuai dengan web compro.jpeg
-        technologies: "React JS, Laravel, Tailwind CSS",
+        short_description: "Custom CMS berbasis Headless Architecture dengan dashboard admin dinamis.",
+        full_description: "Merancang Custom Content Management System (CMS) berbasis Headless Architecture untuk portal perusahaan klien secara end-to-end. Membangun dashboard admin dinamis dengan Laravel (PHP) dan MySQL untuk operasi CRUD mandiri, serta menyediakan REST API yang diintegrasikan mulus dengan frontend interaktif React JS dan Tailwind CSS.",
+        image: "project-photos/web-compro.jpeg", 
+        technologies: "React JS, Laravel, MySQL, Tailwind CSS",
         link: "#",
         demo: "https://spektatechnusantara.com/"
     },
     {
         id: 5,
         title: "Movie Explorer Platform",
-        description: "Aplikasi eksplorasi film hasil dari program intensif yang berfokus mendalam pada ekosistem React JS dan integrasi REST API pihak ketiga (TMDB).",
-        image: "project-photos/movie.jpg", // Sesuai dengan movie.jpg
+        short_description: "Aplikasi penjelajah film dengan integrasi TMDB API.",
+        full_description: "Aplikasi eksplorasi film hasil dari program intensif yang berfokus mendalam pada ekosistem React JS dan integrasi REST API pihak ketiga (TMDB). Menampilkan manajemen state untuk navigasi pencarian film.",
+        image: "project-photos/movie.jpg", 
         technologies: "React JS, API Integration, Frontend Logic",
         link: "https://github.com/fp4-hacktiv8-kelompok1/movie.git"
     },
     {
         id: 6,
         title: "E-Commerce Shopping App",
-        description: "Antarmuka keranjang belanja dinamis dengan manajemen state yang kompleks untuk menangani alur transaksi dan katalog produk.",
-        image: "project-photos/shopping.jpg", // Sesuai dengan shopping.jpg
+        short_description: "Antarmuka keranjang belanja dinamis dengan manajemen state kompleks.",
+        full_description: "Antarmuka e-commerce dinamis dengan manajemen state yang kompleks untuk menangani alur transaksi, perhitungan harga real-time, dan pemfilteran katalog produk.",
+        image: "project-photos/shopping.jpg", 
         technologies: "React JS, State Management, UI/UX",
         link: "https://github.com/Hacktiv8-FinalProject2/shopping.git"
     },
     {
         id: 7,
         title: "Hotel Reservation System",
-        description: "Sistem informasi pemesanan kamar hotel dengan fitur manajemen ketersediaan kamar dan dashboard operasional.",
-        image: "project-photos/hotel.jpg", // Sesuai dengan hotel.jpg
+        short_description: "Sistem pemesanan kamar hotel dengan dashboard ketersediaan operasional.",
+        full_description: "Sistem informasi pemesanan kamar hotel secara mobile dengan fitur manajemen ketersediaan kamar, filtering tipe kamar, dan dashboard operasional pemesanan pelanggan.",
+        image: "project-photos/hotel.jpg", 
         technologies: "React Native",
         link: "https://github.com/Thahaadly/fp3-booking-app.git"
     },
     {
         id: 8,
-        title: "Web Portfolio react",
-        description: "Website portofolio interaktif ini sendiri. Memadukan estetika antarmuka Glassmorphism dengan struktur arsitektur web yang solid.",
-        image: "project-photos/porto.jpg", // Sesuai dengan porto.jpg
+        title: "Web Portfolio",
+        short_description: "Website portofolio interaktif dengan desain UI Glassmorphism modern.",
+        full_description: "Website portofolio interaktif ini sendiri. Memadukan estetika antarmuka Glassmorphism yang modern dengan struktur arsitektur web yang responsif dan berkinerja tinggi.",
+        image: "project-photos/porto.jpg", 
         technologies: "React JS, Vite, Tailwind CSS",
         link: "https://github.com/Thahaadly/Assignment3Hacktiv8.git"
     }
@@ -74,7 +82,6 @@ export const mockSkills = [
         items: [
             { name: 'Python', level: 85 },
             { name: 'K-Means Clustering', level: 80 },
-            { name: 'NLP (XLM-RoBERTa)', level: 75 },
             { name: 'Data Visualization', level: 80 },
         ],
     },
