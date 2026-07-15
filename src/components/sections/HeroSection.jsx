@@ -1,5 +1,5 @@
 import { TypeAnimation } from 'react-type-animation';
-import { FaRocket, FaGithub, FaLinkedin, FaMapMarkerAlt, FaTerminal } from 'react-icons/fa';
+import { FaRocket, FaGithub, FaLinkedin, FaMapMarkerAlt, FaTerminal, FaDownload } from 'react-icons/fa';
 import { glassTheme as theme } from '../../utils/theme';
 
 export default function HeroSection({ setActivePage }) {
@@ -71,13 +71,10 @@ export default function HeroSection({ setActivePage }) {
 
                 {/* ── BENTO 4: Actions & Socials (1 col, 1 row) ── */}
                 <div className={`col-span-1 md:col-span-1 lg:col-span-1 md:row-span-1 rounded-[2.5rem] p-6 flex flex-col justify-center gap-3 ${theme.glassCard}`}>
-                    <button onClick={() => setActivePage('portfolio')} className={`w-full py-3 rounded-2xl text-sm font-bold shadow-md hover:-translate-y-1 transition-transform ${theme.buttonSolid}`}>
-                        Lihat Proyek
-                    </button>
+                    <a href="/CV-Thaha-Wafiq-Adly.pdf" download="CV_Thaha_Wafiq_Adly.pdf" className={`w-full py-3 flex items-center justify-center gap-2 rounded-2xl text-sm font-bold shadow-md hover:-translate-y-1 transition-transform ${theme.buttonSolid}`}>
+                        <FaDownload /> Download CV
+                    </a>
                     <div className="flex gap-2 justify-between">
-                        <a href="/CV-Thaha-Wafiq-Adly-FullStack.pdf" download className={`flex-1 flex justify-center items-center h-10 rounded-2xl ${theme.button} hover:-translate-y-1 transition-transform`} title="Download CV">
-                            <FaRocket className="text-sm" />
-                        </a>
                         <a href="https://github.com/Thahaadly" target="_blank" rel="noreferrer" className={`flex-1 flex justify-center items-center h-10 rounded-2xl ${theme.button} hover:-translate-y-1 transition-transform`} title="GitHub">
                             <FaGithub className="text-sm" />
                         </a>

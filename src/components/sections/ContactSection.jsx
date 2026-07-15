@@ -1,32 +1,84 @@
+import { useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { glassTheme as theme } from '../../utils/theme';
-import Footer from '../Footer';
 
 export default function ContactSection() {
+    const [result, setResult] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setResult("Sedang mengirim pesan...");
+        
+        const formData = new FormData(event.target);
+        formData.append("access_key", "8c6e6155-eed0-42f1-9334-ccbc9016354b");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setResult("✅ Pesan berhasil dikirim! Saya akan segera merespons.");
+                event.target.reset();
+            } else {
+                console.log("Error", data);
+                setResult("❌ Terjadi kesalahan: " + data.message);
+            }
+        } catch (error) {
+            setResult("❌ Gagal mengirim pesan. Periksa koneksi internet Anda.");
+        }
+        setIsSubmitting(false);
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => setResult(""), 5000);
+    };
+
     return (
-        <section id="contact" className="space-y-8 pb-10 w-full flex flex-col h-full animate-fade-in">
+        <section id="contact" className="space-y-8 pb-10 mb-15 w-full flex flex-col min-h-full animate-fade-in">
             <div className="flex flex-col gap-2 text-center md:text-left">
-                <h2 className="text-3xl font-black text-slate-800 dark:text-slate-100 md:text-4xl drop-shadow-sm">Terkoneksi Bersama</h2>
-                <p className="text-slate-600 dark:text-slate-300">Mari berdiskusi tentang peluang kolaborasi dan ide menarik.</p>
+                <h2 className="text-3xl font-black text-slate-800 dark:text-slate-100 md:text-4xl drop-shadow-sm">Contact</h2>
+                <p className="text-slate-600 dark:text-slate-300">Mari berdiskusi tentang peluang kolaborasi.</p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1">
                 {/* Form Kontak */}
                 <div className={`p-8 rounded-[2.5rem] ${theme.glassSurface} order-2 lg:order-1`}>
-                    <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); alert('Pesan berhasil dikirim!'); }}>
+                    <form className="space-y-5" onSubmit={onSubmit}>
                         <div>
                             <label htmlFor="name" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nama Lengkap</label>
-                            <input type="text" id="name" required className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="Masukkan nama Anda" />
+                            <input type="text" name="name" id="name" required className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="Masukkan nama Anda" />
                         </div>
                         <div>
                             <label htmlFor="email" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email</label>
-                            <input type="email" id="email" required className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="nama@email.com" />
+                            <input type="email" name="email" id="email" required className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="nama@email.com" />
                         </div>
                         <div>
                             <label htmlFor="message" className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Pesan</label>
-                            <textarea id="message" required rows="4" className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="Tuliskan pesan Anda..."></textarea>
+                            <textarea id="message" name="message" required rows="4" className="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:text-white" placeholder="Tuliskan pesan Anda..."></textarea>
                         </div>
-                        <button type="submit" className={`w-full rounded-xl py-3.5 text-sm font-bold ${theme.buttonSolid}`}>Kirim Pesan</button>
+                        
+                        <button type="submit" disabled={isSubmitting} className={`w-full rounded-xl py-3.5 text-sm font-bold flex justify-center items-center gap-2 ${isSubmitting ? 'bg-slate-400 cursor-not-allowed text-white' : theme.buttonSolid}`}>
+                            {isSubmitting ? (
+                                <>
+                                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Memproses...
+                                </>
+                            ) : "Kirim Pesan"}
+                        </button>
+                        
+                        {result && (
+                            <div className={`p-3 rounded-xl text-sm font-semibold text-center ${result.includes('❌') ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400' : 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400'}`}>
+                                {result}
+                            </div>
+                        )}
                     </form>
                 </div>
                 
@@ -54,9 +106,6 @@ export default function ContactSection() {
                         </div>
                     </a>
                 </div>
-            </div>
-            <div className="mt-8">
-                <Footer />
             </div>
         </section>
     );
