@@ -42,7 +42,7 @@ export default function PortfolioSection() {
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-[32px] text-[15px] font-bold transition-all duration-300
                                 ${activeFilter === filter 
                                     ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
-                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#f3f4f6] dark:hover:bg-[#212121]'
+                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#ffffff] dark:hover:bg-[#212121]'
                                 }
                             `}
                         >
@@ -59,7 +59,7 @@ export default function PortfolioSection() {
                             <article 
                                 key={project.id} 
                                 onClick={() => setSelectedProject(project)}
-                                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] border border-[#e5e7eb] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden"
                             >
                                 <div className="flex flex-col h-full rounded-[22px]">
                                     <FaCode className="absolute right-4 top-4 text-5xl text-[#ffffff] opacity-40 drop-shadow-sm z-10 pointer-events-none" />
@@ -78,11 +78,11 @@ export default function PortfolioSection() {
                                         </div>
                                     )}
 
-                                    <div className="relative z-20 flex flex-col p-6 flex-grow bg-transparent border-t border-[#e5e7eb] dark:border-[#212121]">
-                                        <h3 className="text-xl font-bold text-[#17171c] dark:text-[#ffffff] transition group-hover:text-blue-600 dark:group-hover:text-blue-400">{project.title}</h3>
-                                        <p className="mt-3 text-[15px] leading-relaxed text-[#616161] dark:text-[#d9d9dd]">{project.short_description}</p>
+                                    <div className="relative z-20 flex flex-col p-6 flex-grow bg-transparent border-t border-[#e5e7eb]">
+                                        <h3 className="text-xl font-bold text-[#17171c] transition group-hover:text-blue-600">{project.title}</h3>
+                                        <p className="mt-3 text-[15px] leading-relaxed text-[#616161]">{project.short_description}</p>
                                         <div className="mt-4 flex flex-wrap gap-2">
-                                            {techList.map((tech, idx) => (<span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-2.5 py-1 text-[11px] font-bold text-[#616161] dark:text-[#d9d9dd]">{tech}</span>))}
+                                            {techList.map((tech, idx) => (<span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2.5 py-1 text-[11px] font-bold text-[#616161]">{tech}</span>))}
                                         </div>
                                         <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
                                             {project.link_github || project.link !== '#' ? (
@@ -114,7 +114,7 @@ export default function PortfolioSection() {
                         onClick={() => setSelectedProject(null)}
                     >
                         <div 
-                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] dark:bg-[#17171c] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10" 
+                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10" 
                             onClick={e => e.stopPropagation()}
                         >
                             <button 
@@ -135,15 +135,15 @@ export default function PortfolioSection() {
                             
                             {/* Modal Content (Right Column on Desktop) */}
                             <div className="w-full md:w-7/12 flex flex-col pt-2">
-                                <h3 className="text-3xl md:text-4xl font-bold text-[#17171c] dark:text-[#ffffff] mb-4 pr-10 leading-tight">{selectedProject.title}</h3>
+                                <h3 className="text-3xl md:text-4xl font-bold text-[#17171c] mb-4 pr-10 leading-tight">{selectedProject.title}</h3>
                                 
                                 <div className="flex flex-wrap gap-2 mb-6">
                                     {(selectedProject.tech_stack ? selectedProject.tech_stack.split(', ') : (selectedProject.technologies ? selectedProject.technologies.split(', ') : [])).map((tech, idx) => (
-                                        <span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-3 py-1.5 text-[12px] font-bold text-[#616161] dark:text-[#d9d9dd]">{tech}</span>
+                                        <span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-3 py-1.5 text-[12px] font-bold text-[#616161]">{tech}</span>
                                     ))}
                                 </div>
 
-                                <p className="text-[16px] text-[#616161] dark:text-[#d9d9dd] mb-8 leading-relaxed whitespace-pre-wrap flex-grow">
+                                <p className="text-[16px] text-[#616161] mb-8 leading-relaxed whitespace-pre-wrap flex-grow">
                                     {selectedProject.full_description}
                                 </p>
 

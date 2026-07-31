@@ -61,18 +61,7 @@ export default function ControlAssistant({ activePage, setActivePage, isDarkMode
                             </button>
                         ))}
                         
-                        <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
-                        
-                        <button 
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                toggleDarkMode();
-                            }} 
-                            className="flex items-center justify-center h-10 w-10 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                            aria-label="Toggle Dark Mode"
-                        >
-                            {isDarkMode ? <FaSun className="text-lg text-amber-400" /> : <FaMoon className="text-lg text-indigo-500" />}
-                        </button>
+                        {/* Dark mode toggle removed as requested */}
                     </div>
                 )}
             </div>

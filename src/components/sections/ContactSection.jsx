@@ -53,22 +53,23 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                     
                     {/* Form Kontak (Flat UI) */}
-                    <div className="p-8 md:p-10 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm order-2 lg:order-1">
-                        <form className="space-y-6" onSubmit={onSubmit}>
+                    <div className="p-8 md:p-10 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg order-2 lg:order-1 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                        <form className="space-y-6 relative z-10" onSubmit={onSubmit}>
                             <div>
-                                <label htmlFor="name" className="block text-[13px] font-bold text-[#616161] dark:text-[#d9d9dd] uppercase tracking-widest mb-2">Nama Lengkap</label>
-                                <input type="text" name="name" id="name" required className="w-full rounded-[12px] border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-4 py-3.5 text-[15px] focus:border-[#17171c] dark:focus:border-[#ffffff] focus:ring-1 focus:ring-[#17171c] dark:focus:ring-[#ffffff] outline-none transition-all" placeholder="Masukkan nama Anda" />
+                                <label htmlFor="name" className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2">Nama Lengkap</label>
+                                <input type="text" name="name" id="name" required className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all" placeholder="Masukkan nama Anda" />
                             </div>
                             <div>
-                                <label htmlFor="email" className="block text-[13px] font-bold text-[#616161] dark:text-[#d9d9dd] uppercase tracking-widest mb-2">Email</label>
-                                <input type="email" name="email" id="email" required className="w-full rounded-[12px] border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-4 py-3.5 text-[15px] focus:border-[#17171c] dark:focus:border-[#ffffff] focus:ring-1 focus:ring-[#17171c] dark:focus:ring-[#ffffff] outline-none transition-all" placeholder="nama@email.com" />
+                                <label htmlFor="email" className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2">Email</label>
+                                <input type="email" name="email" id="email" required className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all" placeholder="nama@email.com" />
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-[13px] font-bold text-[#616161] dark:text-[#d9d9dd] uppercase tracking-widest mb-2">Pesan</label>
-                                <textarea id="message" name="message" required rows="4" className="w-full rounded-[12px] border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-4 py-3.5 text-[15px] focus:border-[#17171c] dark:focus:border-[#ffffff] focus:ring-1 focus:ring-[#17171c] dark:focus:ring-[#ffffff] outline-none transition-all resize-none" placeholder="Tuliskan pesan Anda..."></textarea>
+                                <label htmlFor="message" className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2">Pesan</label>
+                                <textarea id="message" name="message" required rows="4" className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all resize-none" placeholder="Tuliskan pesan Anda..."></textarea>
                             </div>
                             
-                            <button type="submit" disabled={isSubmitting} className={`w-full rounded-[32px] py-4 text-[15px] font-bold flex justify-center items-center gap-2 transition-all mt-4 ${isSubmitting ? 'bg-[#e5e7eb] text-[#616161] cursor-not-allowed' : theme.buttonSolid}`}>
+                            <button type="submit" disabled={isSubmitting} className={`w-full rounded-[32px] py-4 text-[15px] font-bold flex justify-center items-center gap-2 transition-all mt-4 ${isSubmitting ? 'bg-[#ffffff]/50 text-[#17171c]/50 cursor-not-allowed' : 'bg-[#ffffff] text-[#17171c] hover:bg-[#f3f4f6]'}`}>
                                 {isSubmitting ? (
                                     <>
                                         <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -90,33 +91,42 @@ export default function ContactSection() {
                     
                     {/* Kartu Kontak (Flat Design) */}
                     <div className="flex flex-col gap-6 order-1 lg:order-2">
-                        <a href="mailto:thahaadly6@gmail.com" aria-label="Kirim Email" className="flex items-center gap-6 p-8 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                            <div className="h-16 w-16 rounded-full bg-[#f1f5ff] dark:bg-[#071829] flex shrink-0 items-center justify-center">
-                                <FaEnvelope className="text-2xl text-[#17171c] dark:text-[#ffffff]" />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[20px] text-[#17171c] dark:text-[#ffffff] mb-1">Email</h3>
-                                <span className="text-[15px] font-semibold text-[#616161] dark:text-[#d9d9dd]">thahaadly6@gmail.com</span>
-                            </div>
-                        </a>
-                        
-                        <a href="https://www.linkedin.com/in/thahaa/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi LinkedIn" className="flex items-center gap-6 p-8 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                            <div className="h-16 w-16 rounded-full bg-[#f1f5ff] dark:bg-[#071829] flex shrink-0 items-center justify-center">
-                                <FaLinkedin className="text-2xl text-[#17171c] dark:text-[#ffffff]" />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-[20px] text-[#17171c] dark:text-[#ffffff] mb-1">LinkedIn</h3>
-                                <span className="text-[15px] font-semibold text-[#616161] dark:text-[#d9d9dd]">Thaha Wafiq Adly</span>
+                        <a href="mailto:thahaadly6@gmail.com" aria-label="Kirim Email" className="flex items-center gap-6 p-8 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                            <div className="relative z-10 flex items-center gap-6 w-full">
+                                <div className="h-16 w-16 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex shrink-0 items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FaEnvelope className="text-2xl text-[#ffffff]" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-[20px] text-[#ffffff] mb-1">Email</h3>
+                                    <span className="text-[15px] font-semibold text-[#f3f4f6]">thahaadly6@gmail.com</span>
+                                </div>
                             </div>
                         </a>
                         
-                        <a href="https://wa.me/6289618687992" target="_blank" rel="noopener noreferrer" aria-label="Hubungi via WhatsApp" className="flex items-center gap-6 p-8 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                            <div className="h-16 w-16 rounded-full bg-[#f1f5ff] dark:bg-[#071829] flex shrink-0 items-center justify-center">
-                                <FaWhatsapp className="text-2xl text-[#17171c] dark:text-[#ffffff]" />
+                        <a href="https://www.linkedin.com/in/thahaa/" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi LinkedIn" className="flex items-center gap-6 p-8 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                            <div className="relative z-10 flex items-center gap-6 w-full">
+                                <div className="h-16 w-16 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex shrink-0 items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FaLinkedin className="text-2xl text-[#ffffff]" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-[20px] text-[#ffffff] mb-1">LinkedIn</h3>
+                                    <span className="text-[15px] font-semibold text-[#f3f4f6]">Thaha Wafiq Adly</span>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="font-bold text-[20px] text-[#17171c] dark:text-[#ffffff] mb-1">WhatsApp</h3>
-                                <span className="text-[15px] font-semibold text-[#616161] dark:text-[#d9d9dd]">Chat via WA</span>
+                        </a>
+                        
+                        <a href="https://wa.me/6289618687992" target="_blank" rel="noopener noreferrer" aria-label="Hubungi via WhatsApp" className="flex items-center gap-6 p-8 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                            <div className="relative z-10 flex items-center gap-6 w-full">
+                                <div className="h-16 w-16 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex shrink-0 items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FaWhatsapp className="text-2xl text-[#ffffff]" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-[20px] text-[#ffffff] mb-1">WhatsApp</h3>
+                                    <span className="text-[15px] font-semibold text-[#f3f4f6]">Chat via WA</span>
+                                </div>
                             </div>
                         </a>
                     </div>

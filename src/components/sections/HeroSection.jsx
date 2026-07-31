@@ -38,22 +38,27 @@ export default function HeroSection({ setActivePage }) {
                 {/* ── Right Column: Media Composition ── */}
                 <div className="lg:col-span-7 flex flex-col justify-center gap-6 relative lg:pl-4 min-h-[300px]">
 
-                    {/* 2. Warm Stone Product Card (Aligned & Clean) */}
-                    <div className="w-full rounded-[22px] p-6 lg:p-8 flex flex-col bg-[#f2efe9] dark:bg-[#1a1a1c] border border-[#e5e7eb] dark:border-[#262626] z-20 shadow-sm transition-transform hover:-translate-y-1">
-                        <h3 className="text-[18px] font-medium text-[#17171c] dark:text-[#ffffff] mb-3 tracking-tight">availability-status</h3>
-                        <p className="text-[15px] leading-relaxed text-[#616161] dark:text-[#d9d9dd] mb-6">
-                            A highly motivated front-end web developer with robust fullstack experience, ready to craft beautiful interfaces and scalable systems.
-                        </p>
+                    {/* Gradient Accent Hero Card */}
+                    <div className="w-full rounded-[22px] p-6 lg:p-8 flex flex-col bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent z-20 shadow-lg transition-transform hover:-translate-y-1 relative overflow-hidden">
                         
-                        {/* Rule-separated bullet details */}
-                        <div className="border-t border-[#17171c]/10 dark:border-[#ffffff]/10 pt-5 flex flex-col gap-3">
-                            <div className="flex items-start gap-3 text-[14px] text-[#17171c] dark:text-[#ffffff]">
-                                <span className="text-[18px] leading-none mt-[-2px] text-[#17171c]/40 dark:text-[#ffffff]/40">•</span>
-                                <span>Supports full-time roles, remote work, and freelance.</span>
-                            </div>
-                            <div className="flex items-start gap-3 text-[14px] text-[#17171c] dark:text-[#ffffff]">
-                                <span className="text-[18px] leading-none mt-[-2px] text-[#17171c]/40 dark:text-[#ffffff]/40">•</span>
-                                <span>Base: Banjarmasin, Indonesia</span>
+                        <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply"></div>
+
+                        <div className="relative z-10 flex flex-col">
+                            <h3 className="text-[18px] font-medium text-[#ffffff] mb-3 tracking-tight">availability-status</h3>
+                            <p className="text-[15px] leading-relaxed text-[#f3f4f6] mb-6">
+                                A highly motivated front-end web developer with robust fullstack experience, ready to craft beautiful interfaces and scalable systems.
+                            </p>
+                            
+                            {/* Rule-separated bullet details */}
+                            <div className="border-t border-[#ffffff]/20 pt-5 flex flex-col gap-3">
+                                <div className="flex items-start gap-3 text-[14px] text-[#f3f4f6]">
+                                    <span className="text-[18px] leading-none mt-[-2px] text-[#ffffff]/40">•</span>
+                                    <span>Supports full-time roles, remote work, and freelance.</span>
+                                </div>
+                                <div className="flex items-start gap-3 text-[14px] text-[#f3f4f6]">
+                                    <span className="text-[18px] leading-none mt-[-2px] text-[#ffffff]/40">•</span>
+                                    <span>Base: Banjarmasin, Indonesia</span>
+                                </div>
                             </div>
                         </div>
                     </div>

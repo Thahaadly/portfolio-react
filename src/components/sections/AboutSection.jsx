@@ -68,8 +68,9 @@ export default function AboutSection({ isDarkMode }) {
 
                         {/* Flat Avatar Display */}
                         <div className="w-full flex justify-center items-center">
-                            <div className="w-full max-w-[320px] rounded-[22px] p-2 bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm">
-                                <div className="w-full rounded-[18px] overflow-hidden aspect-[3/4]">
+                            <div className="w-full max-w-[320px] rounded-[22px] p-2 bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg relative overflow-hidden">
+                                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                                <div className="w-full rounded-[18px] overflow-hidden aspect-[3/4] relative z-10">
                                     <img src={profileImage} alt="Thaha Wafiq Adly" className="w-full h-full object-cover object-top grayscale-[15%] hover:grayscale-0 transition-all duration-700" />
                                 </div>
                             </div>
@@ -97,13 +98,14 @@ export default function AboutSection({ isDarkMode }) {
                         `}</style>
                         
                         {/* Unified Main Card */}
-                        <div className="w-full rounded-[32px] border border-[#e5e7eb] dark:border-[#212121] bg-[#ffffff] dark:bg-[#17171c] shadow-sm flex flex-col lg:flex-row overflow-hidden relative">
+                        <div className="w-full rounded-[32px] border border-transparent bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg flex flex-col lg:flex-row overflow-hidden relative">
+                            <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                             
                             {/* Left Column: Half-Circle Orbit */}
-                            <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden bg-[#f8f9fa] dark:bg-[#0a0a0c] flex items-center border-b lg:border-b-0 lg:border-r border-[#e5e7eb] dark:border-[#212121]">
+                            <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden bg-transparent flex items-center border-b lg:border-b-0 lg:border-r border-[#ffffff]/10">
                                 
                                 {/* Center Anchor at the left edge */}
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-[#17171c]/20 dark:border-[#ffffff]/20 animate-orbit">
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-[#ffffff]/30 animate-orbit">
                                     {techIcons.map((item, index) => {
                                         const angle = (index / techIcons.length) * 360;
                                         const Icon = item.icon;
@@ -117,7 +119,7 @@ export default function AboutSection({ isDarkMode }) {
                                                 {/* Cancel initial angle */}
                                                 <div style={{ transform: `rotate(-${angle}deg)` }}>
                                                     {/* Cancel orbit rotation over time */}
-                                                    <div className={`animate-orbit-reverse w-14 h-14 bg-[#ffffff] dark:bg-[#1a1a1c] border border-[#e5e7eb] dark:border-[#333333] rounded-full flex items-center justify-center ${item.shadow}`}>
+                                                    <div className={`animate-orbit-reverse w-14 h-14 bg-[#ffffff]/10 backdrop-blur-sm border border-[#ffffff]/20 rounded-full flex items-center justify-center ${item.shadow}`}>
                                                         <Icon className="text-[26px]" style={{ color: item.color }} />
                                                     </div>
                                                 </div>
@@ -128,50 +130,50 @@ export default function AboutSection({ isDarkMode }) {
                                 
                                 {/* Label in the center of the orbit */}
                                 <div className="absolute left-0 top-1/2 -translate-y-1/2 translate-x-12">
-                                    <h3 className="text-[40px] font-bold text-[#17171c] dark:text-[#ffffff] tracking-tighter opacity-10" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>ECOSYSTEM</h3>
+                                    <h3 className="text-[40px] font-bold text-[#ffffff] tracking-tighter opacity-20" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>ECOSYSTEM</h3>
                                 </div>
                             </div>
                             
                             {/* Right Column: Unified Capabilities List (Nested Cards) */}
-                            <div className="w-full lg:w-[55%] flex flex-col p-6 md:p-10 bg-[#ffffff] dark:bg-[#17171c]">
-                                <h2 className="text-[28px] md:text-[32px] font-bold text-[#17171c] dark:text-[#ffffff] mb-6 tracking-tight px-2">Core Capabilities</h2>
+                            <div className="w-full lg:w-[55%] flex flex-col p-6 md:p-10 bg-transparent relative z-10">
+                                <h2 className="text-[28px] md:text-[32px] font-bold text-[#ffffff] mb-6 tracking-tight px-2">Core Capabilities</h2>
                                 
                                 <div className="flex flex-col gap-4">
                                     {/* Card 1: Frontend */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff] dark:bg-[#1a1a1c] border border-[#e5e7eb] dark:border-[#262626] shadow-[0_8px_24px_rgba(97,218,251,0.12)] hover:shadow-[0_8px_32px_rgba(97,218,251,0.25)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(97,218,251,0.12)] hover:shadow-[0_8px_32px_rgba(97,218,251,0.25)] transition-all duration-300 group">
                                         <div className="flex items-center gap-4 mb-3">
-                                            <div className="h-12 w-12 rounded-full bg-[#ffffff] dark:bg-[#222225] border border-[#e5e7eb] dark:border-[#333333] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(97,218,251,0.3)] group-hover:scale-110 transition-transform duration-300">
+                                            <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(97,218,251,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaReact style={{ color: '#61DAFB' }} className="text-xl" />
                                             </div>
-                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#17171c] dark:text-[#ffffff]">Frontend Architecture</h3>
+                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#ffffff]">Frontend Architecture</h3>
                                         </div>
-                                        <p className="text-[14.5px] leading-relaxed text-[#616161] dark:text-[#d9d9dd] mt-1">
+                                        <p className="text-[14.5px] leading-relaxed text-[#f3f4f6] mt-1">
                                             Membangun antarmuka dinamis dan responsif dengan React JS dan Tailwind CSS. Fokus pada UX yang mulus, state management, dan clean code principles.
                                         </p>
                                     </div>
 
                                     {/* Card 2: Backend */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff] dark:bg-[#1a1a1c] border border-[#e5e7eb] dark:border-[#262626] shadow-[0_8px_24px_rgba(255,45,32,0.08)] hover:shadow-[0_8px_32px_rgba(255,45,32,0.2)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(255,45,32,0.08)] hover:shadow-[0_8px_32px_rgba(255,45,32,0.2)] transition-all duration-300 group">
                                         <div className="flex items-center gap-4 mb-3">
-                                            <div className="h-12 w-12 rounded-full bg-[#ffffff] dark:bg-[#222225] border border-[#e5e7eb] dark:border-[#333333] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,45,32,0.3)] group-hover:scale-110 transition-transform duration-300">
+                                            <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,45,32,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaLaravel style={{ color: '#FF2D20' }} className="text-xl" />
                                             </div>
-                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#17171c] dark:text-[#ffffff]">Backend & Database</h3>
+                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#ffffff]">Backend & Database</h3>
                                         </div>
-                                        <p className="text-[14.5px] leading-relaxed text-[#616161] dark:text-[#d9d9dd] mt-1">
+                                        <p className="text-[14.5px] leading-relaxed text-[#f3f4f6] mt-1">
                                             Merancang REST API yang aman dan arsitektur database relasional (MySQL) yang efisien menggunakan framework PHP modern (Laravel, CodeIgniter).
                                         </p>
                                     </div>
 
                                     {/* Card 3: Data Analytics */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff] dark:bg-[#1a1a1c] border border-[#e5e7eb] dark:border-[#262626] shadow-[0_8px_24px_rgba(245,158,11,0.08)] hover:shadow-[0_8px_32px_rgba(245,158,11,0.2)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(245,158,11,0.08)] hover:shadow-[0_8px_32px_rgba(245,158,11,0.2)] transition-all duration-300 group">
                                         <div className="flex items-center gap-4 mb-3">
-                                            <div className="h-12 w-12 rounded-full bg-[#ffffff] dark:bg-[#222225] border border-[#e5e7eb] dark:border-[#333333] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.3)] group-hover:scale-110 transition-transform duration-300">
+                                            <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaBrain style={{ color: '#F59E0B' }} className="text-xl" />
                                             </div>
-                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#17171c] dark:text-[#ffffff]">Data Analytics & Logic</h3>
+                                            <h3 className="font-bold text-[18px] md:text-[20px] text-[#ffffff]">Data Analytics & Logic</h3>
                                         </div>
-                                        <p className="text-[14.5px] leading-relaxed text-[#616161] dark:text-[#d9d9dd] mt-1">
+                                        <p className="text-[14.5px] leading-relaxed text-[#f3f4f6] mt-1">
                                             Berpengalaman menggunakan Python untuk ekstraksi insight dan permodelan Machine Learning, khususnya implementasi K-Means Clustering untuk analisis data performa.
                                         </p>
                                     </div>
@@ -195,18 +197,20 @@ export default function AboutSection({ isDarkMode }) {
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-                            <div className="p-2 md:p-4 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm flex justify-center items-center hover:-translate-y-1 transition-transform">
+                            <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
+                                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                                 <img 
-                                    src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=17171c&text_color=616161&icon_color=17171c'}`} 
+                                    src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=ffffff&text_color=e5e5e5&icon_color=ffffff'}`} 
                                     alt="Thahaadly GitHub Stats" 
-                                    className="w-full h-auto drop-shadow-sm"
+                                    className="w-full h-auto drop-shadow-sm relative z-10"
                                 />
                             </div>
-                            <div className="p-2 md:p-4 rounded-[22px] bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm flex justify-center items-center hover:-translate-y-1 transition-transform">
+                            <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
+                                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                                 <img 
-                                    src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=17171c&text_color=616161'}`} 
+                                    src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=ffffff&text_color=e5e5e5'}`} 
                                     alt="Top Languages" 
-                                    className="w-full max-w-md h-auto drop-shadow-sm"
+                                    className="w-full max-w-md h-auto drop-shadow-sm relative z-10"
                                 />
                             </div>
                         </div>
@@ -236,7 +240,7 @@ export default function AboutSection({ isDarkMode }) {
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-[32px] text-[15px] font-bold transition-all duration-300
                                 ${activeTab === tab.id 
                                     ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
-                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#f3f4f6] dark:hover:bg-[#212121]'
+                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#ffffff] dark:hover:bg-[#212121]'
                                 }
                             `}
                         >

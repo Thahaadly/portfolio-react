@@ -45,23 +45,24 @@ export default function Timeline() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
                 {experiences.map((exp, index) => {
                     return (
-                        <div key={index} className="rounded-[22px] p-6 border border-[#e5e7eb] dark:border-[#262626] flex flex-col h-full bg-[#ffffff] dark:bg-[#17171c] transition-transform duration-300 hover:-translate-y-1 relative group" data-aos="fade-up" data-aos-delay={index * 100}>
+                        <div key={index} className="rounded-[22px] p-6 border border-transparent flex flex-col h-full bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg transition-transform duration-300 hover:-translate-y-1 relative group overflow-hidden" data-aos="fade-up" data-aos-delay={index * 100}>
+                            <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                             
                             {/* Card Header (Icon & Year Pill) */}
-                            <div className="flex justify-between items-start mb-6">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f2efe9] dark:bg-[#ffffff] border border-[#e5e7eb] dark:border-[#333333] shrink-0 overflow-hidden">
+                            <div className="flex justify-between items-start mb-6 relative z-10">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ffffff] border border-[#ffffff]/20 shrink-0 overflow-hidden">
                                     {exp.icon}
                                 </div>
-                                <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest rounded-md border border-[#e5e7eb] dark:border-[#333333] text-[#616161] dark:text-[#d9d9dd] bg-transparent">
+                                <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest rounded-md border border-[#ffffff]/20 text-[#e5e5e5] bg-[#ffffff]/10">
                                     {exp.year}
                                 </span>
                             </div>
                             
                             {/* Card Body */}
-                            <div className="flex flex-col flex-grow border-t border-[#e5e7eb] dark:border-[#262626] pt-5">
-                                <h4 className="text-[18px] font-medium text-[#17171c] dark:text-[#ffffff] mb-1 tracking-tight leading-tight">{exp.title}</h4>
-                                <p className="text-[13px] font-bold mb-4 text-[#17171c]/60 dark:text-[#ffffff]/60">{exp.subtitle}</p>
-                                <div className="text-[13px] text-[#616161] dark:text-[#d9d9dd] leading-relaxed mt-auto">{exp.description}</div>
+                            <div className="flex flex-col flex-grow border-t border-[#ffffff]/20 pt-5 relative z-10">
+                                <h4 className="text-[18px] font-medium text-[#ffffff] mb-1 tracking-tight leading-tight">{exp.title}</h4>
+                                <p className="text-[13px] font-bold mb-4 text-[#e5e5e5]">{exp.subtitle}</p>
+                                <div className="text-[13px] text-[#f3f4f6] leading-relaxed mt-auto">{exp.description}</div>
                             </div>
                         </div>
                     );
