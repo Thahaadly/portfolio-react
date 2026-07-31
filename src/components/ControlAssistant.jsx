@@ -14,25 +14,25 @@ export default function ControlAssistant({ activePage, setActivePage, isDarkMode
     return (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
             <div 
-                className={`flex items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 shadow-2xl rounded-full transition-all duration-500 overflow-hidden ${
-                    isExpanded ? 'w-[320px] px-4 py-3' : 'w-[160px] px-2 py-2 cursor-pointer hover:scale-105 hover:bg-white dark:hover:bg-slate-800'
+                className={`flex items-center bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-2xl rounded-full transition-all duration-500 overflow-hidden ${
+                    isExpanded ? 'w-[320px] px-4 py-3' : 'w-[160px] px-2 py-2 cursor-pointer hover:-translate-y-1'
                 }`}
                 onClick={() => !isExpanded && setIsExpanded(true)}
             >
                 {!isExpanded ? (
                     <div className="flex w-full items-center justify-between px-2 gap-2">
                         <div className="flex flex-col gap-0.5">
-                            <div className="h-1.5 w-6 bg-indigo-500 rounded-full animate-pulse"></div>
-                            <div className="h-1.5 w-4 bg-indigo-300 rounded-full animate-pulse delay-75"></div>
+                            <div className="h-1.5 w-6 bg-[#17171c] dark:bg-[#ffffff] rounded-full animate-pulse"></div>
+                            <div className="h-1.5 w-4 bg-[#616161] dark:bg-[#d9d9dd] rounded-full animate-pulse delay-75"></div>
                         </div>
-                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                        <span className="text-sm font-bold text-[#17171c] dark:text-[#ffffff]">
                             Navigate
                         </span>
-                        <div className="flex h-6 w-6 rounded-full bg-indigo-100 dark:bg-indigo-900/50 items-center justify-center">
+                        <div className="flex h-6 w-6 rounded-full bg-[#f3f4f6] dark:bg-[#212121] items-center justify-center">
                             {(() => {
                                 const activeItem = navItems.find(i => i.id === activePage);
                                 const Icon = activeItem ? activeItem.icon : FaHome;
-                                return <Icon className="text-xs text-indigo-600 dark:text-indigo-400" />;
+                                return <Icon className="text-xs text-[#17171c] dark:text-[#ffffff]" />;
                             })()}
                         </div>
                     </div>
@@ -48,15 +48,15 @@ export default function ControlAssistant({ activePage, setActivePage, isDarkMode
                                 }}
                                 className={`relative flex items-center justify-center h-10 w-10 rounded-full transition-all duration-300 ${
                                     activePage === item.id 
-                                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-none' 
-                                    : 'text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-slate-800 hover:text-indigo-500'
+                                    ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
+                                    : 'text-[#616161] dark:text-[#d9d9dd] hover:bg-[#f3f4f6] dark:hover:bg-[#212121] hover:text-[#17171c] dark:hover:text-[#ffffff]'
                                 }`}
                                 aria-label={item.label}
                                 title={item.label}
                             >
                                 <item.icon className="text-lg" />
                                 {activePage === item.id && (
-                                    <span className="absolute -bottom-1 w-1.5 h-1.5 bg-white rounded-full"></span>
+                                    <span className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full ${isDarkMode ? 'bg-[#17171c]' : 'bg-[#ffffff]'}`}></span>
                                 )}
                             </button>
                         ))}

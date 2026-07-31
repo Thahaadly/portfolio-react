@@ -32,12 +32,10 @@ export default function Home() {
     };
 
     return (
-        <div className="relative flex flex-col h-screen overflow-hidden font-sans text-slate-800 dark:text-slate-100 transition-colors duration-300">
-            {/* Background Blur */}
-            <div className="fixed inset-0 -z-10 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-                <div className="absolute top-[-10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-indigo-300/40 dark:bg-indigo-900/40 blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
-                <div className="absolute top-[20%] right-[-5%] h-[400px] w-[400px] rounded-full bg-cyan-200/50 dark:bg-cyan-900/30 blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
-                <div className="absolute bottom-[-10%] left-[20%] h-[600px] w-[600px] rounded-full bg-purple-200/40 dark:bg-purple-900/30 blur-[120px] mix-blend-multiply dark:mix-blend-screen"></div>
+        <div className="relative flex flex-col h-screen overflow-hidden font-sans text-[#212121] dark:text-[#ffffff] transition-colors duration-300">
+            {/* Background Canvas */}
+            <div className="fixed inset-0 -z-10 bg-[#ffffff] dark:bg-[#17171c] transition-colors duration-300">
+                {/* Clean canvas background per Cohere guidelines. No ambient glows. */}
             </div>
 
             <ControlAssistant 
@@ -47,7 +45,7 @@ export default function Home() {
                 toggleDarkMode={toggleDarkMode} 
             />
 
-            <main className="relative mx-auto flex flex-1 w-full max-w-6xl flex-col px-6 pt-12 pb-28 md:px-10 overflow-y-auto custom-scrollbar">
+            <main className={`relative mx-auto flex flex-1 w-full max-w-6xl flex-col px-6 pb-28 md:px-10 overflow-y-auto custom-scrollbar ${activePage === 'home' ? 'pt-12' : 'pt-4 md:pt-6'}`}>
                 {activePage === 'home' && <HeroSection setActivePage={setActivePage} />}
                 {activePage === 'about' && <AboutSection isDarkMode={isDarkMode} />}
                 {activePage === 'portfolio' && <PortfolioSection />}

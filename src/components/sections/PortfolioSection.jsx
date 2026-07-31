@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { FaGithub, FaLock, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { glassTheme as theme } from '../../utils/theme';
 import { mockProjects } from '../../data';
+import { resolveProjectImage } from '../../utils/projectImageResolver';
 
 export default function PortfolioSection() {
     const [activeFilter, setActiveFilter] = useState('All');
@@ -22,142 +23,149 @@ export default function PortfolioSection() {
     });
 
     return (
-        <section id="portfolio" className="space-y-8 w-full animate-fade-in">
-            <div className="flex flex-col gap-2">
-                <h2 className="text-3xl font-black text-slate-800 dark:text-slate-100 md:text-4xl drop-shadow-sm">Karya & Eksplorasi</h2>
-                <p className="text-slate-600 dark:text-slate-300">Proyek end-to-end yang dibangun dengan ketelitian.</p>
-            </div>
+        <section id="portfolio" className="w-full flex flex-col pb-24 md:pb-32 pt-0">
+            <div className="w-full max-w-6xl mx-auto px-6 lg:px-4">
+                
+                {/* Header Monumental */}
+                <div className="flex flex-col mb-12">
+                    <h2 className="text-[56px] md:text-[72px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] dark:text-[#ffffff] drop-shadow-none">
+                        Proyek
+                    </h2>
+                </div>
 
-            <div className="flex flex-wrap gap-2 md:gap-3">
-                {filters.map((filter) => (
-                    <button
-                        key={filter}
-                        onClick={() => setActiveFilter(filter)}
-                        className={`rounded-full px-4 py-2 text-xs md:text-sm font-semibold transition-all duration-300 ${
-                            activeFilter === filter
-                                ? 'bg-indigo-600 text-white shadow-md'
-                                : 'bg-white/60 text-slate-600 dark:text-slate-300 hover:bg-indigo-100 hover:text-indigo-600 border border-white/50'
-                        }`}
-                    >
-                        {filter}
-                    </button>
-                ))}
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 pb-8">
-                {filteredProjects.map((project, index) => {
-                    const techList = project.tech_stack ? project.tech_stack.split(', ') : (project.technologies ? project.technologies.split(', ') : []);
-                    const imagePath = project.image ? (project.image.startsWith('http') ? project.image : `/${project.image}`) : 'https://placehold.co/600x400/e2e8f0/475569?text=No+Image';
-                    return (
-                        <article 
-                            key={project.id} 
-                            onClick={() => setSelectedProject(project)}
-                            className={`group relative flex flex-col rounded-[2rem] cursor-pointer ${theme.glassCard} hover:-translate-y-2 transition-all duration-300`}
+                {/* Pill Filters */}
+                <div className="flex flex-wrap items-center gap-3 mb-12 pb-6 border-b border-[#e5e7eb] dark:border-[#212121]">
+                    {filters.map((filter) => (
+                        <button
+                            key={filter}
+                            onClick={() => setActiveFilter(filter)}
+                            className={`flex items-center gap-2 px-6 py-2.5 rounded-[32px] text-[15px] font-bold transition-all duration-300
+                                ${activeFilter === filter 
+                                    ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
+                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#f3f4f6] dark:hover:bg-[#212121]'
+                                }
+                            `}
                         >
-                            <div className="flex flex-col h-full overflow-hidden rounded-[2rem]">
-                                <FaCode className="absolute right-4 top-4 text-5xl text-slate-200/50 drop-shadow-sm z-10 pointer-events-none" />
-                                <img 
-                                    src={imagePath} 
-                                    alt={project.title} 
-                                    className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-slate-100 dark:bg-slate-800" 
-                                    onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
-                                />
-                                
-                                {/* Mini Phone Pop-up for Mobile Apps */}
-                                {project.isMobile && (
-                                    <div className="absolute -top-16 right-4 w-32 h-[16rem] bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500 pointer-events-none z-50 border-[6px] border-slate-800 rotate-12 group-hover:rotate-0 hidden md:block">
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-4 bg-slate-800 rounded-b-xl z-10"></div>
-                                        <img src={imagePath} alt="App Preview" className="w-full h-full object-cover object-top" />
-                                    </div>
-                                )}
+                            {filter}
+                        </button>
+                    ))}
+                </div>
 
-                                <div className="relative z-20 flex flex-col p-6 flex-grow bg-white/40 backdrop-blur-md border-t border-white/50">
-                                    <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 transition group-hover:text-indigo-600">{project.title}</h3>
-                                    <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{project.short_description}</p>
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {techList.map((tech, idx) => (<span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>{tech}</span>))}
-                                    </div>
-                                    <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
-                                        {project.link_github || project.link !== '#' ? (
-                                            <a href={project.link_github || project.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.button}`}>
-                                                <FaGithub className="text-sm" /> GitHub
-                                            </a>
-                                        ) : (
-                                            <span className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-slate-400 bg-slate-100/50 cursor-not-allowed">
-                                                <FaLock className="text-[10px]" /> Internal
-                                            </span>
-                                        )}
-                                        {(project.link_demo || project.demo) && (
-                                            <a href={project.link_demo || project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold ${theme.buttonSolid}`}>
-                                                <FaExternalLinkAlt className="text-[10px]" /> Live Web
-                                            </a>
-                                        )}
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 pb-8">
+                    {filteredProjects.map((project, index) => {
+                        const techList = project.tech_stack ? project.tech_stack.split(', ') : (project.technologies ? project.technologies.split(', ') : []);
+                        const imagePath = resolveProjectImage(project);
+                        return (
+                            <article 
+                                key={project.id} 
+                                onClick={() => setSelectedProject(project)}
+                                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] dark:bg-[#17171c] border border-[#e5e7eb] dark:border-[#212121] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                            >
+                                <div className="flex flex-col h-full rounded-[22px]">
+                                    <FaCode className="absolute right-4 top-4 text-5xl text-[#ffffff] opacity-40 drop-shadow-sm z-10 pointer-events-none" />
+                                    <img 
+                                        src={imagePath} 
+                                        alt={project.title} 
+                                        className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6] dark:bg-[#071829]" 
+                                        onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
+                                    />
+                                    
+                                    {/* Mini Phone Pop-up for Mobile Apps */}
+                                    {project.isMobile && (
+                                        <div className="absolute -top-16 right-4 w-32 h-[16rem] bg-[#17171c] rounded-[2rem] overflow-hidden shadow-2xl opacity-0 group-hover:opacity-100 translate-y-8 group-hover:translate-y-0 transition-all duration-500 pointer-events-none z-50 border-[6px] border-[#212121] rotate-12 group-hover:rotate-0 hidden md:block">
+                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-4 bg-[#212121] rounded-b-xl z-10"></div>
+                                            <img src={imagePath} alt="App Preview" className="w-full h-full object-cover object-top" />
+                                        </div>
+                                    )}
+
+                                    <div className="relative z-20 flex flex-col p-6 flex-grow bg-transparent border-t border-[#e5e7eb] dark:border-[#212121]">
+                                        <h3 className="text-xl font-bold text-[#17171c] dark:text-[#ffffff] transition group-hover:text-blue-600 dark:group-hover:text-blue-400">{project.title}</h3>
+                                        <p className="mt-3 text-[15px] leading-relaxed text-[#616161] dark:text-[#d9d9dd]">{project.short_description}</p>
+                                        <div className="mt-4 flex flex-wrap gap-2">
+                                            {techList.map((tech, idx) => (<span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-2.5 py-1 text-[11px] font-bold text-[#616161] dark:text-[#d9d9dd]">{tech}</span>))}
+                                        </div>
+                                        <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
+                                            {project.link_github || project.link !== '#' ? (
+                                                <a href={project.link_github || project.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold ${theme.buttonSolid}`}>
+                                                    <FaGithub className="text-sm" /> GitHub
+                                                </a>
+                                            ) : (
+                                                <span className="inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold text-[#616161] dark:text-[#d9d9dd] bg-[#f3f4f6] dark:bg-[#212121] cursor-not-allowed">
+                                                    <FaLock className="text-[10px]" /> Internal
+                                                </span>
+                                            )}
+                                            {(project.link_demo || project.demo) && (
+                                                <a href={project.link_demo || project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c] transition-opacity hover:opacity-90`}>
+                                                    <FaExternalLinkAlt className="text-[10px]" /> Live Web
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    );
-                })}
-            </div>
+                            </article>
+                        );
+                    })}
+                </div>
 
-            {/* Modal Detail Project using React Portal */}
-            {selectedProject && createPortal(
-                <div 
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in" 
-                    onClick={() => setSelectedProject(null)}
-                >
+                {/* Modal Detail Project using React Portal */}
+                {selectedProject && createPortal(
                     <div 
-                        className={`relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 md:p-8 ${theme.glassCard} bg-white/90 dark:bg-slate-900/90 shadow-2xl flex flex-col md:flex-row gap-6 md:gap-8`} 
-                        onClick={e => e.stopPropagation()}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#17171c]/80 backdrop-blur-sm animate-fade-in" 
+                        onClick={() => setSelectedProject(null)}
                     >
-                        <button 
-                            onClick={() => setSelectedProject(null)} 
-                            className="absolute top-4 right-4 p-2 rounded-full bg-slate-200/50 dark:bg-slate-700/50 hover:bg-red-500 hover:text-white transition-colors z-10"
+                        <div 
+                            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] dark:bg-[#17171c] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10" 
+                            onClick={e => e.stopPropagation()}
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                        
-                        {/* Modal Image (Left Column on Desktop) */}
-                        <div className="w-full md:w-5/12 flex-shrink-0">
-                            <img 
-                                src={selectedProject.image ? (selectedProject.image.startsWith('http') ? selectedProject.image : `/${selectedProject.image}`) : 'https://placehold.co/600x400/e2e8f0/475569?text=No+Image'} 
-                                alt={selectedProject.title} 
-                                className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl shadow-sm bg-slate-100 dark:bg-slate-800 border-2 border-white/50" 
-                            />
-                        </div>
-                        
-                        {/* Modal Content (Right Column on Desktop) */}
-                        <div className="w-full md:w-7/12 flex flex-col pt-2">
-                            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-3 pr-10">{selectedProject.title}</h3>
+                            <button 
+                                onClick={() => setSelectedProject(null)} 
+                                className="absolute top-4 right-4 p-3 rounded-full bg-[#f3f4f6] dark:bg-[#212121] hover:bg-[#17171c] dark:hover:bg-[#ffffff] hover:text-[#ffffff] dark:hover:text-[#17171c] transition-colors z-10"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            </button>
                             
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {(selectedProject.tech_stack ? selectedProject.tech_stack.split(', ') : (selectedProject.technologies ? selectedProject.technologies.split(', ') : [])).map((tech, idx) => (
-                                    <span key={idx} className={`inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-[11px] font-bold ${theme.badge}`}>{tech}</span>
-                                ))}
+                            {/* Modal Image (Left Column on Desktop) */}
+                            <div className="w-full md:w-5/12 flex-shrink-0">
+                                <img 
+                                    src={resolveProjectImage(selectedProject)} 
+                                    alt={selectedProject.title} 
+                                    className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl bg-[#f3f4f6] dark:bg-[#071829] border border-[#e5e7eb] dark:border-[#212121]" 
+                                />
                             </div>
-
-                            <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 mb-8 leading-relaxed whitespace-pre-wrap flex-grow">
-                                {selectedProject.full_description}
-                            </p>
-
-                            <div className="flex flex-wrap gap-3 mt-auto">
-                                {selectedProject.link_github || (selectedProject.link && selectedProject.link !== '#') ? (
-                                    <a href={selectedProject.link_github || selectedProject.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold ${theme.button} flex-1 md:flex-none`}>
-                                        <FaGithub className="text-base" /> GitHub
-                                    </a>
-                                ) : null}
+                            
+                            {/* Modal Content (Right Column on Desktop) */}
+                            <div className="w-full md:w-7/12 flex flex-col pt-2">
+                                <h3 className="text-3xl md:text-4xl font-bold text-[#17171c] dark:text-[#ffffff] mb-4 pr-10 leading-tight">{selectedProject.title}</h3>
                                 
-                                {(selectedProject.link_demo || selectedProject.demo) && (
-                                    <a href={selectedProject.link_demo || selectedProject.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold ${theme.buttonSolid} flex-1 md:flex-none`}>
-                                        <FaExternalLinkAlt className="text-base" /> Live Web
-                                    </a>
-                                )}
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {(selectedProject.tech_stack ? selectedProject.tech_stack.split(', ') : (selectedProject.technologies ? selectedProject.technologies.split(', ') : [])).map((tech, idx) => (
+                                        <span key={idx} className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] dark:border-[#212121] bg-[#f9fafb] dark:bg-[#071829] px-3 py-1.5 text-[12px] font-bold text-[#616161] dark:text-[#d9d9dd]">{tech}</span>
+                                    ))}
+                                </div>
+
+                                <p className="text-[16px] text-[#616161] dark:text-[#d9d9dd] mb-8 leading-relaxed whitespace-pre-wrap flex-grow">
+                                    {selectedProject.full_description}
+                                </p>
+
+                                <div className="flex flex-wrap gap-3 mt-auto border-t border-[#e5e7eb] dark:border-[#212121] pt-6">
+                                    {selectedProject.link_github || (selectedProject.link && selectedProject.link !== '#') ? (
+                                        <a href={selectedProject.link_github || selectedProject.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold ${theme.buttonSolid} flex-1 md:flex-none`}>
+                                            <FaGithub className="text-base" /> GitHub
+                                        </a>
+                                    ) : null}
+                                    
+                                    {(selectedProject.link_demo || selectedProject.demo) && (
+                                        <a href={selectedProject.link_demo || selectedProject.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c] transition-opacity hover:opacity-90 flex-1 md:flex-none`}>
+                                            <FaExternalLinkAlt className="text-base" /> Live Web
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>,
-                document.body
-            )}
+                    </div>,
+                    document.body
+                )}
+            </div>
         </section>
     );
 }
