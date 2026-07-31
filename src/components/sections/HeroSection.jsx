@@ -14,7 +14,7 @@ export default function HeroSection({ setActivePage }) {
                             Hi, I'm <br />
                             Thaha.
                         </h1>
-                        <h2 className="text-[20px] lg:text-[22px] font-medium text-[#616161] dark:text-[#d9d9dd] tracking-tight pl-4 border-l-[3px] border-[#17171c] dark:border-[#ffffff] ml-1 mt-2">
+                        <h2 className="text-[20px] lg:text-[22px] font-medium text-[#616161] tracking-tight pl-4 border-l-[3px] border-[#17171c] ml-1 mt-2">
                             Web Developer
                         </h2>
                     </div>

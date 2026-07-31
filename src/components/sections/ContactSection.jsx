@@ -43,10 +43,10 @@ export default function ContactSection() {
                 
                 {/* Header Monumental */}
                 <div className="flex flex-col gap-6 mb-16 text-center md:text-left">
-                    <h2 className="text-[56px] md:text-[72px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] dark:text-[#ffffff] drop-shadow-none">
+                    <h2 className="text-[56px] md:text-[72px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] drop-shadow-none">
                         Let's Talk.
                     </h2>
-                    <p className="text-[18px] md:text-[20px] text-[#616161] dark:text-[#d9d9dd]">Mari berdiskusi tentang peluang kolaborasi.</p>
+                    <p className="text-[18px] md:text-[20px] text-[#616161]">Mari berdiskusi tentang peluang kolaborasi.</p>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -81,7 +81,7 @@ export default function ContactSection() {
                             </button>
                             
                             {result && (
-                                <div className={`p-4 rounded-[12px] text-sm font-bold text-center mt-4 ${result.includes('❌') ? 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400 border border-red-200 dark:border-red-900/50' : 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/50'}`}>
+                                <div className={`p-4 rounded-[12px] text-sm font-bold text-center mt-4 ${result.includes('❌') ? 'bg-red-50 text-red-600 border border-red-200' : 'bg-emerald-50 text-emerald-600 border border-emerald-200'}`}>
                                     {result}
                                 </div>
                             )}

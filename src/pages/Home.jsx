@@ -8,9 +8,9 @@ import ControlAssistant from '../components/ControlAssistant';
 export default function Home() {
     const [activePage, setActivePage] = useState('home');
     return (
-        <div className="relative flex flex-col h-screen overflow-hidden font-sans text-[#212121] dark:text-[#ffffff] transition-colors duration-300">
+        <div className="relative flex flex-col h-screen overflow-hidden font-sans text-[#212121] transition-colors duration-300">
             {/* Background Canvas */}
-            <div className="fixed inset-0 -z-10 bg-[#f2efe9] dark:bg-[#17171c] transition-colors duration-300">
+            <div className="fixed inset-0 -z-10 bg-[#f2efe9] transition-colors duration-300">
                 {/* Clean canvas background per Cohere guidelines. No ambient glows. */}
             </div>
 

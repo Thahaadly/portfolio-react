@@ -10,7 +10,7 @@ export default function Timeline() {
             title: 'S1 Ilmu Komputer',
             subtitle: 'Universitas Lambung Mangkurat (ULM)',
             description: 'Lulusan dengan pemahaman kuat di bidang pengembangan perangkat lunak. Menyelesaikan tugas akhir berfokus pada Machine Learning (K-Means Clustering) untuk analisis data performa olahraga.',
-            icon: <img src={ulmLogo} alt="ULM Logo" className="w-full h-full object-contain p-1.5 mix-blend-multiply dark:mix-blend-normal dark:bg-white" />
+            icon: <img src={ulmLogo} alt="ULM Logo" className="w-full h-full object-contain p-1.5 mix-blend-multiply" />
         },
         {
             year: 'Agt - Des 2023',
@@ -24,20 +24,20 @@ export default function Timeline() {
             title: 'Sertifikasi BNSP',
             subtitle: 'Junior Office Operator',
             description: 'Sertifikasi kompetensi nasional yang memvalidasi keahlian praktis dalam mengoperasikan perangkat lunak Microsoft Office (Word, Excel, PowerPoint) untuk administrasi dan pengolahan data.',
-            icon: <img src={bnspLogo} alt="BNSP Logo" className="w-full h-full object-contain p-1 mix-blend-multiply dark:mix-blend-normal dark:bg-white" />
+            icon: <img src={bnspLogo} alt="BNSP Logo" className="w-full h-full object-contain p-1 mix-blend-multiply" />
         }
     ];
 
     return (
         <div className="w-full flex flex-col pt-2">
             {/* Header Experience */}
-            <div className="flex items-center gap-4 mb-8 border-b border-[#e5e7eb] dark:border-[#262626] pb-4">
-                <div className="h-12 w-12 rounded-[14px] bg-[#17171c] dark:bg-[#ffffff] flex items-center justify-center shrink-0">
-                    <FaBriefcase className="text-xl text-[#ffffff] dark:text-[#17171c]" />
+            <div className="flex items-center gap-4 mb-8 border-b border-[#e5e7eb] pb-4">
+                <div className="h-12 w-12 rounded-[14px] bg-[#17171c] flex items-center justify-center shrink-0">
+                    <FaBriefcase className="text-xl text-[#ffffff]" />
                 </div>
                 <div>
-                    <h3 className="text-[24px] font-bold text-[#17171c] dark:text-[#ffffff] tracking-tight">Experience & Education</h3>
-                    <p className="text-[14px] text-[#616161] dark:text-[#d9d9dd]">My academic background and professional certifications</p>
+                    <h3 className="text-[24px] font-bold text-[#17171c] tracking-tight">Experience & Education</h3>
+                    <p className="text-[14px] text-[#616161]">My academic background and professional certifications</p>
                 </div>
             </div>
             

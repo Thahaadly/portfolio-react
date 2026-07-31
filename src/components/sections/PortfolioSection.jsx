@@ -28,21 +28,21 @@ export default function PortfolioSection() {
                 
                 {/* Header Monumental */}
                 <div className="flex flex-col mb-12">
-                    <h2 className="text-[56px] md:text-[72px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] dark:text-[#ffffff] drop-shadow-none">
+                    <h2 className="text-[56px] md:text-[72px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] drop-shadow-none">
                         Proyek
                     </h2>
                 </div>
 
                 {/* Pill Filters */}
-                <div className="flex flex-wrap items-center gap-3 mb-12 pb-6 border-b border-[#e5e7eb] dark:border-[#212121]">
+                <div className="flex flex-wrap items-center gap-3 mb-12 pb-6 border-b border-[#e5e7eb]">
                     {filters.map((filter) => (
                         <button
                             key={filter}
                             onClick={() => setActiveFilter(filter)}
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-[32px] text-[15px] font-bold transition-all duration-300
                                 ${activeFilter === filter 
-                                    ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
-                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#ffffff] dark:hover:bg-[#212121]'
+                                    ? 'bg-[#17171c] text-[#ffffff]' 
+                                    : 'bg-transparent text-[#616161] hover:bg-[#ffffff]:bg-[#212121]'
                                 }
                             `}
                         >
@@ -66,7 +66,7 @@ export default function PortfolioSection() {
                                     <img 
                                         src={imagePath} 
                                         alt={project.title} 
-                                        className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6] dark:bg-[#071829]" 
+                                        className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6]" 
                                         onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
                                     />
                                     
@@ -90,12 +90,12 @@ export default function PortfolioSection() {
                                                     <FaGithub className="text-sm" /> GitHub
                                                 </a>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold text-[#616161] dark:text-[#d9d9dd] bg-[#f3f4f6] dark:bg-[#212121] cursor-not-allowed">
+                                                <span className="inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold text-[#616161] bg-[#f3f4f6] cursor-not-allowed">
                                                     <FaLock className="text-[10px]" /> Internal
                                                 </span>
                                             )}
                                             {(project.link_demo || project.demo) && (
-                                                <a href={project.link_demo || project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c] transition-opacity hover:opacity-90`}>
+                                                <a href={project.link_demo || project.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-1.5 rounded-[32px] px-4 py-2 text-xs font-bold bg-[#17171c] text-[#ffffff] transition-opacity hover:opacity-90`}>
                                                     <FaExternalLinkAlt className="text-[10px]" /> Live Web
                                                 </a>
                                             )}
@@ -119,7 +119,7 @@ export default function PortfolioSection() {
                         >
                             <button 
                                 onClick={() => setSelectedProject(null)} 
-                                className="absolute top-4 right-4 p-3 rounded-full bg-[#f3f4f6] dark:bg-[#212121] hover:bg-[#17171c] dark:hover:bg-[#ffffff] hover:text-[#ffffff] dark:hover:text-[#17171c] transition-colors z-10"
+                                className="absolute top-4 right-4 p-3 rounded-full bg-[#f3f4f6] hover:bg-[#17171c]:bg-[#ffffff] hover:text-[#ffffff]:text-[#17171c] transition-colors z-10"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </button>
@@ -129,7 +129,7 @@ export default function PortfolioSection() {
                                 <img 
                                     src={resolveProjectImage(selectedProject)} 
                                     alt={selectedProject.title} 
-                                    className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl bg-[#f3f4f6] dark:bg-[#071829] border border-[#e5e7eb] dark:border-[#212121]" 
+                                    className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl bg-[#f3f4f6] border border-[#e5e7eb]" 
                                 />
                             </div>
                             
@@ -147,7 +147,7 @@ export default function PortfolioSection() {
                                     {selectedProject.full_description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-3 mt-auto border-t border-[#e5e7eb] dark:border-[#212121] pt-6">
+                                <div className="flex flex-wrap gap-3 mt-auto border-t border-[#e5e7eb] pt-6">
                                     {selectedProject.link_github || (selectedProject.link && selectedProject.link !== '#') ? (
                                         <a href={selectedProject.link_github || selectedProject.link} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold ${theme.buttonSolid} flex-1 md:flex-none`}>
                                             <FaGithub className="text-base" /> GitHub
@@ -155,7 +155,7 @@ export default function PortfolioSection() {
                                     ) : null}
                                     
                                     {(selectedProject.link_demo || selectedProject.demo) && (
-                                        <a href={selectedProject.link_demo || selectedProject.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c] transition-opacity hover:opacity-90 flex-1 md:flex-none`}>
+                                        <a href={selectedProject.link_demo || selectedProject.demo} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold bg-[#17171c] text-[#ffffff] transition-opacity hover:opacity-90 flex-1 md:flex-none`}>
                                             <FaExternalLinkAlt className="text-base" /> Live Web
                                         </a>
                                     )}

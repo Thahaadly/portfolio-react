@@ -23,44 +23,44 @@ export default function AboutSection() {
                         <div className="flex flex-col justify-center h-full space-y-8">
                             
                             {/* Status Badge */}
-                            <div className="flex items-center gap-2 px-3 py-1.5 w-fit rounded-[32px] bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
+                            <div className="flex items-center gap-2 px-3 py-1.5 w-fit rounded-[32px] bg-emerald-50 border border-emerald-200">
                                 <span className="relative flex h-2 w-2">
                                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                 </span>
-                                <span className="text-[12px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Available for Work</span>
+                                <span className="text-[12px] font-bold text-emerald-600 uppercase tracking-wider">Available for Work</span>
                             </div>
 
                             {/* Bio */}
                             <div>
-                                <h2 className="text-[40px] md:text-[56px] leading-[1.05] tracking-[-1.12px] font-normal text-[#17171c] dark:text-[#ffffff] mb-6">
+                                <h2 className="text-[40px] md:text-[56px] leading-[1.05] tracking-[-1.12px] font-normal text-[#17171c] mb-6">
                                     Web <br className="hidden lg:block"/> Developer
                                 </h2>
-                                <p className="text-[16px] md:text-[18px] leading-relaxed text-[#616161] dark:text-[#d9d9dd]">
-                                    Lulusan Ilmu Komputer yang berfokus pada <span className="font-bold text-[#17171c] dark:text-[#ffffff]">Front-End Web Development</span> dengan rekam jejak pengalaman sebagai Fullstack. Berpengalaman membangun antarmuka interaktif (React JS, React Native) sebagai lulusan MSIB PT. Hacktivate Teknologi Indonesia (skor 90/100), serta merancang arsitektur Back-End (Laravel, CI4, MySQL).
+                                <p className="text-[16px] md:text-[18px] leading-relaxed text-[#616161]">
+                                    Lulusan Ilmu Komputer yang berfokus pada <span className="font-bold text-[#17171c]">Front-End Web Development</span> dengan rekam jejak pengalaman sebagai Fullstack. Berpengalaman membangun antarmuka interaktif (React JS, React Native) sebagai lulusan MSIB PT. Hacktivate Teknologi Indonesia (skor 90/100), serta merancang arsitektur Back-End (Laravel, CI4, MySQL).
                                 </p>
                             </div>
 
                             {/* Quick Facts List (Flat Minimalist) */}
-                            <div className="flex flex-col border-t border-[#e5e7eb] dark:border-[#212121]">
+                            <div className="flex flex-col border-t border-[#e5e7eb]">
                                 {/* Education */}
-                                <div className="flex items-center gap-4 py-4 border-b border-[#e5e7eb] dark:border-[#212121]">
-                                    <div className="h-12 w-12 rounded-full bg-[#f1f5ff] dark:bg-[#071829] flex items-center justify-center shrink-0">
-                                        <FaGraduationCap className="text-xl text-[#17171c] dark:text-[#ffffff]" />
+                                <div className="flex items-center gap-4 py-4 border-b border-[#e5e7eb]">
+                                    <div className="h-12 w-12 rounded-full bg-[#f1f5ff] flex items-center justify-center shrink-0">
+                                        <FaGraduationCap className="text-xl text-[#17171c]" />
                                     </div>
                                     <div>
-                                        <p className="text-[11px] font-bold text-[#616161] dark:text-[#d9d9dd] uppercase tracking-widest mb-0.5">Education</p>
-                                        <p className="text-[15px] font-bold text-[#17171c] dark:text-[#ffffff]">S1 Ilmu Komputer</p>
+                                        <p className="text-[11px] font-bold text-[#616161] uppercase tracking-widest mb-0.5">Education</p>
+                                        <p className="text-[15px] font-bold text-[#17171c]">S1 Ilmu Komputer</p>
                                     </div>
                                 </div>
                                 {/* Focus */}
-                                <div className="flex items-center gap-4 py-4 border-b border-[#e5e7eb] dark:border-[#212121]">
-                                    <div className="h-12 w-12 rounded-full bg-[#f1f5ff] dark:bg-[#071829] flex items-center justify-center shrink-0">
-                                        <FaLaptopCode className="text-xl text-[#17171c] dark:text-[#ffffff]" />
+                                <div className="flex items-center gap-4 py-4 border-b border-[#e5e7eb]">
+                                    <div className="h-12 w-12 rounded-full bg-[#f1f5ff] flex items-center justify-center shrink-0">
+                                        <FaLaptopCode className="text-xl text-[#17171c]" />
                                     </div>
                                     <div>
-                                        <p className="text-[11px] font-bold text-[#616161] dark:text-[#d9d9dd] uppercase tracking-widest mb-0.5">Focus</p>
-                                        <p className="text-[15px] font-bold text-[#17171c] dark:text-[#ffffff]">Front-End Web</p>
+                                        <p className="text-[11px] font-bold text-[#616161] uppercase tracking-widest mb-0.5">Focus</p>
+                                        <p className="text-[15px] font-bold text-[#17171c]">Front-End Web</p>
                                     </div>
                                 </div>
                             </div>
@@ -104,9 +104,11 @@ export default function AboutSection() {
                             {/* Left Column: Half-Circle Orbit */}
                             <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden bg-transparent flex items-center border-b lg:border-b-0 lg:border-r border-[#ffffff]/10">
                                 
-                                {/* Center Anchor at the left edge */}
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-[#ffffff]/30 animate-orbit scale-[0.6] sm:scale-[0.75] md:scale-100 origin-left">
-                                    {techIcons.map((item, index) => {
+                                {/* Center Anchor at the left edge (handles scale and translation) */}
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] scale-[0.6] sm:scale-[0.75] md:scale-100 origin-center">
+                                    {/* The animated orbit layer */}
+                                    <div className="w-full h-full rounded-full border border-dashed border-[#ffffff]/30 animate-orbit">
+                                        {techIcons.map((item, index) => {
                                         const angle = (index / techIcons.length) * 360;
                                         const Icon = item.icon;
                                         return (
@@ -125,7 +127,8 @@ export default function AboutSection() {
                                                 </div>
                                             </div>
                                         );
-                                    })}
+                                        })}
+                                    </div>
                                 </div>
                                 
                                 {/* Label in the center of the orbit */}
@@ -187,12 +190,12 @@ export default function AboutSection() {
                 return (
                     <div className="flex flex-col animate-fade-in gap-8 pt-2 w-full max-w-5xl mx-auto">
                         <div className="flex items-center gap-4 mb-4">
-                            <div className="h-14 w-14 rounded-full bg-[#17171c] dark:bg-[#ffffff] flex items-center justify-center">
-                                <FaGithub className="text-3xl text-[#ffffff] dark:text-[#17171c]" />
+                            <div className="h-14 w-14 rounded-full bg-[#17171c] flex items-center justify-center">
+                                <FaGithub className="text-3xl text-[#ffffff]" />
                             </div>
                             <div>
-                                <h3 className="text-[32px] md:text-[40px] tracking-[-0.8px] font-normal text-[#17171c] dark:text-[#ffffff]">GitHub Analytics</h3>
-                                <p className="text-[16px] text-[#616161] dark:text-[#d9d9dd]">Real-time statistics & repository overview</p>
+                                <h3 className="text-[32px] md:text-[40px] tracking-[-0.8px] font-normal text-[#17171c]">GitHub Analytics</h3>
+                                <p className="text-[16px] text-[#616161]">Real-time statistics & repository overview</p>
                             </div>
                         </div>
 
@@ -232,15 +235,15 @@ export default function AboutSection() {
             <div className="w-full max-w-6xl mx-auto px-6 lg:px-4">
                 
                 {/* Horizontal Navigation Pills */}
-                <div className="flex flex-wrap items-center justify-center gap-3 mb-6 pb-6 border-b border-[#e5e7eb] dark:border-[#212121]">
+                <div className="flex flex-wrap items-center justify-center gap-3 mb-6 pb-6 border-b border-[#e5e7eb]">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-[32px] text-[15px] font-bold transition-all duration-300
                                 ${activeTab === tab.id 
-                                    ? 'bg-[#17171c] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#17171c]' 
-                                    : 'bg-transparent text-[#616161] dark:text-[#d9d9dd] hover:bg-[#ffffff] dark:hover:bg-[#212121]'
+                                    ? 'bg-[#17171c] text-[#ffffff]' 
+                                    : 'bg-transparent text-[#616161] hover:bg-[#ffffff]:bg-[#212121]'
                                 }
                             `}
                         >
