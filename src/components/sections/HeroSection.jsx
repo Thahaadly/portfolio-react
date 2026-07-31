@@ -10,7 +10,7 @@ export default function HeroSection({ setActivePage }) {
                 {/* ── Left Column: Editorial Declaration ── */}
                 <div className="lg:col-span-5 flex flex-col items-start text-left gap-8">
                     <div className="flex flex-col gap-4">
-                        <h1 className="text-[64px] lg:text-[88px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] dark:text-[#ffffff] drop-shadow-none">
+                        <h1 className="text-[52px] md:text-[64px] lg:text-[88px] leading-[0.95] tracking-[-1.5px] font-normal text-[#17171c] drop-shadow-none">
                             Hi, I'm <br />
                             Thaha.
                         </h1>

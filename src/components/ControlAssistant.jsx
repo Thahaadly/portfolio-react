@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FaHome, FaUser, FaBriefcase, FaEnvelope, FaMoon, FaSun } from 'react-icons/fa';
+import { FaHome, FaUser, FaBriefcase, FaEnvelope } from 'react-icons/fa';
 
-export default function ControlAssistant({ activePage, setActivePage, isDarkMode, toggleDarkMode }) {
+export default function ControlAssistant({ activePage, setActivePage }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const navItems = [
@@ -56,7 +56,7 @@ export default function ControlAssistant({ activePage, setActivePage, isDarkMode
                             >
                                 <item.icon className="text-lg" />
                                 {activePage === item.id && (
-                                    <span className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full ${isDarkMode ? 'bg-[#17171c]' : 'bg-[#ffffff]'}`}></span>
+                                    <span className="absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-[#ffffff]"></span>
                                 )}
                             </button>
                         ))}

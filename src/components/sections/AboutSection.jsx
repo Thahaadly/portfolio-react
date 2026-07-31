@@ -4,7 +4,7 @@ import profileImage from '../../assets/fix.jpeg';
 import { FaUserAstronaut, FaCode, FaGithub, FaHistory, FaGraduationCap, FaLaptopCode, FaReact, FaLaravel, FaBrain, FaPython } from 'react-icons/fa';
 import { SiMysql, SiTailwindcss } from 'react-icons/si';
 
-export default function AboutSection({ isDarkMode }) {
+export default function AboutSection() {
     const [activeTab, setActiveTab] = useState('profile');
 
     const tabs = [
@@ -105,7 +105,7 @@ export default function AboutSection({ isDarkMode }) {
                             <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-full relative overflow-hidden bg-transparent flex items-center border-b lg:border-b-0 lg:border-r border-[#ffffff]/10">
                                 
                                 {/* Center Anchor at the left edge */}
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-[#ffffff]/30 animate-orbit">
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[440px] h-[440px] rounded-full border border-dashed border-[#ffffff]/30 animate-orbit scale-[0.6] sm:scale-[0.75] md:scale-100 origin-left">
                                     {techIcons.map((item, index) => {
                                         const angle = (index / techIcons.length) * 360;
                                         const Icon = item.icon;
@@ -200,7 +200,7 @@ export default function AboutSection({ isDarkMode }) {
                             <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
                                 <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                                 <img 
-                                    src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=ffffff&text_color=e5e5e5&icon_color=ffffff'}`} 
+                                    src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5&icon_color=ffffff`} 
                                     alt="Thahaadly GitHub Stats" 
                                     className="w-full h-auto drop-shadow-sm relative z-10"
                                 />
@@ -208,7 +208,7 @@ export default function AboutSection({ isDarkMode }) {
                             <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
                                 <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                                 <img 
-                                    src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000${isDarkMode ? '&theme=tokyonight' : '&title_color=ffffff&text_color=e5e5e5'}`} 
+                                    src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5`} 
                                     alt="Top Languages" 
                                     className="w-full max-w-md h-auto drop-shadow-sm relative z-10"
                                 />
