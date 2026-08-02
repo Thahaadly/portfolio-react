@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import PortfolioSection from '../components/sections/PortfolioSection';
@@ -7,6 +9,18 @@ import ControlAssistant from '../components/ControlAssistant';
 
 export default function Home() {
     const [activePage, setActivePage] = useState('home');
+
+    useEffect(() => {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+    }, []);
+
+    useEffect(() => {
+        AOS.refresh();
+    }, [activePage]);
     return (
         <div className="relative flex flex-col h-screen overflow-hidden font-sans text-[#212121] transition-colors duration-300">
             {/* Background Canvas */}

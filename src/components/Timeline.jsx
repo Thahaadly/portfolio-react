@@ -10,21 +10,21 @@ export default function Timeline() {
             title: 'S1 Ilmu Komputer',
             subtitle: 'Universitas Lambung Mangkurat (ULM)',
             description: 'Lulusan dengan pemahaman kuat di bidang pengembangan perangkat lunak. Menyelesaikan tugas akhir berfokus pada Machine Learning (K-Means Clustering) untuk analisis data performa olahraga.',
-            icon: <img src={ulmLogo} alt="ULM Logo" className="w-full h-full object-contain p-1.5 mix-blend-multiply" />
+            icon: <img src={ulmLogo} alt="ULM Logo" loading="lazy" className="w-full h-full object-contain p-1.5 mix-blend-multiply" />
         },
         {
             year: 'Agt - Des 2023',
             title: 'Studi Independen React',
             subtitle: 'PT. Hacktivate Teknologi Indonesia (MSIB 5)',
             description: 'Lulus dengan skor 90/100. Membangun 4 proyek aplikasi (E-Commerce, Portal Berita, Web Movie, Mobile Hotel) secara end-to-end dengan implementasi REST API, arsitektur component-based, dan React Hooks.',
-            icon: <img src={hacktiv8Logo} alt="Hacktiv8 Logo" className="w-full h-full object-cover" />
+            icon: <img src={hacktiv8Logo} alt="Hacktiv8 Logo" loading="lazy" className="w-full h-full object-cover" />
         },
         {
             year: '2025 - 2028',
             title: 'Sertifikasi BNSP',
             subtitle: 'Junior Office Operator',
             description: 'Sertifikasi kompetensi nasional yang memvalidasi keahlian praktis dalam mengoperasikan perangkat lunak Microsoft Office (Word, Excel, PowerPoint) untuk administrasi dan pengolahan data.',
-            icon: <img src={bnspLogo} alt="BNSP Logo" className="w-full h-full object-contain p-1 mix-blend-multiply" />
+            icon: <img src={bnspLogo} alt="BNSP Logo" loading="lazy" className="w-full h-full object-contain p-1 mix-blend-multiply" />
         }
     ];
 
@@ -45,7 +45,7 @@ export default function Timeline() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
                 {experiences.map((exp, index) => {
                     return (
-                        <div key={index} className="rounded-[22px] p-6 border border-transparent flex flex-col h-full bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg transition-transform duration-300 hover:-translate-y-1 relative group overflow-hidden" data-aos="fade-up" data-aos-delay={index * 100}>
+                        <div key={index} className="rounded-[22px] p-6 border border-transparent flex flex-col h-full bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg transition-transform duration-300 hover:-translate-y-1 relative group overflow-hidden animate-fade-in" style={{ animationFillMode: 'both', animationDelay: `${index * 100}ms` }}>
                             <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
                             
                             {/* Card Header (Icon & Year Pill) */}

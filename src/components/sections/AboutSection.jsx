@@ -143,7 +143,7 @@ export default function AboutSection() {
                                 
                                 <div className="flex flex-col gap-4">
                                     {/* Card 1: Frontend */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(97,218,251,0.12)] hover:shadow-[0_8px_32px_rgba(97,218,251,0.25)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(97,218,251,0.12)] hover:shadow-[0_8px_32px_rgba(97,218,251,0.25)] transition-all duration-300 group animate-fade-in" style={{ animationFillMode: 'both', animationDelay: '100ms' }}>
                                         <div className="flex items-center gap-4 mb-3">
                                             <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(97,218,251,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaReact style={{ color: '#61DAFB' }} className="text-xl" />
@@ -156,7 +156,7 @@ export default function AboutSection() {
                                     </div>
 
                                     {/* Card 2: Backend */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(255,45,32,0.08)] hover:shadow-[0_8px_32px_rgba(255,45,32,0.2)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(255,45,32,0.08)] hover:shadow-[0_8px_32px_rgba(255,45,32,0.2)] transition-all duration-300 group animate-fade-in" style={{ animationFillMode: 'both', animationDelay: '200ms' }}>
                                         <div className="flex items-center gap-4 mb-3">
                                             <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,45,32,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaLaravel style={{ color: '#FF2D20' }} className="text-xl" />
@@ -169,7 +169,7 @@ export default function AboutSection() {
                                     </div>
 
                                     {/* Card 3: Data Analytics */}
-                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(245,158,11,0.08)] hover:shadow-[0_8px_32px_rgba(245,158,11,0.2)] transition-all duration-300 group">
+                                    <div className="p-6 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 shadow-[0_8px_24px_rgba(245,158,11,0.08)] hover:shadow-[0_8px_32px_rgba(245,158,11,0.2)] transition-all duration-300 group animate-fade-in" style={{ animationFillMode: 'both', animationDelay: '300ms' }}>
                                         <div className="flex items-center gap-4 mb-3">
                                             <div className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.3)] group-hover:scale-110 transition-transform duration-300">
                                                 <FaBrain style={{ color: '#F59E0B' }} className="text-xl" />
@@ -205,6 +205,7 @@ export default function AboutSection() {
                                 <img 
                                     src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5&icon_color=ffffff`} 
                                     alt="Thahaadly GitHub Stats" 
+                                    loading="lazy"
                                     className="w-full h-auto drop-shadow-sm relative z-10"
                                 />
                             </div>
@@ -213,6 +214,7 @@ export default function AboutSection() {
                                 <img 
                                     src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5`} 
                                     alt="Top Languages" 
+                                    loading="lazy"
                                     className="w-full max-w-md h-auto drop-shadow-sm relative z-10"
                                 />
                             </div>

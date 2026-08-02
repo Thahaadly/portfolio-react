@@ -1,40 +1,38 @@
 import { useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { toast } from 'sonner';
 
 export default function ContactSection() {
-    const [result, setResult] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const onSubmit = async (event) => {
         event.preventDefault();
         setIsSubmitting(true);
-        setResult("Sedang mengirim pesan...");
         
         const formData = new FormData(event.target);
         formData.append("access_key", "8c6e6155-eed0-42f1-9334-ccbc9016354b");
 
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
+        // We can use toast.promise to show loading state nicely
+        toast.promise(
+            fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                setResult("✅ Pesan berhasil dikirim! Saya akan segera merespons.");
-                event.target.reset();
-            } else {
-                console.log("Error", data);
-                setResult("❌ Terjadi kesalahan: " + data.message);
+            }).then(async (res) => {
+                const data = await res.json();
+                if (!data.success) throw new Error(data.message);
+                return data;
+            }),
+            {
+                loading: 'Sedang mengirim pesan...',
+                success: () => {
+                    event.target.reset();
+                    return 'Pesan Anda berhasil dikirim! Saya akan segera merespons.';
+                },
+                error: (err) => `Gagal mengirim pesan: ${err.message || 'Periksa koneksi Anda.'}`
             }
-        } catch (error) {
-            setResult("❌ Gagal mengirim pesan. Periksa koneksi internet Anda.");
-        }
-        setIsSubmitting(false);
+        );
         
-        // Hide success message after 5 seconds
-        setTimeout(() => setResult(""), 5000);
+        setIsSubmitting(false);
     };
 
     return (
@@ -80,11 +78,6 @@ export default function ContactSection() {
                                 ) : "Kirim Pesan"}
                             </button>
                             
-                            {result && (
-                                <div className={`p-4 rounded-[12px] text-sm font-bold text-center mt-4 ${result.includes('❌') ? 'bg-red-50 text-red-600 border border-red-200' : 'bg-emerald-50 text-emerald-600 border border-emerald-200'}`}>
-                                    {result}
-                                </div>
-                            )}
                         </form>
                     </div>
                     

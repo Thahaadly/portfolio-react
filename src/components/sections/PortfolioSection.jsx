@@ -59,13 +59,15 @@ export default function PortfolioSection() {
                             <article 
                                 key={project.id} 
                                 onClick={() => setSelectedProject(project)}
-                                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] border border-[#e5e7eb] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden"
+                                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] border border-[#e5e7eb] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-in"
+                                style={{ animationFillMode: 'both', animationDelay: `${index * 100}ms` }}
                             >
                                 <div className="flex flex-col h-full rounded-[22px]">
                                     <FaCode className="absolute right-4 top-4 text-5xl text-[#ffffff] opacity-40 drop-shadow-sm z-10 pointer-events-none" />
                                     <img 
                                         src={imagePath} 
                                         alt={project.title} 
+                                        loading="lazy"
                                         className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6]" 
                                         onError={(e) => { e.target.src = 'https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia' }} 
                                     />
