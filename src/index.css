@@ -1,47 +1,68 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-slate-800 antialiased selection:bg-indigo-100 selection:text-indigo-900;
+  }
+}
+
+/* ===== Custom Minimalist Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc; /* slate-50 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}
+
+/* Disable smooth scrolling on html if you want, but it's fine natively */
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes floating {
-	0% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-14px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-floating {
-	animation: floating 3.6s ease-in-out infinite;
+  animation: floating 3.6s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-/* Custom Scrollbar untuk bagian main area (opsional, disesuaikan dengan tema) */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(99, 102, 241, 0.2);
-    border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.5);
-}
+
