@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import HeroSection from "../components/sections/HeroSection";
-import AboutSection from "../components/sections/AboutSection";
-import PortfolioSection from "../components/sections/PortfolioSection";
-import ContactSection from "../components/sections/ContactSection";
 import ControlAssistant from "../components/ControlAssistant";
+
+// Lazy load non-critical sections to improve initial page load performance
+const AboutSection = lazy(() => import("../components/sections/AboutSection"));
+const PortfolioSection = lazy(() => import("../components/sections/PortfolioSection"));
+const ContactSection = lazy(() => import("../components/sections/ContactSection"));
 
 export default function Home() {
   const [activePage, setActivePage] = useState("home");
@@ -31,17 +33,19 @@ export default function Home() {
       <ControlAssistant activePage={activePage} setActivePage={setActivePage} />
 
       <main
-        className={`relative mx-auto flex flex-1 w-full max-w-6xl flex-col px-6 pb-12 md:px-10 overflow-y-auto ${activePage === "home" ? "pt-12" : "pt-4 md:pt-6"}`}
+        className={`relative mx-auto flex flex-1 w-full max-w-6xl flex-col px-6 md:px-10 overflow-y-auto ${activePage === "home" ? "pt-12" : "pt-4 md:pt-6"}`}
       >
         <div className="flex-1">
-          {activePage === "home" && <HeroSection setActivePage={setActivePage} />}
-          {activePage === "about" && <AboutSection />}
-          {activePage === "portfolio" && <PortfolioSection />}
-          {activePage === "contact" && <ContactSection />}
+          <Suspense fallback={<div className="flex w-full h-full justify-center items-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
+            {activePage === "home" && <HeroSection setActivePage={setActivePage} />}
+            {activePage === "about" && <AboutSection />}
+            {activePage === "portfolio" && <PortfolioSection />}
+            {activePage === "contact" && <ContactSection />}
+          </Suspense>
         </div>
         
         {/* Quirky Mini Footer */}
-        <div className="w-full text-center mt-16 pt-6 border-t border-slate-200/50">
+        <div className="w-full text-center mt-16 pt-6 pb-28 md:pb-32 border-t border-slate-200/50">
           <p className="text-[12px] md:text-[13px] text-slate-400 font-medium tracking-wide">
             Crafted with ☕ and passion by Thaha Wafiq Adly. © {new Date().getFullYear()}
           </p>

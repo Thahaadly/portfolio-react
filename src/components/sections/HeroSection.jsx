@@ -1,9 +1,10 @@
 import { FaGithub, FaLinkedin, FaDownload } from "react-icons/fa";
-import confetti from "canvas-confetti";
 import { glassTheme as theme } from "../../utils/theme";
 
 export default function HeroSection({ setActivePage }) {
-  const handleDownloadCV = () => {
+  const handleDownloadCV = async () => {
+    // Dynamically import confetti to save initial bundle size
+    const confetti = (await import("canvas-confetti")).default;
     confetti({
       particleCount: 150,
       spread: 70,
