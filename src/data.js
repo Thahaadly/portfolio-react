@@ -25,6 +25,17 @@ export const mockProjects = [
   },
   {
     id: 3,
+    title: "Super Admin Management Dashboard",
+    short_description:
+      "Dashboard interaktif untuk memantau metrik FO aktif dan mengelola data anggota secara terpusat.",
+    full_description:
+      "Sistem informasi manajemen berbasis web yang dirancang khusus untuk level akses Super Admin. Aplikasi ini mempermudah pemantauan statistik operasional secara real-time, termasuk manajemen FO dan total anggota, dibalut dengan antarmuka pengguna (UI) yang bersih, modern, dan sangat responsif.",
+    image: "project-photos/super-admin-dashboard.jpg",
+    technologies: "React JS, Tailwind CSS, REST API",
+    link: "hhttps://github.com/Thahaadly/koperasi-simpan-pinjam.git",
+  },
+  {
+    id: 4,
     title: "Sistem Arsip Digital BBPPKS",
     short_description:
       "Sistem Informasi Arsip Digital instansi kementerian menggunakan CodeIgniter 4.",
@@ -35,7 +46,7 @@ export const mockProjects = [
     link: "#",
   },
   {
-    id: 4,
+    id: 5,
     title: "Corporate Company Profile",
     short_description:
       "Custom CMS berbasis Headless Architecture dengan dashboard admin dinamis.",
@@ -47,7 +58,7 @@ export const mockProjects = [
     demo: "https://spektatechnusantara.com/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Movie Explorer Platform",
     short_description: "Aplikasi penjelajah film dengan integrasi TMDB API.",
     full_description:
@@ -57,7 +68,7 @@ export const mockProjects = [
     link: "https://github.com/fp4-hacktiv8-kelompok1/movie.git",
   },
   {
-    id: 6,
+    id: 7,
     title: "E-Commerce Shopping App",
     short_description:
       "Antarmuka keranjang belanja dinamis dengan manajemen state kompleks.",
@@ -68,7 +79,7 @@ export const mockProjects = [
     link: "https://github.com/Hacktiv8-FinalProject2/shopping.git",
   },
   {
-    id: 7,
+    id: 8,
     title: "Hotel Reservation System",
     short_description:
       "Sistem pemesanan kamar hotel dengan dashboard ketersediaan operasional.",
@@ -79,7 +90,7 @@ export const mockProjects = [
     link: "https://github.com/Thahaadly/fp3-booking-app.git",
   },
   {
-    id: 8,
+    id: 9,
     title: "Web Portfolio",
     short_description:
       "Website portofolio interaktif dengan desain UI Glassmorphism modern.",
