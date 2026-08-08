@@ -32,7 +32,7 @@ export const mockProjects = [
       "Sistem informasi manajemen berbasis web yang dirancang khusus untuk level akses Super Admin. Aplikasi ini mempermudah pemantauan statistik operasional secara real-time, termasuk manajemen FO dan total anggota, dibalut dengan antarmuka pengguna (UI) yang bersih, modern, dan sangat responsif.",
     image: "project-photos/super-admin-dashboard.jpg",
     technologies: "React JS, Tailwind CSS, REST API",
-    link: "hhttps://github.com/Thahaadly/koperasi-simpan-pinjam.git",
+    link: "https://github.com/Thahaadly/koperasi-simpan-pinjam.git",
   },
   {
     id: 4,
