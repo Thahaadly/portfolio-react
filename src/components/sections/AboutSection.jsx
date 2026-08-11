@@ -12,6 +12,7 @@ import {
   FaLaravel,
   FaBrain,
   FaPython,
+  FaCamera,
 } from "react-icons/fa";
 import { SiMysql, SiTailwindcss } from "react-icons/si";
 
@@ -21,7 +22,7 @@ export default function AboutSection() {
   const tabs = [
     { id: "profile", label: "Profile", icon: <FaUserAstronaut /> },
     { id: "skills", label: "Tech Stack", icon: <FaCode /> },
-    { id: "github", label: "GitHub Stats", icon: <FaGithub /> },
+    { id: "gallery", label: "Life & Journey", icon: <FaCamera /> },
     { id: "experience", label: "Experience", icon: <FaHistory /> },
   ];
 
@@ -294,42 +295,54 @@ export default function AboutSection() {
             </div>
           </div>
         );
-      case "github":
+      case "gallery":
+        // Array of placeholder images for the Masonry grid
+        const galleryImages = [
+          { src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800", alt: "Team Collaboration" },
+          { src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", alt: "Coding Session" },
+          { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800", alt: "Workshop" },
+          { src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800", alt: "Setup" },
+          { src: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800", alt: "Working" },
+          { src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800", alt: "Office" },
+        ];
+
         return (
-          <div className="flex flex-col animate-fade-in gap-8 pt-2 w-full max-w-5xl mx-auto">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-14 w-14 rounded-full bg-[#17171c] flex items-center justify-center">
-                <FaGithub className="text-3xl text-[#ffffff]" />
+          <div className="flex flex-col animate-fade-in gap-8 pt-2 w-full max-w-6xl mx-auto">
+            <div className="flex items-center gap-4 mb-2">
+              <div className="h-14 w-14 rounded-full bg-[#17171c] flex items-center justify-center shrink-0">
+                <FaCamera className="text-2xl text-[#ffffff]" />
               </div>
               <div>
                 <h3 className="text-[32px] md:text-[40px] tracking-[-0.8px] font-normal text-[#17171c]">
-                  GitHub Analytics
+                  Life & Journey
                 </h3>
                 <p className="text-[16px] text-[#616161]">
-                  Real-time statistics & repository overview
+                  Momen di balik layar, diskusi tim, dan pengalaman nyata.
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-              <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
-                <img
-                  src={`https://github-readme-stats-sigma-five.vercel.app/api?username=Thahaadly&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5&icon_color=ffffff`}
-                  alt="Thahaadly GitHub Stats"
-                  loading="lazy"
-                  className="w-full h-auto drop-shadow-sm relative z-10"
-                />
-              </div>
-              <div className="p-2 md:p-4 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg flex justify-center items-center hover:-translate-y-1 transition-transform relative overflow-hidden">
-                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
-                <img
-                  src={`https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=Thahaadly&layout=compact&hide_border=true&bg_color=00000000&title_color=ffffff&text_color=e5e5e5`}
-                  alt="Top Languages"
-                  loading="lazy"
-                  className="w-full max-w-md h-auto drop-shadow-sm relative z-10"
-                />
-              </div>
+            {/* Masonry Grid Setup */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4 w-full">
+              {galleryImages.map((img, index) => (
+                <div 
+                  key={index} 
+                  className="break-inside-avoid relative group overflow-hidden rounded-[22px] bg-[#f3f4f6] shadow-sm hover:shadow-xl transition-all duration-500 border border-[#e5e7eb]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#17171c]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="w-full h-auto object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 relative z-0"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20 pointer-events-none">
+                    <p className="text-[#ffffff] font-medium text-sm drop-shadow-md">
+                      {img.alt}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         );

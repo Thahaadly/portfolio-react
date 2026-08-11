@@ -1,15 +1,8 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import {
-  FaDownload,
-  FaGithub,
-  FaMapMarkerAlt,
-  FaLinkedin,
-  FaReact,
-  FaLaravel,
-  FaPython,
-} from "react-icons/fa";
+import { FaDownload, FaGithub, FaMapMarkerAlt, FaLinkedin, FaReact, FaLaravel, FaPython } from "react-icons/fa";
 import { SiMysql } from "react-icons/si";
+import { Button } from "@/components/ui/button";
 
 const Home = () => {
   return (
@@ -38,13 +31,11 @@ const Home = () => {
           </p>
 
           <div className="flex items-center gap-6">
-            <a
-              href="/CV-Thaha-Wafiq-Adly.pdf"
-              download="CV_Thaha_Wafiq_Adly.pdf"
-              className="bg-[#17171c] text-white text-[14px] font-medium px-6 py-3 rounded-full hover:bg-black transition-colors flex items-center gap-2"
-            >
-              <FaDownload /> Download CV
-            </a>
+            <Button asChild className="rounded-full px-6 text-[14px]" size="lg">
+              <a href="/CV-Thaha-Wafiq-Adly.pdf" download="CV_Thaha_Wafiq_Adly.pdf">
+                <FaDownload className="mr-2" /> Download CV
+              </a>
+            </Button>
             <a
               href="https://github.com/Thahaadly"
               target="_blank"
@@ -173,12 +164,13 @@ const Home = () => {
                 Python data analytics, I build complete systems that scale
                 gracefully.
               </p>
-              <button
+              <Button
                 onClick={() => (window.location.href = "#portfolio")}
-                className="bg-white text-[#003c33] px-6 py-3 rounded-full text-[14px] font-medium hover:bg-[#edfce9] transition-colors"
+                className="bg-white text-[#003c33] rounded-full hover:bg-[#edfce9] px-6 text-[14px]"
+                size="lg"
               >
                 View Portfolio
-              </button>
+              </Button>
             </div>
 
             {/* Capability Cards inside Dark Band */}
