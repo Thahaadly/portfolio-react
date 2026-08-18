@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Timeline from "../Timeline";
 import profileImage from "../../assets/fix.jpeg";
+import { mockProjects } from "../../data";
 import {
   FaUserAstronaut,
   FaCode,
-  FaGithub,
   FaHistory,
   FaGraduationCap,
   FaLaptopCode,
@@ -13,8 +13,17 @@ import {
   FaBrain,
   FaPython,
   FaCamera,
+  FaGithub,
+  FaDatabase,
 } from "react-icons/fa";
-import { SiMysql, SiTailwindcss } from "react-icons/si";
+import { SiTailwindcss } from "react-icons/si";
+
+const CORE_TECH = [
+  { name: "React", icon: FaReact, color: "#61DAFB", animation: "animate-[spin_4s_linear_infinite]" },
+  { name: "Laravel", icon: FaLaravel, color: "#FF2D20", animation: "anim-float" },
+  { name: "MySQL", icon: FaDatabase, color: "#F29111", animation: "anim-swing" }
+];
+const GITHUB_URL = "https://github.com/Thahaadly";
 
 export default function AboutSection() {
   const [activeTab, setActiveTab] = useState("profile");
@@ -22,7 +31,6 @@ export default function AboutSection() {
   const tabs = [
     { id: "profile", label: "Profile", icon: <FaUserAstronaut /> },
     { id: "skills", label: "Tech Stack", icon: <FaCode /> },
-    { id: "gallery", label: "Life & Journey", icon: <FaCamera /> },
     { id: "experience", label: "Experience", icon: <FaHistory /> },
   ];
 
@@ -49,15 +57,7 @@ export default function AboutSection() {
                   Web <br className="hidden lg:block" /> Developer
                 </h2>
                 <p className="text-[16px] md:text-[18px] leading-relaxed text-[#616161]">
-                  Lulusan Ilmu Komputer yang berfokus pada{" "}
-                  <span className="font-bold text-[#17171c]">
-                    Front-End Web Development
-                  </span>{" "}
-                  dengan rekam jejak pengalaman sebagai Fullstack. Berpengalaman
-                  membangun antarmuka interaktif (React JS, React Native)
-                  sebagai lulusan MSIB PT. Hacktivate Teknologi Indonesia (skor
-                  90/100), serta merancang arsitektur Back-End (Laravel, CI4,
-                  MySQL).
+                  Lulusan Ilmu Komputer yang berfokus sebagai Front-End Web Developer, dibekali dengan pemahaman Fullstack. Terbiasa mengerjakan ekosistem antarmuka untuk platform web maupun mobile, serta memiliki pengalaman praktis dalam menangani integrasi Back-End agar sebuah aplikasi bisa berjalan dengan baik secara utuh.
                 </p>
               </div>
 
@@ -94,16 +94,70 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Flat Avatar Display */}
+            {/* Hybrid Identity Card */}
             <div className="w-full flex justify-center items-center">
               <div className="w-full max-w-[320px] rounded-[22px] p-2 bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
-                <div className="w-full rounded-[18px] overflow-hidden aspect-[3/4] relative z-10">
-                  <img
-                    src={profileImage}
-                    alt="Thaha Wafiq Adly"
-                    className="w-full h-full object-cover object-top grayscale-[15%] hover:grayscale-0 transition-all duration-700"
-                  />
+
+                <div className="relative z-10 flex flex-col">
+                  <div className="w-full rounded-[18px] overflow-hidden aspect-[4/5]">
+                    <img
+                      src={profileImage}
+                      alt="Thaha Wafiq Adly"
+                      className="w-full h-full object-cover object-top grayscale-[15%] hover:grayscale-0 transition-all duration-700"
+                    />
+                  </div>
+
+                  <div className="mt-2 rounded-[18px] bg-[#ffffff]/10 border border-[#ffffff]/20 p-5 flex flex-col gap-4">
+                    <div>
+                      <p className="text-[11px] font-bold text-[#ffffff]/70 uppercase tracking-widest mb-1">
+                        Projects
+                      </p>
+                      <p className="text-[28px] font-bold text-[#ffffff] leading-none tracking-tight">
+                        {mockProjects.length}+
+                      </p>
+                      <p className="text-[13px] text-[#f3f4f6]/80 mt-1">
+                        Built & shipped
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-[11px] font-bold text-[#ffffff]/70 uppercase tracking-widest mb-2.5">
+                        Core Stack
+                      </p>
+                      <div className="flex gap-1.5">
+                        <style>{`
+                          @keyframes tech-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+                          @keyframes tech-swing { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+                          .anim-float { animation: tech-float 3s ease-in-out infinite; }
+                          .anim-swing { animation: tech-swing 3s ease-in-out infinite; }
+                        `}</style>
+                        {CORE_TECH.map((tech) => {
+                          const Icon = tech.icon;
+                          return (
+                            <span
+                              key={tech.name}
+                              className="px-2.5 py-1.5 rounded-full text-[11px] font-bold text-[#ffffff] bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center gap-1.5 hover:bg-[#ffffff]/20 transition-colors whitespace-nowrap"
+                            >
+                              <Icon className={`text-[13px] ${tech.animation}`} style={{ color: tech.color }} />
+                              {tech.name}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <a
+                      href={GITHUB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit my GitHub profile"
+                      className="inline-flex items-center justify-center gap-2 w-full rounded-[32px] py-3 text-[13px] font-bold bg-[#ffffff] text-[#17171c] hover:bg-[#f3f4f6] transition-colors"
+                    >
+                      <FaGithub className="text-base" />
+                      View on GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -127,9 +181,9 @@ export default function AboutSection() {
             shadow: "shadow-[0_0_15px_rgba(6,182,212,0.4)]",
           },
           {
-            icon: SiMysql,
-            color: "#4479A1",
-            shadow: "shadow-[0_0_15px_rgba(68,121,161,0.4)]",
+            icon: FaDatabase,
+            color: "#F29111",
+            shadow: "shadow-[0_0_15px_rgba(242,145,17,0.4)]",
           },
           {
             icon: FaPython,
@@ -298,12 +352,30 @@ export default function AboutSection() {
       case "gallery":
         // Array of placeholder images for the Masonry grid
         const galleryImages = [
-          { src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800", alt: "Team Collaboration" },
-          { src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800", alt: "Coding Session" },
-          { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800", alt: "Workshop" },
-          { src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800", alt: "Setup" },
-          { src: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800", alt: "Working" },
-          { src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800", alt: "Office" },
+          {
+            src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
+            alt: "Team Collaboration",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
+            alt: "Coding Session",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+            alt: "Workshop",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800",
+            alt: "Setup",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800",
+            alt: "Working",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800",
+            alt: "Office",
+          },
         ];
 
         return (
@@ -325,8 +397,8 @@ export default function AboutSection() {
             {/* Masonry Grid Setup */}
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4 w-full">
               {galleryImages.map((img, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="break-inside-avoid relative group overflow-hidden rounded-[22px] bg-[#f3f4f6] shadow-sm hover:shadow-xl transition-all duration-500 border border-[#e5e7eb]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-[#17171c]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>

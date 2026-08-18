@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
+import { useState, useEffect, useRef } from "react";
 import { FaGithub, FaLock, FaExternalLinkAlt, FaCode } from "react-icons/fa";
 import { glassTheme as theme } from "../../utils/theme";
 import { mockProjects } from "../../data";
 import { resolveProjectImage } from "../../utils/projectImageResolver";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -75,11 +77,19 @@ export default function PortfolioSection() {
                 ? project.technologies.split(", ")
                 : [];
             const imagePath = resolveProjectImage(project);
+            
+            // Bento Grid Logic
+            const pattern = index % 4;
+            const isWide = pattern === 0 || pattern === 3;
+            const bentoClass = isWide 
+                ? "md:col-span-2 lg:col-span-2" 
+                : "md:col-span-1 lg:col-span-1";
+                
             return (
-              <article
+              <Card
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] border border-[#e5e7eb] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-in"
+                className={`group relative flex flex-col rounded-[22px] cursor-pointer bg-[#ffffff] border-[#e5e7eb] shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-500 overflow-hidden animate-fade-in ${bentoClass}`}
                 style={{
                   animationFillMode: "both",
                   animationDelay: `${index * 100}ms`,
@@ -91,7 +101,7 @@ export default function PortfolioSection() {
                     src={imagePath}
                     alt={project.title}
                     loading="lazy"
-                    className="h-56 w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6]"
+                    className={`w-full object-cover object-top transition duration-700 group-hover:scale-105 bg-[#f3f4f6] ${isWide ? 'h-64 sm:h-72 lg:h-[340px]' : 'h-56'}`}
                     onError={(e) => {
                       e.target.src =
                         "https://placehold.co/600x400/e2e8f0/475569?text=Preview+Belum+Tersedia";
@@ -119,12 +129,13 @@ export default function PortfolioSection() {
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {techList.map((tech, idx) => (
-                        <span
+                        <Badge
                           key={idx}
-                          className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2.5 py-1 text-[11px] font-bold text-[#616161]"
+                          variant="secondary"
+                          className="rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2.5 py-1 text-[11px] font-bold text-[#616161]"
                         >
                           {tech}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                     <div className="mt-6 flex flex-wrap gap-2 justify-end mt-auto pt-4">
@@ -157,43 +168,22 @@ export default function PortfolioSection() {
                     </div>
                   </div>
                 </div>
-              </article>
+              </Card>
             );
           })}
         </div>
 
-        {/* Modal Detail Project using React Portal */}
-        {selectedProject &&
-          createPortal(
-            <div
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#17171c]/80 backdrop-blur-sm animate-fade-in"
-              onClick={() => setSelectedProject(null)}
-            >
-              <div
-                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-3 rounded-full bg-[#f3f4f6] hover:bg-[#17171c]:bg-[#ffffff] hover:text-[#ffffff]:text-[#17171c] transition-colors z-10"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    ></path>
-                  </svg>
-                </button>
-
+        {/* Modal Detail Project using Dialog Shadcn */}
+        <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
+          <DialogContent className="max-w-[90vw] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10 border-none">
+            {selectedProject && (
+              <>
+                <div className="sr-only">
+                  <DialogTitle>{selectedProject.title}</DialogTitle>
+                  <DialogDescription>{selectedProject.short_description}</DialogDescription>
+                </div>
                 {/* Modal Image (Left Column on Desktop) */}
-                <div className="w-full md:w-5/12 flex-shrink-0">
+                <div className="w-full md:w-5/12 flex-shrink-0 mt-4 md:mt-0">
                   <img
                     src={resolveProjectImage(selectedProject)}
                     alt={selectedProject.title}
@@ -214,12 +204,13 @@ export default function PortfolioSection() {
                         ? selectedProject.technologies.split(", ")
                         : []
                     ).map((tech, idx) => (
-                      <span
+                      <Badge
                         key={idx}
-                        className="inline-flex items-center gap-1 rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-3 py-1.5 text-[12px] font-bold text-[#616161]"
+                        variant="secondary"
+                        className="rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-3 py-1.5 text-[12px] font-bold text-[#616161]"
                       >
                         {tech}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
 
@@ -254,10 +245,10 @@ export default function PortfolioSection() {
                     )}
                   </div>
                 </div>
-              </div>
-            </div>,
-            document.body,
-          )}
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

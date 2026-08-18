@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,59 +61,59 @@ export default function ContactSection() {
           <div className="p-8 md:p-10 rounded-[22px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg order-2 lg:order-1 relative overflow-hidden">
             <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
             <form className="space-y-6 relative z-10" onSubmit={onSubmit}>
-              <div>
-                <label
+              <div className="space-y-2">
+                <Label
                   htmlFor="name"
-                  className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2"
+                  className="text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest"
                 >
                   Nama Lengkap
-                </label>
-                <input
+                </Label>
+                <Input
                   type="text"
                   name="name"
                   id="name"
                   required
-                  className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all"
+                  className="h-auto rounded-[12px] border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder:text-[#ffffff]/60 focus-visible:ring-[#ffffff] focus-visible:ring-1 focus-visible:border-[#ffffff]"
                   placeholder="Masukkan nama Anda"
                 />
               </div>
-              <div>
-                <label
+              <div className="space-y-2">
+                <Label
                   htmlFor="email"
-                  className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2"
+                  className="text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest"
                 >
                   Email
-                </label>
-                <input
+                </Label>
+                <Input
                   type="email"
                   name="email"
                   id="email"
                   required
-                  className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all"
+                  className="h-auto rounded-[12px] border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder:text-[#ffffff]/60 focus-visible:ring-[#ffffff] focus-visible:ring-1 focus-visible:border-[#ffffff]"
                   placeholder="nama@email.com"
                 />
               </div>
-              <div>
-                <label
+              <div className="space-y-2">
+                <Label
                   htmlFor="message"
-                  className="block text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest mb-2"
+                  className="text-[13px] font-bold text-[#e5e5e5] uppercase tracking-widest"
                 >
                   Pesan
-                </label>
-                <textarea
+                </Label>
+                <Textarea
                   id="message"
                   name="message"
                   required
-                  rows="4"
-                  className="w-full rounded-[12px] border border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder-[#ffffff]/60 focus:border-[#ffffff] focus:ring-1 focus:ring-[#ffffff] outline-none transition-all resize-none"
+                  rows={4}
+                  className="rounded-[12px] border-[#ffffff]/20 bg-[#ffffff]/10 px-4 py-3.5 text-[15px] text-[#ffffff] placeholder:text-[#ffffff]/60 focus-visible:ring-[#ffffff] focus-visible:ring-1 focus-visible:border-[#ffffff] resize-none"
                   placeholder="Tuliskan pesan Anda..."
-                ></textarea>
+                />
               </div>
 
-              <button
+              <Button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full rounded-[32px] py-4 text-[15px] font-bold flex justify-center items-center gap-2 transition-all mt-4 ${isSubmitting ? "bg-[#ffffff]/50 text-[#17171c]/50 cursor-not-allowed" : "bg-[#ffffff] text-[#17171c] hover:bg-[#f3f4f6]"}`}
+                className="w-full h-auto rounded-[32px] py-4 text-[15px] font-bold flex justify-center items-center gap-2 mt-4 bg-[#ffffff] text-[#17171c] hover:bg-[#f3f4f6] disabled:bg-[#ffffff]/50 disabled:text-[#17171c]/50 disabled:opacity-100"
               >
                 {isSubmitting ? (
                   <>
@@ -138,7 +142,7 @@ export default function ContactSection() {
                 ) : (
                   "Kirim Pesan"
                 )}
-              </button>
+              </Button>
             </form>
           </div>
 

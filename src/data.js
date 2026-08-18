@@ -8,9 +8,8 @@ export const mockProjects = [
       "Aplikasi manajemen bengkel dengan integrasi AI, pembayaran Midtrans, dan visualisasi 3D.",
     full_description:
       "Merancang arsitektur decoupled React Native + Laravel REST API dengan Role-Based Access Control. Membangun fitur 'Montir AI' menggunakan Google Gemini AI untuk konsultasi otomotif otomatis. Mengimplementasikan visualisasi 3D kendaraan interaktif dengan React Three Fiber (teroptimasi 31MB → 19MB), serta mengintegrasikan Midtrans Payment Gateway untuk mengamankan transaksi bengkel.",
-    image: "project-photos/mobile.jpeg",
+    image: "project-photos/garageflow-web.jpeg",
     technologies: "React Native, Laravel, MySQL, Midtrans API, Three.js",
-    isMobile: true,
   },
   {
     id: 2,
@@ -36,7 +35,7 @@ export const mockProjects = [
   },
   {
     id: 4,
-    title: "PSIH3 Dashboard - Kementerian PUPR",
+    title: "WebGIS prototipe",
     short_description:
       "Sistem informasi spasial untuk pemantauan data hidrologi dan cuaca secara real-time berbasis peta.",
     full_description:
