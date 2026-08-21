@@ -6,6 +6,7 @@ import ControlAssistant from "../components/ControlAssistant";
 
 // Lazy load non-critical sections to improve initial page load performance
 const AboutSection = lazy(() => import("../components/sections/AboutSection"));
+const WorkflowSection = lazy(() => import("../components/sections/WorkflowSection"));
 const PortfolioSection = lazy(() => import("../components/sections/PortfolioSection"));
 const ContactSection = lazy(() => import("../components/sections/ContactSection"));
 
@@ -39,6 +40,7 @@ export default function Home() {
           <Suspense fallback={<div className="flex w-full h-full justify-center items-center opacity-50"><span className="animate-pulse">Loading...</span></div>}>
             {activePage === "home" && <HeroSection setActivePage={setActivePage} />}
             {activePage === "about" && <AboutSection />}
+            {activePage === "workflow" && <WorkflowSection />}
             {activePage === "portfolio" && <PortfolioSection />}
             {activePage === "contact" && <ContactSection />}
           </Suspense>

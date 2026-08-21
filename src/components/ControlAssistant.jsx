@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHome, FaUser, FaBriefcase, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaUser, FaBriefcase, FaEnvelope, FaCodeBranch } from "react-icons/fa";
 
 export default function ControlAssistant({ activePage, setActivePage }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -7,6 +7,7 @@ export default function ControlAssistant({ activePage, setActivePage }) {
   const navItems = [
     { id: "home", icon: FaHome, label: "Home" },
     { id: "about", icon: FaUser, label: "About" },
+    { id: "workflow", icon: FaCodeBranch, label: "Process" },
     { id: "portfolio", icon: FaBriefcase, label: "Portfolio" },
     { id: "contact", icon: FaEnvelope, label: "Contact" },
   ];
@@ -16,7 +17,7 @@ export default function ControlAssistant({ activePage, setActivePage }) {
       <div
         className={`flex items-center bg-[#ffffff] border border-[#e5e7eb] shadow-2xl rounded-full transition-all duration-500 overflow-hidden ${
           isExpanded
-            ? "w-[320px] px-4 py-3"
+            ? "w-[360px] px-4 py-3"
             : "w-[160px] px-2 py-2 cursor-pointer hover:-translate-y-1"
         }`}
         onClick={() => !isExpanded && setIsExpanded(true)}
