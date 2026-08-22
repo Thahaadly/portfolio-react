@@ -57,10 +57,10 @@ export default function WorkflowSection() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="workflow" className="w-full bg-transparent pt-4 pb-16 lg:pt-8 lg:pb-24 overflow-hidden px-6 lg:px-10 max-w-6xl mx-auto">
+    <section id="workflow" className="w-full bg-transparent pt-4 pb-16 lg:pt-8 lg:pb-24 overflow-hidden px-4 md:px-6 lg:px-10 max-w-6xl mx-auto">
       
       {/* Unified Main Card (Matching Tech Stack Card) */}
-      <div className="w-full rounded-[32px] border border-transparent bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg relative p-8 md:p-16 overflow-hidden">
+      <div className="w-full rounded-[24px] md:rounded-[32px] border border-transparent bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] shadow-lg relative p-5 md:p-10 lg:p-16 overflow-hidden">
         
         {/* Dark overlay blend for the card */}
         <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
@@ -134,11 +134,11 @@ export default function WorkflowSection() {
         <div ref={containerRef} className="relative w-full max-w-5xl mx-auto z-10">
           
           {/* Garis Dasar (Glassmorphic) */}
-          <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-[4px] bg-[#ffffff]/10 -translate-x-1/2 rounded-full" />
+          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[3px] md:w-[4px] bg-[#ffffff]/10 -translate-x-1/2 rounded-full" />
           
           {/* Garis Progress (Putih Terang) */}
           <motion.div
-            className="absolute left-[24px] md:left-1/2 top-0 w-[4px] bg-[#ffffff] shadow-[0_0_15px_rgba(255,255,255,0.5)] -translate-x-1/2 rounded-full z-10"
+            className="absolute left-[20px] md:left-1/2 top-0 w-[3px] md:w-[4px] bg-[#ffffff] shadow-[0_0_15px_rgba(255,255,255,0.5)] -translate-x-1/2 rounded-full z-10"
             style={{ height: lineHeight }}
           />
 
@@ -159,19 +159,19 @@ export default function WorkflowSection() {
                   <div className="hidden md:block md:w-1/2" />
                   
                   {/* Titik Tengah (Node Angka) */}
-                  <div className="absolute left-[24px] md:left-1/2 -translate-x-1/2 top-0 flex items-center justify-center w-12 h-12 rounded-full border border-[#ffffff]/20 bg-[#ffffff]/10 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.2)] z-30">
-                    <span className="text-sm font-bold text-[#ffffff]">{step.id}</span>
+                  <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 top-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#ffffff]/20 bg-[#ffffff]/10 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.2)] z-30">
+                    <span className="text-xs md:text-sm font-bold text-[#ffffff]">{step.id}</span>
                   </div>
 
                   {/* Deretan Logo Tech di Sepanjang Garis (jika bukan langkah terakhir) */}
                   {!isLast && (
-                    <div className="absolute left-[24px] md:left-1/2 -translate-x-1/2 top-16 bottom-0 py-8 flex flex-col items-center justify-evenly z-20 pointer-events-none">
+                    <div className="absolute left-[20px] md:left-1/2 -translate-x-1/2 top-14 md:top-16 bottom-0 py-8 flex flex-col items-center justify-evenly z-20 pointer-events-none">
                       {step.tech.map((TechItem, idx) => {
                         const TechIcon = TechItem.icon;
                         return (
                           <div 
                             key={idx}
-                            className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#ffffff]/10 backdrop-blur-sm border border-[#ffffff]/20 flex items-center justify-center shadow-sm relative z-30 transition-all duration-300 pointer-events-auto"
+                            className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#ffffff]/10 backdrop-blur-sm border border-[#ffffff]/20 flex items-center justify-center shadow-sm relative z-30 transition-all duration-300 pointer-events-auto"
                             style={{ color: TechItem.color }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)';
@@ -194,11 +194,11 @@ export default function WorkflowSection() {
                     initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    viewport={{ once: true, margin: "-150px" }}
-                    className={`w-full md:w-1/2 pl-16 md:pl-0 pt-1 md:pt-0 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className={`w-full md:w-1/2 pl-12 md:pl-0 pt-1 md:pt-0 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}
                   >
                     <div 
-                      className={`p-6 md:p-8 rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 hover:bg-[#ffffff]/15 transition-all duration-300 relative group overflow-hidden ${isEven ? 'md:items-end' : 'md:items-start'} flex flex-col`}
+                      className={`p-5 md:p-8 rounded-[20px] md:rounded-[24px] bg-[#ffffff]/10 border border-[#ffffff]/20 hover:bg-[#ffffff]/15 transition-all duration-300 relative group overflow-hidden ${isEven ? 'md:items-end' : 'md:items-start'} flex flex-col`}
                       style={{ boxShadow: `0 8px 32px ${primaryShadow.replace('0.4', '0.1')}` }}
                     >
                       
@@ -208,12 +208,12 @@ export default function WorkflowSection() {
                       </span>
 
                       <div className="relative z-10 w-full">
-                        <div className={`flex items-center gap-4 mb-4 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                        <div className={`flex items-center gap-3 md:gap-4 mb-3 md:mb-4 ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                           <div 
-                            className="h-12 w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
+                            className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#ffffff]/10 border border-[#ffffff]/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300"
                             style={{ boxShadow: `0 0 15px ${primaryShadow}` }}
                           >
-                            <Icon className="text-xl text-[#ffffff]" />
+                            <Icon className="text-lg md:text-xl text-[#ffffff]" />
                           </div>
                           <h3 className="font-bold text-[18px] md:text-[20px] text-[#ffffff]">{step.title}</h3>
                         </div>
