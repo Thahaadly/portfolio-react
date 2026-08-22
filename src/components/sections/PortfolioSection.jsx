@@ -175,29 +175,30 @@ export default function PortfolioSection() {
 
         {/* Modal Detail Project using Dialog Shadcn */}
         <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent className="max-w-[90vw] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] shadow-2xl flex flex-col md:flex-row gap-8 md:gap-10 border-none">
+          <DialogContent className="max-w-[90vw] sm:max-w-3xl md:max-w-4xl lg:max-w-4xl max-h-[90vh] overflow-y-auto rounded-[22px] p-6 md:p-10 bg-[#ffffff] shadow-2xl flex flex-col border-none gap-0">
             {selectedProject && (
               <>
                 <div className="sr-only">
                   <DialogTitle>{selectedProject.title}</DialogTitle>
                   <DialogDescription>{selectedProject.short_description}</DialogDescription>
                 </div>
-                {/* Modal Image (Left Column on Desktop) */}
-                <div className="w-full md:w-5/12 flex-shrink-0 mt-4 md:mt-0">
+                
+                {/* Hero Image (Top) */}
+                <div className="w-full mt-2 mb-6">
                   <img
                     src={resolveProjectImage(selectedProject)}
                     alt={selectedProject.title}
-                    className="w-full h-auto max-h-48 md:max-h-full object-cover object-top rounded-2xl bg-[#f3f4f6] border border-[#e5e7eb]"
+                    className="w-full h-48 sm:h-64 md:h-80 lg:h-[400px] object-cover object-top rounded-2xl bg-[#f3f4f6] border border-[#e5e7eb] shadow-sm"
                   />
                 </div>
 
-                {/* Modal Content (Right Column on Desktop) */}
-                <div className="w-full md:w-7/12 flex flex-col pt-2">
+                {/* Header Content */}
+                <div className="w-full flex flex-col">
                   <h3 className="text-3xl md:text-4xl font-bold text-[#17171c] mb-4 pr-10 leading-tight">
                     {selectedProject.title}
                   </h3>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {(selectedProject.tech_stack
                       ? selectedProject.tech_stack.split(", ")
                       : selectedProject.technologies
@@ -214,10 +215,48 @@ export default function PortfolioSection() {
                     ))}
                   </div>
 
-                  <p className="text-[16px] text-[#616161] mb-8 leading-relaxed whitespace-pre-wrap flex-grow">
-                    {selectedProject.full_description}
-                  </p>
+                  {/* Case Study Content / Fallback Description */}
+                  {selectedProject.problem && selectedProject.solution ? (
+                    <div className="flex flex-col gap-8 mb-10">
+                      <div>
+                        <h4 className="text-[20px] font-bold text-[#17171c] mb-3 flex items-center gap-2">
+                          <span className="text-xl">🛑</span> The Challenge
+                        </h4>
+                        <p className="text-[16px] text-[#616161] leading-relaxed whitespace-pre-wrap">
+                          {selectedProject.problem}
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-[20px] font-bold text-[#17171c] mb-3 flex items-center gap-2">
+                          <span className="text-xl">💡</span> The Solution
+                        </h4>
+                        <p className="text-[16px] text-[#616161] leading-relaxed whitespace-pre-wrap">
+                          {selectedProject.solution}
+                        </p>
+                      </div>
+                      {selectedProject.features && selectedProject.features.length > 0 && (
+                        <div>
+                          <h4 className="text-[20px] font-bold text-[#17171c] mb-4 flex items-center gap-2">
+                            <span className="text-xl">✨</span> Key Features
+                          </h4>
+                          <ul className="list-none space-y-3">
+                            {selectedProject.features.map((feature, i) => (
+                              <li key={i} className="flex items-start gap-3">
+                                <span className="text-[#17171c] mt-1 shrink-0 font-bold text-lg leading-none">✓</span>
+                                <span className="text-[16px] text-[#616161] leading-relaxed">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-[16px] text-[#616161] mb-10 leading-relaxed whitespace-pre-wrap">
+                      {selectedProject.full_description}
+                    </p>
+                  )}
 
+                  {/* Footer CTA */}
                   <div className="flex flex-wrap gap-3 mt-auto border-t border-[#e5e7eb] pt-6">
                     {selectedProject.link_github ||
                     (selectedProject.link && selectedProject.link !== "#") ? (
@@ -227,7 +266,7 @@ export default function PortfolioSection() {
                         }
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold ${theme.buttonSolid} flex-1 md:flex-none`}
+                        className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold ${theme.buttonSolid} flex-1 sm:flex-none`}
                       >
                         <FaGithub className="text-base" /> GitHub
                       </a>
@@ -238,7 +277,7 @@ export default function PortfolioSection() {
                         href={selectedProject.link_demo || selectedProject.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold bg-[#17171c] text-[#ffffff] transition-opacity hover:opacity-90 flex-1 md:flex-none`}
+                        className={`inline-flex items-center justify-center gap-2 rounded-[32px] px-6 py-3 text-sm font-bold bg-[#17171c] text-[#ffffff] transition-opacity hover:opacity-90 flex-1 sm:flex-none`}
                       >
                         <FaExternalLinkAlt className="text-base" /> Live Web
                       </a>

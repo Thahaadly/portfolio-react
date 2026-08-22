@@ -10,6 +10,14 @@ export const mockProjects = [
       "Merancang arsitektur decoupled React Native + Laravel REST API dengan Role-Based Access Control. Membangun fitur 'Montir AI' menggunakan Google Gemini AI untuk konsultasi otomotif otomatis. Mengimplementasikan visualisasi 3D kendaraan interaktif dengan React Three Fiber (teroptimasi 31MB → 19MB), serta mengintegrasikan Midtrans Payment Gateway untuk mengamankan transaksi bengkel.",
     image: "project-photos/garageflow-web.jpeg",
     technologies: "React Native, Laravel, MySQL, Midtrans API, Three.js",
+    problem: "Manajemen bengkel tradisional dan pencatatan manual seringkali rentan hilang, serta belum ada platform yang memudahkan pelanggan untuk berkonsultasi mengenai kerusakan kendaraan secara instan sebelum datang ke lokasi.",
+    solution: "Membangun ekosistem aplikasi mobile terintegrasi dengan REST API yang aman, serta menghadirkan AI assistant untuk diagnosis awal sebelum pelanggan datang ke bengkel.",
+    features: [
+      "Konsultasi cerdas menggunakan integrasi AI Google Gemini",
+      "Visualisasi 3D Interaktif komponen kendaraan menggunakan React Three Fiber (teroptimasi 31MB → 19MB)",
+      "Sistem Gateway Pembayaran Otomatis via Midtrans",
+      "Role-Based Access Control terstruktur untuk Owner, Mekanik, dan Kasir"
+    ]
   },
   {
     id: 2,
@@ -66,6 +74,14 @@ export const mockProjects = [
     technologies: "React JS, Laravel, MySQL, Tailwind CSS",
     link: "#",
     demo: "https://spektatechnusantara.com/",
+    problem: "Perusahaan klien membutuhkan portal web modern namun kesulitan mengelola konten (berita, portofolio) secara mandiri karena keterbatasan platform CMS konvensional yang kaku dan lambat.",
+    solution: "Merancang Custom CMS berbasis Headless Architecture yang memisahkan frontend interaktif dan backend pengelola data, sehingga performa web tetap maksimal dan klien memiliki kebebasan penuh dalam mengatur konten.",
+    features: [
+      "Headless Architecture memisahkan React JS (Frontend) dan Laravel REST API (Backend)",
+      "Dashboard Admin Dinamis dengan operasi CRUD intuitif untuk staf non-teknis",
+      "Optimasi gambar dan manajemen aset media terpusat",
+      "Sistem routing dinamis berbasis SEO untuk setiap halaman artikel"
+    ]
   },
   {
     id: 7,
