@@ -10,6 +10,9 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        navigateFallbackDenylist: [/^\/.*\.(pdf|jpg|jpeg|png|svg)$/],
+      },
       manifest: {
         name: 'Thaha Wafiq Adly - Portfolio',
         short_name: 'Thaha Portfolio',
