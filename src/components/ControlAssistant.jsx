@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FaHome, FaUser, FaBriefcase, FaEnvelope, FaCodeBranch } from "react-icons/fa";
+import { FaHome, FaUser, FaBriefcase, FaEnvelope, FaCodeBranch, FaEye } from "react-icons/fa";
 
-export default function ControlAssistant({ activePage, setActivePage }) {
+export default function ControlAssistant({ activePage, setActivePage, setIsCVModalOpen }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems = [
@@ -13,7 +13,8 @@ export default function ControlAssistant({ activePage, setActivePage }) {
   ];
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] flex items-center gap-3">
+      {/* ── Dynamic Island Navigation ── */}
       <div
         className={`flex items-center bg-[#ffffff] border border-[#e5e7eb] shadow-2xl rounded-full transition-all duration-500 overflow-hidden ${
           isExpanded
@@ -66,6 +67,15 @@ export default function ControlAssistant({ activePage, setActivePage }) {
           </div>
         )}
       </div>
+
+      {/* ── Global View CV Button ── */}
+      <button
+        onClick={() => setIsCVModalOpen(true)}
+        className="flex items-center justify-center gap-2 h-10 px-4 bg-[#17171c] text-[#ffffff] font-bold text-[13px] rounded-full shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:scale-95"
+        title="View Resume"
+      >
+        <FaEye className="text-sm" /> CV
+      </button>
 
       {isExpanded && (
         <div

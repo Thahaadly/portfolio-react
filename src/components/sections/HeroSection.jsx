@@ -1,22 +1,7 @@
-import { useState } from "react";
 import { FaGithub, FaLinkedin, FaDownload, FaEye } from "react-icons/fa";
 import { glassTheme as theme } from "../../utils/theme";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-export default function HeroSection({ setActivePage }) {
-  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
-
-  const handleDownloadCV = async () => {
-    // Dynamically import confetti to save initial bundle size
-    const confetti = (await import("canvas-confetti")).default;
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#17171c", "#4d6978", "#d9c8b3", "#ffffff"],
-    });
-  };
-
+export default function HeroSection({ setActivePage, setIsCVModalOpen }) {
   return (
     <section
       id="home"
@@ -105,38 +90,6 @@ export default function HeroSection({ setActivePage }) {
           </div>
         </div>
       </div>
-
-      {/* ── CV Viewer Modal ── */}
-      <Dialog open={isCVModalOpen} onOpenChange={setIsCVModalOpen}>
-        <DialogContent className="max-w-[95vw] lg:max-w-5xl h-[85vh] p-0 flex flex-col bg-[#ffffff] border-none rounded-[22px] shadow-2xl overflow-hidden gap-0">
-          <div className="sr-only">
-            <DialogTitle>Curriculum Vitae - Thaha Wafiq Adly</DialogTitle>
-            <DialogDescription>Inline PDF viewer of my CV</DialogDescription>
-          </div>
-          
-          {/* Modal Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[#e5e7eb] bg-[#f9fafb] shrink-0">
-            <h3 className="font-bold text-[#17171c] text-[18px]">My Resume</h3>
-            <a
-              href="/CV-Thaha-Wafiq-Adly.pdf"
-              download="CV_Thaha_Wafiq_Adly.pdf"
-              onClick={handleDownloadCV}
-              className={`px-5 py-2.5 flex items-center justify-center gap-2 text-[13px] font-bold ${theme.buttonSolid} rounded-full`}
-            >
-              <FaDownload /> Download PDF
-            </a>
-          </div>
-
-          {/* Modal Body: PDF Iframe */}
-          <div className="flex-grow w-full relative bg-[#e5e7eb]">
-            <iframe
-              src="/CV-Thaha-Wafiq-Adly.pdf#toolbar=0&navpanes=0&scrollbar=0"
-              className="w-full h-full border-none"
-              title="CV Thaha Wafiq Adly"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }
