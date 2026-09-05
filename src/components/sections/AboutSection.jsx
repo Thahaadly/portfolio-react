@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import Timeline from "../Timeline";
 import profileImage from "../../assets/fix.jpeg";
 import { mockProjects } from "../../data";
@@ -436,16 +436,51 @@ export default function AboutSection() {
         ];
 
         const commitData = [
-          { month: "Jan", commits: 32 },
-          { month: "Feb", commits: 45 },
-          { month: "Mar", commits: 28 },
-          { month: "Apr", commits: 60 },
-          { month: "May", commits: 55 },
-          { month: "Jun", commits: 70 },
+          { month: "Jan", frontend: 18, backend: 9, data: 5, color: "#F59E0B" },
+          { month: "Feb", frontend: 22, backend: 14, data: 9, color: "#FF2D20" },
+          { month: "Mar", frontend: 12, backend: 10, data: 6, color: "#3776AB" },
+          { month: "Apr", frontend: 28, backend: 18, data: 14, color: "#06B6D4" },
+          { month: "May", frontend: 25, backend: 20, data: 10, color: "#8B5CF6" },
+          { month: "Jun", frontend: 32, backend: 24, data: 14, color: "#10B981" },
         ];
+
+        const CustomBarTooltip = ({ active, payload, label }) => {
+          if (active && payload && payload.length) {
+            return (
+              <div style={{ background: "#17171c", borderRadius: "14px", padding: "10px 16px", border: "none" }}>
+                <p style={{ color: "#ffffff", fontWeight: "700", marginBottom: "6px", fontSize: "14px" }}>{label}</p>
+                {payload.map((p, i) => (
+                  <p key={i} style={{ color: p.fill === "#ffffff" ? "#d9c8b3" : p.fill, fontSize: "13px", margin: "2px 0" }}>
+                    {p.name}: <strong>{p.value}</strong> commits
+                  </p>
+                ))}
+              </div>
+            );
+          }
+          return null;
+        };
+
+        const CustomPieTooltip = ({ active, payload }) => {
+          if (active && payload && payload.length) {
+            const item = payload[0];
+            return (
+              <div style={{ background: "#17171c", borderRadius: "14px", padding: "10px 16px", border: "none" }}>
+                <p style={{ color: item.payload.color, fontWeight: "700", fontSize: "13px" }}>{item.name}</p>
+                <p style={{ color: "#ffffff", fontSize: "13px" }}>{item.value}% penggunaan</p>
+              </div>
+            );
+          }
+          return null;
+        };
 
         return (
           <div className="flex flex-col animate-fade-in pt-2 w-full max-w-6xl mx-auto gap-8">
+            <style>{`
+              @keyframes chartFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+              .chart-card-1 { animation: chartFadeIn 0.5s ease forwards; }
+              .chart-card-2 { animation: chartFadeIn 0.5s ease 0.15s both; }
+            `}</style>
+
             <div className="flex items-center gap-4 mb-2">
               <div className="h-14 w-14 rounded-full bg-[#17171c] flex items-center justify-center shrink-0">
                 <FaChartPie className="text-2xl text-[#ffffff]" />
@@ -454,66 +489,77 @@ export default function AboutSection() {
                 <h3 className="text-[32px] md:text-[40px] tracking-[-0.8px] font-normal text-[#17171c]">
                   Coding Insights
                 </h3>
-                <p className="text-[16px] text-[#616161]">
-                  Visualisasi distribusi bahasa pemrograman dan aktivitas pengembangan saya.
-                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-              {/* Language Distribution */}
-              <div className="w-full rounded-[24px] bg-[#ffffff] border border-[#e5e7eb] shadow-sm p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
-                <h4 className="text-[18px] font-bold text-[#17171c] mb-6">Language Distribution</h4>
-                <div className="h-[250px] w-full">
+              {/* Language Distribution Pie Chart */}
+              <div className="chart-card-1 w-full rounded-[24px] bg-[#ffffff] border border-[#e5e7eb] shadow-sm p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <h4 className="text-[18px] font-bold text-[#17171c] mb-1">Language Distribution</h4>
+                <p className="text-[13px] text-[#9ca3af] mb-5">Persentase bahasa yang paling sering digunakan</p>
+                <div className="h-[220px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
                         data={langData}
                         cx="50%"
                         cy="50%"
-                        innerRadius={60}
-                        outerRadius={90}
-                        paddingAngle={5}
+                        innerRadius={55}
+                        outerRadius={85}
+                        paddingAngle={4}
                         dataKey="value"
+                        isAnimationActive={true}
+                        animationBegin={100}
+                        animationDuration={900}
+                        animationEasing="ease-out"
                       >
                         {langData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
+                          <Cell
+                            key={`cell-${index}`}
+                            fill={entry.color}
+                            stroke="none"
+                          />
                         ))}
                       </Pie>
-                      <Tooltip
-                        contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}
-                        itemStyle={{ color: '#17171c', fontWeight: 'bold' }}
-                      />
+                      <Tooltip content={<CustomPieTooltip />} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="flex flex-wrap justify-center gap-4 mt-2">
+                <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 mt-3">
                   {langData.map((item, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
-                      <span className="text-[13px] text-[#616161]">{item.name}</span>
+                      <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }}></span>
+                      <span className="text-[12px] font-medium text-[#616161]">{item.name} <span className="font-bold text-[#17171c]">{item.value}%</span></span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* GitHub Activity */}
-              <div className="w-full rounded-[24px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+              {/* GitHub Commit Activity Stacked Bar Chart */}
+              <div className="chart-card-2 w-full rounded-[24px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
-                <h4 className="text-[18px] font-bold text-[#ffffff] mb-6 relative z-10">Commit Activity (6 Months)</h4>
-                <div className="h-[250px] w-full relative z-10">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={commitData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                      <XAxis dataKey="month" stroke="#ffffff" opacity={0.6} tick={{ fill: '#ffffff', fontSize: 12 }} axisLine={false} tickLine={false} />
-                      <YAxis stroke="#ffffff" opacity={0.6} tick={{ fill: '#ffffff', fontSize: 12 }} axisLine={false} tickLine={false} />
-                      <Tooltip
-                        cursor={{ fill: 'rgba(255,255,255,0.1)' }}
-                        contentStyle={{ backgroundColor: '#17171c', borderRadius: '12px', border: 'none', color: '#fff' }}
-                        itemStyle={{ color: '#fff' }}
-                      />
-                      <Bar dataKey="commits" fill="#ffffff" radius={[4, 4, 0, 0]} opacity={0.9} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                <div className="relative z-10 flex flex-col h-full">
+                  <h4 className="text-[18px] font-bold text-[#ffffff] mb-1">Commit Activity (6 Months)</h4>
+                  <p className="text-[13px] text-[#ffffff]/60 mb-5">Breakdown kontribusi per kategori proyek</p>
+                  <div className="h-[220px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={commitData} margin={{ top: 5, right: 5, left: -25, bottom: 5 }} barCategoryGap="30%">
+                        <XAxis dataKey="month" tick={{ fill: "rgba(255,255,255,0.7)", fontSize: 12 }} axisLine={false} tickLine={false} />
+                        <YAxis tick={{ fill: "rgba(255,255,255,0.7)", fontSize: 11 }} axisLine={false} tickLine={false} />
+                        <Tooltip content={<CustomBarTooltip />} cursor={{ fill: "rgba(255,255,255,0.07)" }} />
+                        <Legend
+                          formatter={(value) => <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>{value}</span>}
+                          wrapperStyle={{ paddingTop: "8px" }}
+                        />
+                        <Bar dataKey="frontend" name="Frontend" stackId="a" fill="#F59E0B" radius={[0,0,0,0]}
+                          isAnimationActive={true} animationBegin={200} animationDuration={900} animationEasing="ease-out" />
+                        <Bar dataKey="backend" name="Backend" stackId="a" fill="#06B6D4" radius={[0,0,0,0]}
+                          isAnimationActive={true} animationBegin={300} animationDuration={900} animationEasing="ease-out" />
+                        <Bar dataKey="data" name="Data / Python" stackId="a" fill="#3776AB" radius={[4,4,0,0]}
+                          isAnimationActive={true} animationBegin={400} animationDuration={900} animationEasing="ease-out" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
                 </div>
               </div>
             </div>
