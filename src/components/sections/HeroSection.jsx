@@ -16,7 +16,7 @@ export default function HeroSection({ setActivePage, setIsCVModalOpen }) {
               Thaha.
             </h1>
             <h2 className="text-[20px] lg:text-[22px] font-medium text-[#616161] tracking-tight pl-4 border-l-[3px] border-[#17171c] ml-1 mt-2">
-              Web Developer
+              Web Developer & <br className="md:hidden" /> Data Analyst
             </h2>
           </div>
 
@@ -64,9 +64,7 @@ export default function HeroSection({ setActivePage, setIsCVModalOpen }) {
                 availability-status
               </h3>
               <p className="text-[15px] leading-relaxed text-[#f3f4f6] mb-6">
-                A highly motivated front-end web developer with robust fullstack
-                experience, ready to craft beautiful interfaces and scalable
-                systems.
+                A versatile Fullstack Web Developer & Data Analyst, ready to craft beautiful interfaces, scalable systems, and data-driven insights.
               </p>
 
               {/* Rule-separated bullet details */}

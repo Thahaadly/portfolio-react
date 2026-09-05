@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import Timeline from "../Timeline";
 import profileImage from "../../assets/fix.jpeg";
 import { mockProjects } from "../../data";
@@ -15,6 +16,7 @@ import {
   FaCamera,
   FaGithub,
   FaDatabase,
+  FaChartPie,
 } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 
@@ -32,6 +34,7 @@ export default function AboutSection() {
     { id: "profile", label: "Profile", icon: <FaUserAstronaut /> },
     { id: "skills", label: "Tech Stack", icon: <FaCode /> },
     { id: "experience", label: "Experience", icon: <FaHistory /> },
+    { id: "insights", label: "Insights", icon: <FaChartPie /> },
   ];
 
   const renderContent = () => {
@@ -54,7 +57,7 @@ export default function AboutSection() {
               {/* Bio */}
               <div>
                 <h2 className="text-[40px] md:text-[56px] leading-[1.05] tracking-[-1.12px] font-normal text-[#17171c] mb-6">
-                  Web <br className="hidden lg:block" /> Developer
+                  Web Dev & <br className="hidden lg:block" /> Data Analyst
                 </h2>
                 <p className="text-[16px] md:text-[18px] leading-relaxed text-[#616161]">
                   Lulusan Ilmu Komputer yang berfokus sebagai Front-End Web Developer, dibekali dengan pemahaman Fullstack. Terbiasa mengerjakan ekosistem antarmuka untuk platform web maupun mobile, serta memiliki pengalaman praktis dalam menangani integrasi Back-End agar sebuah aplikasi bisa berjalan dengan baik secara utuh.
@@ -422,6 +425,98 @@ export default function AboutSection() {
         return (
           <div className="flex flex-col animate-fade-in pt-2 pb-10">
             <Timeline />
+          </div>
+        );
+      case "insights":
+        const langData = [
+          { name: "JavaScript / React", value: 45, color: "#F59E0B" },
+          { name: "PHP / Laravel", value: 30, color: "#FF2D20" },
+          { name: "Python / Data", value: 15, color: "#3776AB" },
+          { name: "SQL & Others", value: 10, color: "#06B6D4" },
+        ];
+
+        const commitData = [
+          { month: "Jan", commits: 32 },
+          { month: "Feb", commits: 45 },
+          { month: "Mar", commits: 28 },
+          { month: "Apr", commits: 60 },
+          { month: "May", commits: 55 },
+          { month: "Jun", commits: 70 },
+        ];
+
+        return (
+          <div className="flex flex-col animate-fade-in pt-2 w-full max-w-6xl mx-auto gap-8">
+            <div className="flex items-center gap-4 mb-2">
+              <div className="h-14 w-14 rounded-full bg-[#17171c] flex items-center justify-center shrink-0">
+                <FaChartPie className="text-2xl text-[#ffffff]" />
+              </div>
+              <div>
+                <h3 className="text-[32px] md:text-[40px] tracking-[-0.8px] font-normal text-[#17171c]">
+                  Coding Insights
+                </h3>
+                <p className="text-[16px] text-[#616161]">
+                  Visualisasi distribusi bahasa pemrograman dan aktivitas pengembangan saya.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+              {/* Language Distribution */}
+              <div className="w-full rounded-[24px] bg-[#ffffff] border border-[#e5e7eb] shadow-sm p-6 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <h4 className="text-[18px] font-bold text-[#17171c] mb-6">Language Distribution</h4>
+                <div className="h-[250px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={langData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={90}
+                        paddingAngle={5}
+                        dataKey="value"
+                      >
+                        {langData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}
+                        itemStyle={{ color: '#17171c', fontWeight: 'bold' }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="flex flex-wrap justify-center gap-4 mt-2">
+                  {langData.map((item, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
+                      <span className="text-[13px] text-[#616161]">{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* GitHub Activity */}
+              <div className="w-full rounded-[24px] bg-gradient-to-br from-[#182c3c] via-[#4d6978] to-[#d9c8b3] border border-transparent shadow-lg p-6 flex flex-col hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[#000000] opacity-[0.05] mix-blend-multiply pointer-events-none"></div>
+                <h4 className="text-[18px] font-bold text-[#ffffff] mb-6 relative z-10">Commit Activity (6 Months)</h4>
+                <div className="h-[250px] w-full relative z-10">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={commitData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                      <XAxis dataKey="month" stroke="#ffffff" opacity={0.6} tick={{ fill: '#ffffff', fontSize: 12 }} axisLine={false} tickLine={false} />
+                      <YAxis stroke="#ffffff" opacity={0.6} tick={{ fill: '#ffffff', fontSize: 12 }} axisLine={false} tickLine={false} />
+                      <Tooltip
+                        cursor={{ fill: 'rgba(255,255,255,0.1)' }}
+                        contentStyle={{ backgroundColor: '#17171c', borderRadius: '12px', border: 'none', color: '#fff' }}
+                        itemStyle={{ color: '#fff' }}
+                      />
+                      <Bar dataKey="commits" fill="#ffffff" radius={[4, 4, 0, 0]} opacity={0.9} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </div>
           </div>
         );
       default:
